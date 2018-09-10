@@ -176,6 +176,60 @@ objects/Timer.cpp.s:
 	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/Timer.cpp.s
 .PHONY : objects/Timer.cpp.s
 
+objects/block/Tile.obj: objects/block/Tile.cpp.obj
+
+.PHONY : objects/block/Tile.obj
+
+# target to build an object file
+objects/block/Tile.cpp.obj:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj
+.PHONY : objects/block/Tile.cpp.obj
+
+objects/block/Tile.i: objects/block/Tile.cpp.i
+
+.PHONY : objects/block/Tile.i
+
+# target to preprocess a source file
+objects/block/Tile.cpp.i:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.i
+.PHONY : objects/block/Tile.cpp.i
+
+objects/block/Tile.s: objects/block/Tile.cpp.s
+
+.PHONY : objects/block/Tile.s
+
+# target to generate assembly for a file
+objects/block/Tile.cpp.s:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.s
+.PHONY : objects/block/Tile.cpp.s
+
+objects/entity/player/EntityPlayer.obj: objects/entity/player/EntityPlayer.cpp.obj
+
+.PHONY : objects/entity/player/EntityPlayer.obj
+
+# target to build an object file
+objects/entity/player/EntityPlayer.cpp.obj:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj
+.PHONY : objects/entity/player/EntityPlayer.cpp.obj
+
+objects/entity/player/EntityPlayer.i: objects/entity/player/EntityPlayer.cpp.i
+
+.PHONY : objects/entity/player/EntityPlayer.i
+
+# target to preprocess a source file
+objects/entity/player/EntityPlayer.cpp.i:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.i
+.PHONY : objects/entity/player/EntityPlayer.cpp.i
+
+objects/entity/player/EntityPlayer.s: objects/entity/player/EntityPlayer.cpp.s
+
+.PHONY : objects/entity/player/EntityPlayer.s
+
+# target to generate assembly for a file
+objects/entity/player/EntityPlayer.cpp.s:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.s
+.PHONY : objects/entity/player/EntityPlayer.cpp.s
+
 textures/Texture.obj: textures/Texture.cpp.obj
 
 .PHONY : textures/Texture.obj
@@ -245,6 +299,12 @@ help:
 	@echo ... objects/Timer.obj
 	@echo ... objects/Timer.i
 	@echo ... objects/Timer.s
+	@echo ... objects/block/Tile.obj
+	@echo ... objects/block/Tile.i
+	@echo ... objects/block/Tile.s
+	@echo ... objects/entity/player/EntityPlayer.obj
+	@echo ... objects/entity/player/EntityPlayer.i
+	@echo ... objects/entity/player/EntityPlayer.s
 	@echo ... textures/Texture.obj
 	@echo ... textures/Texture.i
 	@echo ... textures/Texture.s

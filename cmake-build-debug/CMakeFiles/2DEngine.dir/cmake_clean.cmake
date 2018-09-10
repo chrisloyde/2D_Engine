@@ -3,6 +3,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/2DEngine.dir/textures/Texture.cpp.obj"
   "CMakeFiles/2DEngine.dir/textures/sprites/renderers/TileRenderer.cpp.obj"
   "CMakeFiles/2DEngine.dir/objects/Timer.cpp.obj"
+  "CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj"
+  "CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj"
   "2DEngine.pdb"
   "2DEngine.exe"
   "2DEngine.exe.manifest"

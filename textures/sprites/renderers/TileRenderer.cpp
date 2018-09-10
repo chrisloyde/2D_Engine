@@ -39,16 +39,16 @@ void TileRenderer::generateClips() {
     }
 }
 
-void TileRenderer::render(SDL_Renderer *renderer, int x, int y, tileTypes type) {
+void TileRenderer::render(SDL_Renderer *renderer, SDL_Rect camera, int x, int y, tileTypes type) {
     switch(type) {
         case tile_grass:
-            spriteSheet.render(renderer, x, y, &clipStorage[1]);
+            spriteSheet.render(renderer, x-camera.x, y-camera.y, &clipStorage[1]);
             break;
         case tile_water:
-            spriteSheet.render(renderer, x, y, &clipStorage[2]);
+            spriteSheet.render(renderer, x-camera.x, y-camera.y, &clipStorage[2]);
             break;
         default:
-            spriteSheet.render(renderer, x, y, &clipStorage[0]);
+            spriteSheet.render(renderer, x-camera.x, y-camera.y, &clipStorage[0]);
             break;
     }
 }

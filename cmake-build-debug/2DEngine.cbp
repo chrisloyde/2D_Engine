@@ -91,6 +91,21 @@
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/Timer.h">
 			<Option target="2DEngine"/>
 		</Unit>
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/UpdateAndRender.h">
+			<Option target="2DEngine"/>
+		</Unit>
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/block/Tile.cpp">
+			<Option target="2DEngine"/>
+		</Unit>
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/block/Tile.h">
+			<Option target="2DEngine"/>
+		</Unit>
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/entity/player/EntityPlayer.cpp">
+			<Option target="2DEngine"/>
+		</Unit>
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/entity/player/EntityPlayer.h">
+			<Option target="2DEngine"/>
+		</Unit>
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/textures/Texture.cpp">
 			<Option target="2DEngine"/>
 		</Unit>

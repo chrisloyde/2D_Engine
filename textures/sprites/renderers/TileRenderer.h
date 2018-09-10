@@ -22,17 +22,13 @@
  */
 class TileRenderer {
 public:
-    enum tileTypes {
-        tile_default, // dirt
-        tile_grass,
-        tile_water
-    };
+    enum tileTypes {tile_dirt, tile_grass, tile_water};
     TileRenderer(int numOfSprites, int spriteW, int spriteH);
     ~TileRenderer();
     void free();
     bool init(SDL_Renderer *renderer, std::string path);
     void generateClips();
-    void render(SDL_Renderer *renderer, int x, int y, tileTypes type);
+    void render(SDL_Renderer *renderer, SDL_Rect camera, int x, int y, tileTypes type);
 private:
     SDL_Texture *SDL_spriteSheet;
     Texture spriteSheet;

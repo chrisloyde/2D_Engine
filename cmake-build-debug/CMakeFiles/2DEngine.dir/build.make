@@ -156,12 +156,64 @@ CMakeFiles/2DEngine.dir/objects/Timer.cpp.obj.provides: CMakeFiles/2DEngine.dir/
 CMakeFiles/2DEngine.dir/objects/Timer.cpp.obj.provides.build: CMakeFiles/2DEngine.dir/objects/Timer.cpp.obj
 
 
+CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj: CMakeFiles/2DEngine.dir/flags.make
+CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj: CMakeFiles/2DEngine.dir/includes_CXX.rsp
+CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj: ../objects/entity/player/EntityPlayer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Chris\Dev\2DEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\2DEngine.dir\objects\entity\player\EntityPlayer.cpp.obj -c C:\Users\Chris\Dev\2DEngine\objects\entity\player\EntityPlayer.cpp
+
+CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Chris\Dev\2DEngine\objects\entity\player\EntityPlayer.cpp > CMakeFiles\2DEngine.dir\objects\entity\player\EntityPlayer.cpp.i
+
+CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Chris\Dev\2DEngine\objects\entity\player\EntityPlayer.cpp -o CMakeFiles\2DEngine.dir\objects\entity\player\EntityPlayer.cpp.s
+
+CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj.requires:
+
+.PHONY : CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj.requires
+
+CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj.provides: CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj.provides.build
+.PHONY : CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj.provides
+
+CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj.provides.build: CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj
+
+
+CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj: CMakeFiles/2DEngine.dir/flags.make
+CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj: CMakeFiles/2DEngine.dir/includes_CXX.rsp
+CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj: ../objects/block/Tile.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Chris\Dev\2DEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\2DEngine.dir\objects\block\Tile.cpp.obj -c C:\Users\Chris\Dev\2DEngine\objects\block\Tile.cpp
+
+CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Chris\Dev\2DEngine\objects\block\Tile.cpp > CMakeFiles\2DEngine.dir\objects\block\Tile.cpp.i
+
+CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Chris\Dev\2DEngine\objects\block\Tile.cpp -o CMakeFiles\2DEngine.dir\objects\block\Tile.cpp.s
+
+CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj.requires:
+
+.PHONY : CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj.requires
+
+CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj.provides: CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj.provides.build
+.PHONY : CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj.provides
+
+CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj.provides.build: CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj
+
+
 # Object files for target 2DEngine
 2DEngine_OBJECTS = \
 "CMakeFiles/2DEngine.dir/main.cpp.obj" \
 "CMakeFiles/2DEngine.dir/textures/Texture.cpp.obj" \
 "CMakeFiles/2DEngine.dir/textures/sprites/renderers/TileRenderer.cpp.obj" \
-"CMakeFiles/2DEngine.dir/objects/Timer.cpp.obj"
+"CMakeFiles/2DEngine.dir/objects/Timer.cpp.obj" \
+"CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj" \
+"CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj"
 
 # External object files for target 2DEngine
 2DEngine_EXTERNAL_OBJECTS =
@@ -170,6 +222,8 @@ CMakeFiles/2DEngine.dir/objects/Timer.cpp.obj.provides.build: CMakeFiles/2DEngin
 2DEngine.exe: CMakeFiles/2DEngine.dir/textures/Texture.cpp.obj
 2DEngine.exe: CMakeFiles/2DEngine.dir/textures/sprites/renderers/TileRenderer.cpp.obj
 2DEngine.exe: CMakeFiles/2DEngine.dir/objects/Timer.cpp.obj
+2DEngine.exe: CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj
+2DEngine.exe: CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj
 2DEngine.exe: CMakeFiles/2DEngine.dir/build.make
 2DEngine.exe: C:/Program\ Files\ (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/lib/libSDL2main.a
 2DEngine.exe: C:/Program\ Files\ (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/lib/libSDL2.dll.a
@@ -178,7 +232,7 @@ CMakeFiles/2DEngine.dir/objects/Timer.cpp.obj.provides.build: CMakeFiles/2DEngin
 2DEngine.exe: CMakeFiles/2DEngine.dir/linklibs.rsp
 2DEngine.exe: CMakeFiles/2DEngine.dir/objects1.rsp
 2DEngine.exe: CMakeFiles/2DEngine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Chris\Dev\2DEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable 2DEngine.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Chris\Dev\2DEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable 2DEngine.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\2DEngine.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -190,6 +244,8 @@ CMakeFiles/2DEngine.dir/requires: CMakeFiles/2DEngine.dir/main.cpp.obj.requires
 CMakeFiles/2DEngine.dir/requires: CMakeFiles/2DEngine.dir/textures/Texture.cpp.obj.requires
 CMakeFiles/2DEngine.dir/requires: CMakeFiles/2DEngine.dir/textures/sprites/renderers/TileRenderer.cpp.obj.requires
 CMakeFiles/2DEngine.dir/requires: CMakeFiles/2DEngine.dir/objects/Timer.cpp.obj.requires
+CMakeFiles/2DEngine.dir/requires: CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj.requires
+CMakeFiles/2DEngine.dir/requires: CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj.requires
 
 .PHONY : CMakeFiles/2DEngine.dir/requires
 

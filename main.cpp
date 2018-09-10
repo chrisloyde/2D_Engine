@@ -7,9 +7,13 @@
 #include "textures/Texture.h"
 #include "textures/sprites/renderers/TileRenderer.h"
 #include "Objects/Timer.h"
+#include "objects/entity/player/EntityPlayer.h"
 #include <SDL_ttf.h>
 
 // define program variables
+const int LEVEL_WIDTH = 1920;
+const int LEVEL_HEIGHT = 1080;
+
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 SDL_Window *window = nullptr; //The window being rendered to
@@ -19,8 +23,11 @@ SDL_Renderer *renderer = nullptr; // window renderer
 SDL_Color systemTextColor = {0,0,0,255};
 TTF_Font *systemFont = nullptr;
 
-TileRenderer *tileRenderer;
+TileRenderer tileRenderer(3,32,32);
 Texture fpsTextTexture;
+
+SDL_Rect camera = {0,0,SCREEN_WIDTH, SCREEN_HEIGHT};
+EntityPlayer player(32, 32);
 
 // Key press codes
 enum KeyPress {
@@ -65,32 +72,46 @@ int main(int argv, char** args) {
                 }
                     // Get keyboard input events
                 else if (e.type == SDL_KEYDOWN) {
-                    // key presses
-                    switch (e.key.keysym.sym) {
-                        case SDLK_UP:
-                        case SDLK_w:
-                            std::cout << "UP pressed" << std::endl;
-                            break;
-                        case SDLK_DOWN:
-                        case SDLK_s:
-                            std::cout << "DOWN pressed" << std::endl;
-                            break;
-                        case SDLK_LEFT:
-                        case SDLK_a:
-                            std::cout << "LEFT pressed" << std::endl;
-                            break;
-                        case SDLK_RIGHT:
-                        case SDLK_d:
-                            std::cout << "RIGHT pressed" << std::endl;
-                            break;
-                        default:
-                            // essentially any key that isn't explicitly listed
-                            std::cout << "DEFAULT" << std::endl;
-                            break;
-
-                    }
+                    // send keyboard input events to whoever needs them
+                    player.handleEvent(e);
                 }
             }
+
+            //Call Updaters
+            player.update();
+
+            // Adjust Camera
+            // center camera on player
+            camera.x = (player.getXPos() + 32/2)-SCREEN_WIDTH/2;
+            camera.y = (player.getYPos() +32/2)-SCREEN_HEIGHT/2;
+            //keep camera in bounds
+            if (camera.x < 0) {
+                camera.x = 0;
+            }
+            if (camera.y < 0) {
+                camera.y = 0;
+            }
+            if (camera.x > LEVEL_WIDTH - camera.w) {
+                camera.x = LEVEL_WIDTH - camera.w;
+            }
+            if (camera.y > LEVEL_HEIGHT - camera.h) {
+                camera.y = LEVEL_HEIGHT - camera.h;
+            }
+
+
+            //Clear Screen
+            SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+            SDL_RenderClear(renderer); // clear screen
+
+            //Call Renderers
+            tileRenderer.render(renderer, camera, 0,0, TileRenderer::tile_grass);
+            tileRenderer.render(renderer,camera, 0,32,TileRenderer::tile_dirt);
+            tileRenderer.render(renderer, camera, 0, 64, TileRenderer::tile_water);
+
+            fpsTextTexture.render(renderer, 0, 0);
+            player.render(renderer, camera);
+
+            SDL_RenderPresent(renderer); // update screen
 
             // calculate FPS
             float avgFPS = countedFrames / (fpsTimer.getTicks() / 1000.f);
@@ -102,20 +123,6 @@ int main(int argv, char** args) {
             if (!fpsTextTexture.loadFromRenderedText(renderer, fpsText.str().c_str(), systemFont, systemTextColor)) {
                 std::cerr << "Unable to render FPS texture!" << std::endl;
             }
-
-
-            SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-            SDL_RenderClear(renderer); // clear screen
-
-            //Call Renders
-            tileRenderer->render(renderer, 0, 0, TileRenderer::tile_default);
-            tileRenderer->render(renderer, 32, 0, TileRenderer::tile_grass);
-            tileRenderer->render(renderer, 64, 0, TileRenderer::tile_water);
-
-            fpsTextTexture.render(renderer, 0, 0);
-
-            //SDL_RenderCopy(renderer, spriteSheetTexture, nullptr, nullptr); // render texture on screen
-            SDL_RenderPresent(renderer); // update screen
 
             ++countedFrames;
         }
@@ -170,8 +177,8 @@ bool init() {
 
 bool loadMedia() {
     bool success = true;
-    tileRenderer = new TileRenderer(3, 32, 32);
-    tileRenderer->init(renderer,"./textures/sprites/tiles.png");
+    tileRenderer.init(renderer,"./textures/sprites/tiles.png");
+    player.init(renderer, "./textures/sprites/player.png");
     systemFont = TTF_OpenFont("./fonts/rpg.otf", 12);
     if (systemFont == NULL) {
         std::cerr << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
@@ -181,7 +188,7 @@ bool loadMedia() {
 }
 
 void close() {
-    tileRenderer->free();
+    tileRenderer.free();
 
     // destroy window
     SDL_DestroyRenderer(renderer);

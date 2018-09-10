@@ -627,6 +627,8 @@ textures/sprites/renderers/TileRenderer.h
 C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/TileRenderer.h
 Objects/Timer.h
 C:/Users/Chris/Dev/2DEngine/Objects/Timer.h
+objects/entity/player/EntityPlayer.h
+C:/Users/Chris/Dev/2DEngine/objects/entity/player/EntityPlayer.h
 SDL_ttf.h
 -
 
@@ -639,6 +641,22 @@ C:/Users/Chris/Dev/2DEngine/objects/Timer.h
 C:/Users/Chris/Dev/2DEngine/objects/Timer.h
 SDL2/SDL_stdinc.h
 -
+
+C:/Users/Chris/Dev/2DEngine/objects/UpdateAndRender.h
+SDL2/SDL_render.h
+-
+SDL2/SDL_events.h
+-
+
+C:/Users/Chris/Dev/2DEngine/objects/entity/player/EntityPlayer.cpp
+EntityPlayer.h
+C:/Users/Chris/Dev/2DEngine/objects/entity/player/EntityPlayer.h
+
+C:/Users/Chris/Dev/2DEngine/objects/entity/player/EntityPlayer.h
+../../UpdateAndRender.h
+C:/Users/Chris/Dev/2DEngine/objects/UpdateAndRender.h
+../../../textures/Texture.h
+C:/Users/Chris/Dev/2DEngine/textures/Texture.h
 
 C:/Users/Chris/Dev/2DEngine/textures/Texture.cpp
 SDL2/SDL_ttf.h

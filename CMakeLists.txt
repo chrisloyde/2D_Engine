@@ -10,5 +10,5 @@ find_package(SDL2_ttf REQUIRED)
 
 include_directories(${SDL2_INCLUDE_DIR} ${SDL2_IMAGE_INCLUDE_DIR} ${SDL2_TTF_INCLUDE_DIR})
 
-add_executable(2DEngine main.cpp textures/Texture.cpp textures/Texture.h textures/sprites/renderers/TileRenderer.cpp textures/sprites/renderers/TileRenderer.h objects/Timer.cpp objects/Timer.h)
+add_executable(2DEngine main.cpp textures/Texture.cpp textures/Texture.h textures/sprites/renderers/TileRenderer.cpp textures/sprites/renderers/TileRenderer.h objects/Timer.cpp objects/Timer.h objects/entity/player/EntityPlayer.cpp objects/entity/player/EntityPlayer.h objects/UpdateAndRender.h objects/block/Tile.cpp objects/block/Tile.h)
 target_link_libraries(2DEngine ${SDL2_LIBRARY} ${SDL2_IMAGE_LIBRARIES} ${SDL2_TTF_LIBRARY})
