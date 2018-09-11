@@ -1,13 +1,22 @@
-//
-// Created by Chris on 9/10/2018.
-//
 
 #ifndef INC_2DENGINE_WORLD_H
 #define INC_2DENGINE_WORLD_H
 
 
-class World {
+#include "../block/headers/Tile.h"
+#include "../../textures/sprites/renderers/headers/TileRenderer.h"
 
+class World {
+public:
+    World(int xTileNum, int yTileNum, int tileWidth, int tileHeight);
+    void render(TileRenderer *tr, SDL_Renderer *renderer, SDL_Rect camera);
+    void handleEvent(SDL_Event* e, SDL_Rect camera); // send event to all tiles
+    //~World();
+private:
+    Tile **world;
+    int wTileNum, hTileNum, tileW, tileH;
+
+    void initWorld();
 };
 
 
