@@ -17,6 +17,7 @@ Tile::Tile(int x, int y, int w, int h, bool isSolidIn, tileTypes type) {
     cBox.w = width; cBox.h = height;
     isSolid = isSolidIn;
     tType = type;
+    displayOverlay = false;
 }
 bool Tile::checkCollision(SDL_Rect a, SDL_Rect b) {
     int leftA, leftB;
@@ -43,6 +44,15 @@ bool Tile::checkCollision(SDL_Rect a, SDL_Rect b) {
 
     return true;
 }
+float Tile::getDistance(SDL_Rect a, SDL_Rect b, int tileSize) {
+    float xDist;
+    float yDist;
+    xDist = abs(a.x-b.x);
+    yDist = abs(a.y-b.y);
+    // return whichever distance is larger
+    // divide by tile size to determine how many tiles away
+    return (xDist < yDist ? yDist : xDist)/tileSize;
+}
 void Tile::handleEvent(SDL_Event* e, SDL_Rect camera) {
     if(e->type == SDL_MOUSEMOTION) {
         int mouseX, mouseY, mouseW, mouseH;
@@ -66,6 +76,7 @@ void Tile::update() {
 }
 void Tile::setPos(int x, int y) {
     xPos = x; yPos = y;
+    cBox.x = x; cBox.y = y;
 }
 void Tile::setType(tileTypes type) {
     tType = type;

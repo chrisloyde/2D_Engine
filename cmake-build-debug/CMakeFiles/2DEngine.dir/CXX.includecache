@@ -657,8 +657,6 @@ SDL2/SDL_render.h
 -
 
 C:/Users/Chris/Dev/2DEngine/objects/entity/headers/EntityPlayer.h
-../../headers/UpdateAndRender.h
-C:/Users/Chris/Dev/2DEngine/objects/headers/UpdateAndRender.h
 ../../../textures/Texture.h
 C:/Users/Chris/Dev/2DEngine/textures/Texture.h
 
@@ -668,12 +666,6 @@ C:/Users/Chris/Dev/2DEngine/objects/entity/headers/EntityPlayer.h
 
 C:/Users/Chris/Dev/2DEngine/objects/headers/Timer.h
 SDL2/SDL_stdinc.h
--
-
-C:/Users/Chris/Dev/2DEngine/objects/headers/UpdateAndRender.h
-SDL2/SDL_render.h
--
-SDL2/SDL_events.h
 -
 
 C:/Users/Chris/Dev/2DEngine/objects/headers/World.h

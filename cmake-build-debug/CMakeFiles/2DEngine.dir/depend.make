@@ -49,7 +49,6 @@ CMakeFiles/2DEngine.dir/Objects/Entity/Player/EntityPlayer.cpp.obj: C:/Program\ 
 CMakeFiles/2DEngine.dir/Objects/Entity/Player/EntityPlayer.cpp.obj: C:/Program\ Files\ (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/include/SDL2/close_code.h
 CMakeFiles/2DEngine.dir/Objects/Entity/Player/EntityPlayer.cpp.obj: ../objects/entity/headers/EntityPlayer.h
 CMakeFiles/2DEngine.dir/Objects/Entity/Player/EntityPlayer.cpp.obj: ../objects/entity/player/EntityPlayer.cpp
-CMakeFiles/2DEngine.dir/Objects/Entity/Player/EntityPlayer.cpp.obj: ../objects/headers/UpdateAndRender.h
 CMakeFiles/2DEngine.dir/Objects/Entity/Player/EntityPlayer.cpp.obj: ../textures/Texture.h
 
 CMakeFiles/2DEngine.dir/Objects/Timer.cpp.obj: ../objects/Timer.cpp
@@ -160,7 +159,6 @@ CMakeFiles/2DEngine.dir/main.cpp.obj: ../main.cpp
 CMakeFiles/2DEngine.dir/main.cpp.obj: ../objects/block/headers/Tile.h
 CMakeFiles/2DEngine.dir/main.cpp.obj: ../objects/entity/headers/EntityPlayer.h
 CMakeFiles/2DEngine.dir/main.cpp.obj: ../objects/headers/Timer.h
-CMakeFiles/2DEngine.dir/main.cpp.obj: ../objects/headers/UpdateAndRender.h
 CMakeFiles/2DEngine.dir/main.cpp.obj: ../objects/headers/World.h
 CMakeFiles/2DEngine.dir/main.cpp.obj: ../textures/Texture.h
 CMakeFiles/2DEngine.dir/main.cpp.obj: ../textures/sprites/renderers/headers/TileRenderer.h

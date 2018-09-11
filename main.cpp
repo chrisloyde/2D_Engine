@@ -47,6 +47,7 @@ int main(int argv, char** args) {
     SDL_Event e; // event handler
 
     Timer fpsTimer;
+    Timer stepTimer;
     std::stringstream fpsText;
 
     //start counting fps
@@ -66,17 +67,20 @@ int main(int argv, char** args) {
                     quit = true;
                 }
                     // Get keyboard input events
-                else if (e.type == SDL_KEYDOWN) {
-                    // send keyboard input events to whoever needs them
+                else {
                     player.handleEvent(e);
+                    world.handleEvent(&e, camera);
                 }
-                // send mouse events to world
-                world.handleEvent(&e, camera);
             }
 
-            //Call Updaters
+            //Call Updaters, updaters should be placed in between stepTimer calls
+            //If an update requires frame independance this will provide it.
+            float timeStep = stepTimer.getTicks() /1000.f;
+
             world.update();
-            player.update();
+            player.update(timeStep);
+
+            stepTimer.start();
 
             // Adjust Camera
             // center camera on player
@@ -102,9 +106,9 @@ int main(int argv, char** args) {
             SDL_RenderClear(renderer); // clear screen
 
             //Call Renderers
+
             world.render(&tileRenderer, renderer, camera); // render world
             player.render(renderer, camera); // render player
-
 
             fpsTextTexture.render(renderer, 0, 0); // render fps
             SDL_RenderPresent(renderer); // update screen

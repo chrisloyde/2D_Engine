@@ -50,7 +50,6 @@ CMakeFiles/2DEngine.dir/Objects/Entity/Player/EntityPlayer.cpp.obj
  C:/Program Files (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/include/SDL2/close_code.h
  C:/Users/Chris/Dev/2DEngine/objects/entity/headers/EntityPlayer.h
  C:/Users/Chris/Dev/2DEngine/objects/entity/player/EntityPlayer.cpp
- C:/Users/Chris/Dev/2DEngine/objects/headers/UpdateAndRender.h
  C:/Users/Chris/Dev/2DEngine/textures/Texture.h
 CMakeFiles/2DEngine.dir/Objects/Timer.cpp.obj
  C:/Users/Chris/Dev/2DEngine/objects/Timer.cpp
@@ -161,7 +160,6 @@ CMakeFiles/2DEngine.dir/main.cpp.obj
  C:/Users/Chris/Dev/2DEngine/objects/block/headers/Tile.h
  C:/Users/Chris/Dev/2DEngine/objects/entity/headers/EntityPlayer.h
  C:/Users/Chris/Dev/2DEngine/objects/headers/Timer.h
- C:/Users/Chris/Dev/2DEngine/objects/headers/UpdateAndRender.h
  C:/Users/Chris/Dev/2DEngine/objects/headers/World.h
  C:/Users/Chris/Dev/2DEngine/textures/Texture.h
  C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/headers/TileRenderer.h

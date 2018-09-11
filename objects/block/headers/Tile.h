@@ -16,6 +16,7 @@ public:
     Tile(int x, int y, int h, int w, bool isSolid, tileTypes type);
     ~Tile();
     static bool checkCollision(SDL_Rect a, SDL_Rect b);
+    static float getDistance(SDL_Rect a, SDL_Rect b, int tileSize); // gets the number of tiles between 2 rectangles
     void setPos(int x, int y);
     void setBounds(SDL_Rect rect);
     void setType(tileTypes type);

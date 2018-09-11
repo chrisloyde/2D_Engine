@@ -106,9 +106,6 @@
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/headers/Timer.h">
 			<Option target="2DEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/headers/UpdateAndRender.h">
-			<Option target="2DEngine"/>
-		</Unit>
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/headers/World.h">
 			<Option target="2DEngine"/>
 		</Unit>
