@@ -75,6 +75,7 @@ int main(int argv, char** args) {
             }
 
             //Call Updaters
+            world.update();
             player.update();
 
             // Adjust Camera

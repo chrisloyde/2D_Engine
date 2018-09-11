@@ -8,6 +8,7 @@ Tile::Tile() {
     height = 32;
     isSolid = false;
     tType = tile_default;
+    displayOverlay = false;
 }
 Tile::Tile(int x, int y, int w, int h, bool isSolidIn, tileTypes type) {
     xPos = x; height = h;
@@ -43,20 +44,25 @@ bool Tile::checkCollision(SDL_Rect a, SDL_Rect b) {
     return true;
 }
 void Tile::handleEvent(SDL_Event* e, SDL_Rect camera) {
-    int mouseX, mouseY, mouseW, mouseH;
-    SDL_GetMouseState(&mouseX, &mouseY);
-    // add mouse position to camera position so mouse position works with camera scrolling
-    mouseX = mouseX+camera.x;
-    mouseY = mouseY+camera.y;
-    mouseW = 6;
-    mouseH = 6;
-    // create a bounding box for the mouse
-    SDL_Rect rect;
-    rect.x = mouseX; rect.y = mouseY;
-    rect.w = mouseW; rect.h = mouseH;
-    if (Tile::checkCollision(rect,cBox)) {
-        setType(tile_grass);
+    if(e->type == SDL_MOUSEMOTION) {
+        int mouseX, mouseY, mouseW, mouseH;
+        SDL_GetMouseState(&mouseX, &mouseY);
+        // add mouse position to camera position so mouse position works with camera scrolling
+        mouseX = mouseX + camera.x;
+        mouseY = mouseY + camera.y;
+        mouseW = 1; mouseH = 1;
+        // create a bounding box for the mouse
+        SDL_Rect rect;
+        rect.x = mouseX; rect.y = mouseY;
+        rect.w = mouseW; rect.h = mouseH;
+        if (Tile::checkCollision(rect, cBox)) {
+            displayOverlay = true;
+        } else {
+            displayOverlay = false;
+        }
     }
+}
+void Tile::update() {
 }
 void Tile::setPos(int x, int y) {
     xPos = x; yPos = y;
@@ -78,7 +84,7 @@ void Tile::setBounds(SDL_Rect rect) {
 int Tile::getXPos() {return xPos;}
 int Tile::getYPos() {return yPos;}
 bool Tile::getSolid() {return isSolid;}
-
+bool Tile::isOverlayDisplayed() {return displayOverlay;}
 Tile::tileTypes Tile::getType() {
     return tType;
 }

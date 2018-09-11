@@ -26,8 +26,11 @@ public:
     bool getSolid();
     tileTypes getType();
     void handleEvent(SDL_Event* e, SDL_Rect camera);
+    void update();
+    bool isOverlayDisplayed();
 private:
     int xPos, yPos, height, width;
+    bool displayOverlay;
     tileTypes tType;
     SDL_Rect cBox; // collision box
 };

@@ -61,5 +61,8 @@ void TileRenderer::renderTile(SDL_Renderer *renderer, SDL_Rect camera, Tile tile
 
     if (Tile::checkCollision(camera, tile.getBounds())) {
         render(renderer, camera, tile.getXPos(), tile.getYPos(), tile.getType());
+        if (tile.isOverlayDisplayed()) {
+            render(renderer, camera, tile.getXPos(), tile.getYPos(), Tile::tile_default);
+        }
     }
 }

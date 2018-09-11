@@ -23,7 +23,7 @@ void World::initWorld() {
     for (int i = 0; i < hTileNum; i++) {
         for (int j = 0; j < wTileNum; j++) {
             world[i][j].setPos(j*tileW, i*tileH);
-            world[i][j].setType(Tile::tile_default);
+            world[i][j].setType(Tile::tile_grass);
             world[i][j].isSolid = false;
 
             SDL_Rect *rect = new SDL_Rect;
@@ -39,6 +39,14 @@ void World::handleEvent(SDL_Event* e, SDL_Rect camera) {
     for (int i = 0; i < hTileNum; i++) {
         for (int j = 0; j < wTileNum; j++) {
             world[i][j].handleEvent(e, camera);
+        }
+    }
+}
+
+void World::update() {
+    for (int i = 0; i < hTileNum; i++) {
+        for (int j = 0; j < wTileNum; j++) {
+            world[i][j].update();
         }
     }
 }
