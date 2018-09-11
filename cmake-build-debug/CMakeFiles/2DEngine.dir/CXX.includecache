@@ -604,10 +604,6 @@ C:/Program Files (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/inclu
 
 C:/Program Files (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/include/SDL2/close_code.h
 
-C:/Users/Chris/Dev/2DEngine/Objects/Timer.h
-SDL2/SDL_stdinc.h
--
-
 C:/Users/Chris/Dev/2DEngine/main.cpp
 iostream
 -
@@ -623,40 +619,68 @@ sstream
 -
 textures/Texture.h
 C:/Users/Chris/Dev/2DEngine/textures/Texture.h
-textures/sprites/renderers/TileRenderer.h
-C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/TileRenderer.h
-Objects/Timer.h
-C:/Users/Chris/Dev/2DEngine/Objects/Timer.h
-objects/entity/player/EntityPlayer.h
-C:/Users/Chris/Dev/2DEngine/objects/entity/player/EntityPlayer.h
+textures/sprites/renderers/headers/TileRenderer.h
+C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/headers/TileRenderer.h
+objects/headers/Timer.h
+C:/Users/Chris/Dev/2DEngine/objects/headers/Timer.h
+objects/entity/headers/EntityPlayer.h
+C:/Users/Chris/Dev/2DEngine/objects/entity/headers/EntityPlayer.h
+objects/block/headers/Tile.h
+C:/Users/Chris/Dev/2DEngine/objects/block/headers/Tile.h
+objects/headers/World.h
+C:/Users/Chris/Dev/2DEngine/objects/headers/World.h
 SDL_ttf.h
 -
 
 C:/Users/Chris/Dev/2DEngine/objects/Timer.cpp
 SDL2/SDL_timer.h
 -
-Timer.h
-C:/Users/Chris/Dev/2DEngine/objects/Timer.h
+headers/Timer.h
+C:/Users/Chris/Dev/2DEngine/objects/headers/Timer.h
 
-C:/Users/Chris/Dev/2DEngine/objects/Timer.h
+C:/Users/Chris/Dev/2DEngine/objects/World.cpp
+headers/World.h
+C:/Users/Chris/Dev/2DEngine/objects/headers/World.h
+
+C:/Users/Chris/Dev/2DEngine/objects/block/Tile.cpp
+iostream
+-
+headers/Tile.h
+C:/Users/Chris/Dev/2DEngine/objects/block/headers/Tile.h
+
+C:/Users/Chris/Dev/2DEngine/objects/block/headers/Tile.h
+SDL2/SDL_rect.h
+-
+SDL2/SDL_events.h
+-
+SDL2/SDL_render.h
+-
+
+C:/Users/Chris/Dev/2DEngine/objects/entity/headers/EntityPlayer.h
+../../headers/UpdateAndRender.h
+C:/Users/Chris/Dev/2DEngine/objects/headers/UpdateAndRender.h
+../../../textures/Texture.h
+C:/Users/Chris/Dev/2DEngine/textures/Texture.h
+
+C:/Users/Chris/Dev/2DEngine/objects/entity/player/EntityPlayer.cpp
+../headers/EntityPlayer.h
+C:/Users/Chris/Dev/2DEngine/objects/entity/headers/EntityPlayer.h
+
+C:/Users/Chris/Dev/2DEngine/objects/headers/Timer.h
 SDL2/SDL_stdinc.h
 -
 
-C:/Users/Chris/Dev/2DEngine/objects/UpdateAndRender.h
+C:/Users/Chris/Dev/2DEngine/objects/headers/UpdateAndRender.h
 SDL2/SDL_render.h
 -
 SDL2/SDL_events.h
 -
 
-C:/Users/Chris/Dev/2DEngine/objects/entity/player/EntityPlayer.cpp
-EntityPlayer.h
-C:/Users/Chris/Dev/2DEngine/objects/entity/player/EntityPlayer.h
-
-C:/Users/Chris/Dev/2DEngine/objects/entity/player/EntityPlayer.h
-../../UpdateAndRender.h
-C:/Users/Chris/Dev/2DEngine/objects/UpdateAndRender.h
-../../../textures/Texture.h
-C:/Users/Chris/Dev/2DEngine/textures/Texture.h
+C:/Users/Chris/Dev/2DEngine/objects/headers/World.h
+../block/headers/Tile.h
+C:/Users/Chris/Dev/2DEngine/objects/block/headers/Tile.h
+../../textures/sprites/renderers/headers/TileRenderer.h
+C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/headers/TileRenderer.h
 
 C:/Users/Chris/Dev/2DEngine/textures/Texture.cpp
 SDL2/SDL_ttf.h
@@ -683,10 +707,10 @@ SDL_ttf.h
 -
 
 C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/TileRenderer.cpp
-TileRenderer.h
-C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/TileRenderer.h
+headers/TileRenderer.h
+C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/headers/TileRenderer.h
 
-C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/TileRenderer.h
+C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/headers/TileRenderer.h
 iostream
 -
 SDL.h
@@ -697,6 +721,8 @@ cstdio
 -
 string
 -
-../../Texture.h
+../../../Texture.h
 C:/Users/Chris/Dev/2DEngine/textures/Texture.h
+../../../../objects/block/headers/Tile.h
+C:/Users/Chris/Dev/2DEngine/objects/block/headers/Tile.h
 

@@ -5,14 +5,18 @@
 #include <string>
 #include <sstream>
 #include "textures/Texture.h"
-#include "textures/sprites/renderers/TileRenderer.h"
-#include "Objects/Timer.h"
-#include "objects/entity/player/EntityPlayer.h"
+#include "textures/sprites/renderers/headers/TileRenderer.h"
+#include "objects/headers/Timer.h"
+#include "objects/entity/headers/EntityPlayer.h"
+#include "objects/block/headers/Tile.h"
+#include "objects/headers/World.h"
 #include <SDL_ttf.h>
 
 // define program variables
-const int LEVEL_WIDTH = 1920;
-const int LEVEL_HEIGHT = 1080;
+// defines number of pixels for the height and width of the world.
+// should be divisible by tile size (width and height) for clean results.
+const int WORLD_WIDTH = 1920;
+const int WORLD_HEIGHT = 1920;
 
 const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
@@ -23,21 +27,12 @@ SDL_Renderer *renderer = nullptr; // window renderer
 SDL_Color systemTextColor = {0,0,0,255};
 TTF_Font *systemFont = nullptr;
 
-TileRenderer tileRenderer(3,32,32);
+TileRenderer tileRenderer(4,32,32);
 Texture fpsTextTexture;
 
 SDL_Rect camera = {0,0,SCREEN_WIDTH, SCREEN_HEIGHT};
-EntityPlayer player(32, 32);
-
-// Key press codes
-enum KeyPress {
-    KEY_PRESS_DEFAULT,
-    KEY_PRESS_UP,
-    KEY_PRESS_DOWN,
-    KEY_PRESS_LEFT,
-    KEY_PRESS_RIGHT,
-    KEY_PRESS_TOTAL
-};
+World world(WORLD_WIDTH/32, (WORLD_HEIGHT/32), 32, 32);
+EntityPlayer player(WORLD_WIDTH/2, (WORLD_HEIGHT/2));
 
 // define functions
 bool init();
@@ -75,6 +70,8 @@ int main(int argv, char** args) {
                     // send keyboard input events to whoever needs them
                     player.handleEvent(e);
                 }
+                // send mouse events to world
+                world.handleEvent(&e, camera);
             }
 
             //Call Updaters
@@ -91,11 +88,11 @@ int main(int argv, char** args) {
             if (camera.y < 0) {
                 camera.y = 0;
             }
-            if (camera.x > LEVEL_WIDTH - camera.w) {
-                camera.x = LEVEL_WIDTH - camera.w;
+            if (camera.x > WORLD_WIDTH - camera.w) {
+                camera.x = WORLD_WIDTH - camera.w;
             }
-            if (camera.y > LEVEL_HEIGHT - camera.h) {
-                camera.y = LEVEL_HEIGHT - camera.h;
+            if (camera.y > WORLD_HEIGHT - camera.h) {
+                camera.y = WORLD_HEIGHT - camera.h;
             }
 
 
@@ -104,13 +101,11 @@ int main(int argv, char** args) {
             SDL_RenderClear(renderer); // clear screen
 
             //Call Renderers
-            tileRenderer.render(renderer, camera, 0,0, TileRenderer::tile_grass);
-            tileRenderer.render(renderer,camera, 0,32,TileRenderer::tile_dirt);
-            tileRenderer.render(renderer, camera, 0, 64, TileRenderer::tile_water);
+            world.render(&tileRenderer, renderer, camera); // render world
+            player.render(renderer, camera); // render player
 
-            fpsTextTexture.render(renderer, 0, 0);
-            player.render(renderer, camera);
 
+            fpsTextTexture.render(renderer, 0, 0); // render fps
             SDL_RenderPresent(renderer); // update screen
 
             // calculate FPS
@@ -177,9 +172,9 @@ bool init() {
 
 bool loadMedia() {
     bool success = true;
-    tileRenderer.init(renderer,"./textures/sprites/tiles.png");
-    player.init(renderer, "./textures/sprites/player.png");
-    systemFont = TTF_OpenFont("./fonts/rpg.otf", 12);
+    tileRenderer.init(renderer,"./textures/sprites/tiles.png"); // load spritesheet for tileRenderer
+    player.init(renderer, "./textures/sprites/player.png"); // initilaize player
+    systemFont = TTF_OpenFont("./fonts/rpg.otf", 12); // load systemfont
     if (systemFont == NULL) {
         std::cerr << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
         success = false;

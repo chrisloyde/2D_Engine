@@ -1,4 +1,4 @@
-#include "TileRenderer.h"
+#include "headers/TileRenderer.h"
 TileRenderer::TileRenderer(int numOfSpritesIn, int w, int h) {
     numOfSprites = numOfSpritesIn;
     spriteW = w;
@@ -39,16 +39,27 @@ void TileRenderer::generateClips() {
     }
 }
 
-void TileRenderer::render(SDL_Renderer *renderer, SDL_Rect camera, int x, int y, tileTypes type) {
+void TileRenderer::render(SDL_Renderer *renderer, SDL_Rect camera, int x, int y, Tile::tileTypes type) {
     switch(type) {
-        case tile_grass:
-            spriteSheet.render(renderer, x-camera.x, y-camera.y, &clipStorage[1]);
-            break;
-        case tile_water:
-            spriteSheet.render(renderer, x-camera.x, y-camera.y, &clipStorage[2]);
-            break;
+        case Tile::tile_default:
         default:
             spriteSheet.render(renderer, x-camera.x, y-camera.y, &clipStorage[0]);
             break;
+        case Tile::tile_dirt:
+            spriteSheet.render(renderer, x-camera.x, y-camera.y, &clipStorage[1]);
+            break;
+        case Tile::tile_grass:
+            spriteSheet.render(renderer, x-camera.x, y-camera.y, &clipStorage[2]);
+            break;
+        case Tile::tile_water:
+            spriteSheet.render(renderer, x-camera.x, y-camera.y, &clipStorage[3]);
+            break;
+    }
+}
+
+void TileRenderer::renderTile(SDL_Renderer *renderer, SDL_Rect camera, Tile tile) {
+
+    if (Tile::checkCollision(camera, tile.getBounds())) {
+        render(renderer, camera, tile.getXPos(), tile.getYPos(), tile.getType());
     }
 }

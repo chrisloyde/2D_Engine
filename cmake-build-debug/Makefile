@@ -176,6 +176,33 @@ objects/Timer.cpp.s:
 	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/Timer.cpp.s
 .PHONY : objects/Timer.cpp.s
 
+objects/World.obj: objects/World.cpp.obj
+
+.PHONY : objects/World.obj
+
+# target to build an object file
+objects/World.cpp.obj:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/World.cpp.obj
+.PHONY : objects/World.cpp.obj
+
+objects/World.i: objects/World.cpp.i
+
+.PHONY : objects/World.i
+
+# target to preprocess a source file
+objects/World.cpp.i:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/World.cpp.i
+.PHONY : objects/World.cpp.i
+
+objects/World.s: objects/World.cpp.s
+
+.PHONY : objects/World.s
+
+# target to generate assembly for a file
+objects/World.cpp.s:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/World.cpp.s
+.PHONY : objects/World.cpp.s
+
 objects/block/Tile.obj: objects/block/Tile.cpp.obj
 
 .PHONY : objects/block/Tile.obj
@@ -299,6 +326,9 @@ help:
 	@echo ... objects/Timer.obj
 	@echo ... objects/Timer.i
 	@echo ... objects/Timer.s
+	@echo ... objects/World.obj
+	@echo ... objects/World.i
+	@echo ... objects/World.s
 	@echo ... objects/block/Tile.obj
 	@echo ... objects/block/Tile.i
 	@echo ... objects/block/Tile.s

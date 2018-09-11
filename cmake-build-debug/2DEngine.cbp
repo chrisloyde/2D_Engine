@@ -88,22 +88,28 @@
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/Timer.cpp">
 			<Option target="2DEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/Timer.h">
-			<Option target="2DEngine"/>
-		</Unit>
-		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/UpdateAndRender.h">
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/World.cpp">
 			<Option target="2DEngine"/>
 		</Unit>
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/block/Tile.cpp">
 			<Option target="2DEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/block/Tile.h">
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/block/headers/Tile.h">
+			<Option target="2DEngine"/>
+		</Unit>
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/entity/headers/EntityPlayer.h">
 			<Option target="2DEngine"/>
 		</Unit>
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/entity/player/EntityPlayer.cpp">
 			<Option target="2DEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/entity/player/EntityPlayer.h">
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/headers/Timer.h">
+			<Option target="2DEngine"/>
+		</Unit>
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/headers/UpdateAndRender.h">
+			<Option target="2DEngine"/>
+		</Unit>
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/headers/World.h">
 			<Option target="2DEngine"/>
 		</Unit>
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/textures/Texture.cpp">
@@ -115,7 +121,7 @@
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/TileRenderer.cpp">
 			<Option target="2DEngine"/>
 		</Unit>
-		<Unit filename="C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/TileRenderer.h">
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/headers/TileRenderer.h">
 			<Option target="2DEngine"/>
 		</Unit>
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/CMakeLists.txt">

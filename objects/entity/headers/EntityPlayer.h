@@ -2,7 +2,7 @@
 #define INC_2DENGINE_ENTITYPLAYER_H
 
 
-#include "../../UpdateAndRender.h"
+#include "../../headers/UpdateAndRender.h"
 #include "../../../textures/Texture.h"
 
 class EntityPlayer: UpdateAndRender {

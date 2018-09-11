@@ -1,4 +1,4 @@
-#include "EntityPlayer.h"
+#include "../headers/EntityPlayer.h"
 EntityPlayer::EntityPlayer(int worldX, int worldY) {
     worldXPos = worldX;
     worldYPos = worldY;
