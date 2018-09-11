@@ -257,6 +257,60 @@ objects/entity/player/EntityPlayer.cpp.s:
 	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.s
 .PHONY : objects/entity/player/EntityPlayer.cpp.s
 
+objects/gui/GUI.obj: objects/gui/GUI.cpp.obj
+
+.PHONY : objects/gui/GUI.obj
+
+# target to build an object file
+objects/gui/GUI.cpp.obj:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj
+.PHONY : objects/gui/GUI.cpp.obj
+
+objects/gui/GUI.i: objects/gui/GUI.cpp.i
+
+.PHONY : objects/gui/GUI.i
+
+# target to preprocess a source file
+objects/gui/GUI.cpp.i:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.i
+.PHONY : objects/gui/GUI.cpp.i
+
+objects/gui/GUI.s: objects/gui/GUI.cpp.s
+
+.PHONY : objects/gui/GUI.s
+
+# target to generate assembly for a file
+objects/gui/GUI.cpp.s:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.s
+.PHONY : objects/gui/GUI.cpp.s
+
+objects/handlers/GUIHandler.obj: objects/handlers/GUIHandler.cpp.obj
+
+.PHONY : objects/handlers/GUIHandler.obj
+
+# target to build an object file
+objects/handlers/GUIHandler.cpp.obj:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj
+.PHONY : objects/handlers/GUIHandler.cpp.obj
+
+objects/handlers/GUIHandler.i: objects/handlers/GUIHandler.cpp.i
+
+.PHONY : objects/handlers/GUIHandler.i
+
+# target to preprocess a source file
+objects/handlers/GUIHandler.cpp.i:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.i
+.PHONY : objects/handlers/GUIHandler.cpp.i
+
+objects/handlers/GUIHandler.s: objects/handlers/GUIHandler.cpp.s
+
+.PHONY : objects/handlers/GUIHandler.s
+
+# target to generate assembly for a file
+objects/handlers/GUIHandler.cpp.s:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.s
+.PHONY : objects/handlers/GUIHandler.cpp.s
+
 textures/Texture.obj: textures/Texture.cpp.obj
 
 .PHONY : textures/Texture.obj
@@ -335,6 +389,12 @@ help:
 	@echo ... objects/entity/player/EntityPlayer.obj
 	@echo ... objects/entity/player/EntityPlayer.i
 	@echo ... objects/entity/player/EntityPlayer.s
+	@echo ... objects/gui/GUI.obj
+	@echo ... objects/gui/GUI.i
+	@echo ... objects/gui/GUI.s
+	@echo ... objects/handlers/GUIHandler.obj
+	@echo ... objects/handlers/GUIHandler.i
+	@echo ... objects/handlers/GUIHandler.s
 	@echo ... textures/Texture.obj
 	@echo ... textures/Texture.i
 	@echo ... textures/Texture.s

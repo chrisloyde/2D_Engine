@@ -10,7 +10,7 @@ class World {
 public:
     World(int xTileNum, int yTileNum, int tileWidth, int tileHeight);
     void render(TileRenderer *tr, SDL_Renderer *renderer, SDL_Rect camera);
-    void handleEvent(SDL_Event* e, SDL_Rect camera); // send event to all tiles
+    void handleEvent(SDL_Event &e, SDL_Rect camera); // send event to all tiles
     void update();
     //~World();
 private:

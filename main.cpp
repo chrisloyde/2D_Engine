@@ -10,6 +10,8 @@
 #include "objects/entity/headers/EntityPlayer.h"
 #include "objects/block/headers/Tile.h"
 #include "objects/headers/World.h"
+#include "objects/gui/headers/GUI.h"
+#include "objects/handlers/headers/GUIHandler.h"
 #include <SDL_ttf.h>
 
 // define program variables
@@ -29,6 +31,7 @@ TTF_Font *systemFont = nullptr;
 
 TileRenderer tileRenderer(4,32,32);
 Texture fpsTextTexture;
+GUIHandler gHandler;
 
 SDL_Rect camera = {0,0,SCREEN_WIDTH, SCREEN_HEIGHT};
 World world(WORLD_WIDTH/32, (WORLD_HEIGHT/32), 32, 32);
@@ -69,7 +72,8 @@ int main(int argv, char** args) {
                     // Get keyboard input events
                 else {
                     player.handleEvent(e);
-                    world.handleEvent(&e, camera);
+                    world.handleEvent(e, camera);
+                    gHandler.handleEvents(e);
                 }
             }
 
@@ -79,6 +83,7 @@ int main(int argv, char** args) {
 
             world.update();
             player.update(timeStep);
+            gHandler.update();
 
             stepTimer.start();
 
@@ -106,9 +111,9 @@ int main(int argv, char** args) {
             SDL_RenderClear(renderer); // clear screen
 
             //Call Renderers
-
             world.render(&tileRenderer, renderer, camera); // render world
             player.render(renderer, camera); // render player
+            gHandler.render(renderer);
 
             fpsTextTexture.render(renderer, 0, 0); // render fps
             SDL_RenderPresent(renderer); // update screen
@@ -180,16 +185,19 @@ bool loadMedia() {
     tileRenderer.init(renderer,"./textures/sprites/tiles.png"); // load spritesheet for tileRenderer
     player.init(renderer, "./textures/sprites/player.png"); // initilaize player
     systemFont = TTF_OpenFont("./fonts/rpg.otf", 12); // load systemfont
-    if (systemFont == NULL) {
+    if (systemFont == nullptr) {
         std::cerr << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
         success = false;
     }
+
+    gHandler.createAndAdd((SCREEN_WIDTH/2)-48,SCREEN_HEIGHT-64,96,32,renderer,"./textures/gui/basic_button.png");
+    gHandler.createAndAdd((SCREEN_WIDTH/2)-144,SCREEN_HEIGHT-64,96,32,renderer,"./textures/gui/basic_button.png");
     return success;
 }
 
 void close() {
     tileRenderer.free();
-
+    gHandler.free();
     // destroy window
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);

@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/Chris/Dev/2DEngine/objects/Timer.cpp" "C:/Users/Chris/Dev/2DEngine/cmake-build-debug/CMakeFiles/2DEngine.dir/Objects/Timer.cpp.obj"
   "C:/Users/Chris/Dev/2DEngine/objects/World.cpp" "C:/Users/Chris/Dev/2DEngine/cmake-build-debug/CMakeFiles/2DEngine.dir/Objects/World.cpp.obj"
   "C:/Users/Chris/Dev/2DEngine/objects/block/Tile.cpp" "C:/Users/Chris/Dev/2DEngine/cmake-build-debug/CMakeFiles/2DEngine.dir/Objects/block/Tile.cpp.obj"
+  "C:/Users/Chris/Dev/2DEngine/objects/gui/GUI.cpp" "C:/Users/Chris/Dev/2DEngine/cmake-build-debug/CMakeFiles/2DEngine.dir/Objects/gui/GUI.cpp.obj"
+  "C:/Users/Chris/Dev/2DEngine/objects/handlers/GUIHandler.cpp" "C:/Users/Chris/Dev/2DEngine/cmake-build-debug/CMakeFiles/2DEngine.dir/Objects/handlers/GUIHandler.cpp.obj"
   "C:/Users/Chris/Dev/2DEngine/main.cpp" "C:/Users/Chris/Dev/2DEngine/cmake-build-debug/CMakeFiles/2DEngine.dir/main.cpp.obj"
   "C:/Users/Chris/Dev/2DEngine/textures/Texture.cpp" "C:/Users/Chris/Dev/2DEngine/cmake-build-debug/CMakeFiles/2DEngine.dir/textures/Texture.cpp.obj"
   "C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/TileRenderer.cpp" "C:/Users/Chris/Dev/2DEngine/cmake-build-debug/CMakeFiles/2DEngine.dir/textures/sprites/renderers/TileRenderer.cpp.obj"

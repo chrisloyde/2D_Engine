@@ -103,6 +103,18 @@
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/entity/player/EntityPlayer.cpp">
 			<Option target="2DEngine"/>
 		</Unit>
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/gui/GUI.cpp">
+			<Option target="2DEngine"/>
+		</Unit>
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/gui/headers/GUI.h">
+			<Option target="2DEngine"/>
+		</Unit>
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/handlers/GUIHandler.cpp">
+			<Option target="2DEngine"/>
+		</Unit>
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/handlers/headers/GUIHandler.h">
+			<Option target="2DEngine"/>
+		</Unit>
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/headers/Timer.h">
 			<Option target="2DEngine"/>
 		</Unit>

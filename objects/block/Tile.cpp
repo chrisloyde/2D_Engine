@@ -53,8 +53,8 @@ float Tile::getDistance(SDL_Rect a, SDL_Rect b, int tileSize) {
     // divide by tile size to determine how many tiles away
     return (xDist < yDist ? yDist : xDist)/tileSize;
 }
-void Tile::handleEvent(SDL_Event* e, SDL_Rect camera) {
-    if(e->type == SDL_MOUSEMOTION) {
+void Tile::handleEvent(SDL_Event &e, SDL_Rect camera) {
+    if(e.type == SDL_MOUSEMOTION) {
         int mouseX, mouseY, mouseW, mouseH;
         SDL_GetMouseState(&mouseX, &mouseY);
         // add mouse position to camera position so mouse position works with camera scrolling

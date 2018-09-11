@@ -6,6 +6,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj"
   "CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj"
   "CMakeFiles/2DEngine.dir/objects/World.cpp.obj"
+  "CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj"
+  "CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj"
   "2DEngine.pdb"
   "2DEngine.exe"
   "2DEngine.exe.manifest"

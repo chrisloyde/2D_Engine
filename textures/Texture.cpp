@@ -15,6 +15,8 @@ bool Texture::loadFromFile(SDL_Renderer *renderer, std::string path) {
     // free any texture already loaded
     free();
 
+    std::cout << "Loading " << path;
+
     SDL_Texture *newTexture = nullptr; // final texture
     SDL_Surface *loadedSurface = IMG_Load(path.c_str());
     if (loadedSurface == nullptr) {
@@ -35,6 +37,8 @@ bool Texture::loadFromFile(SDL_Renderer *renderer, std::string path) {
         SDL_FreeSurface(loadedSurface); // loadedSurface no longer required
     }
     hTexture = newTexture;
+
+    std::cout << " : Finished" << std::endl;
     return hTexture != nullptr;
 }
 bool Texture::loadFromRenderedText(SDL_Renderer *renderer, std::string textureText, TTF_Font *font, SDL_Color textColor) {

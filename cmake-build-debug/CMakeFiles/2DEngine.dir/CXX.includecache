@@ -629,6 +629,10 @@ objects/block/headers/Tile.h
 C:/Users/Chris/Dev/2DEngine/objects/block/headers/Tile.h
 objects/headers/World.h
 C:/Users/Chris/Dev/2DEngine/objects/headers/World.h
+objects/gui/headers/GUI.h
+C:/Users/Chris/Dev/2DEngine/objects/gui/headers/GUI.h
+objects/handlers/headers/GUIHandler.h
+C:/Users/Chris/Dev/2DEngine/objects/handlers/headers/GUIHandler.h
 SDL_ttf.h
 -
 
@@ -663,6 +667,32 @@ C:/Users/Chris/Dev/2DEngine/textures/Texture.h
 C:/Users/Chris/Dev/2DEngine/objects/entity/player/EntityPlayer.cpp
 ../headers/EntityPlayer.h
 C:/Users/Chris/Dev/2DEngine/objects/entity/headers/EntityPlayer.h
+
+C:/Users/Chris/Dev/2DEngine/objects/gui/GUI.cpp
+headers/GUI.h
+C:/Users/Chris/Dev/2DEngine/objects/gui/headers/GUI.h
+
+C:/Users/Chris/Dev/2DEngine/objects/gui/headers/GUI.h
+iostream
+-
+SDL2/SDL_events.h
+-
+../../block/headers/Tile.h
+C:/Users/Chris/Dev/2DEngine/objects/block/headers/Tile.h
+../../../textures/Texture.h
+C:/Users/Chris/Dev/2DEngine/textures/Texture.h
+
+C:/Users/Chris/Dev/2DEngine/objects/handlers/GUIHandler.cpp
+headers/GUIHandler.h
+C:/Users/Chris/Dev/2DEngine/objects/handlers/headers/GUIHandler.h
+
+C:/Users/Chris/Dev/2DEngine/objects/handlers/headers/GUIHandler.h
+SDL2/SDL_render.h
+-
+vector
+-
+../../gui/headers/GUI.h
+C:/Users/Chris/Dev/2DEngine/objects/gui/headers/GUI.h
 
 C:/Users/Chris/Dev/2DEngine/objects/headers/Timer.h
 SDL2/SDL_stdinc.h

@@ -231,6 +231,56 @@ CMakeFiles/2DEngine.dir/objects/World.cpp.obj.provides: CMakeFiles/2DEngine.dir/
 CMakeFiles/2DEngine.dir/objects/World.cpp.obj.provides.build: CMakeFiles/2DEngine.dir/objects/World.cpp.obj
 
 
+CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj: CMakeFiles/2DEngine.dir/flags.make
+CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj: CMakeFiles/2DEngine.dir/includes_CXX.rsp
+CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj: ../objects/gui/GUI.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Chris\Dev\2DEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\2DEngine.dir\objects\gui\GUI.cpp.obj -c C:\Users\Chris\Dev\2DEngine\objects\gui\GUI.cpp
+
+CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Chris\Dev\2DEngine\objects\gui\GUI.cpp > CMakeFiles\2DEngine.dir\objects\gui\GUI.cpp.i
+
+CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Chris\Dev\2DEngine\objects\gui\GUI.cpp -o CMakeFiles\2DEngine.dir\objects\gui\GUI.cpp.s
+
+CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj.requires:
+
+.PHONY : CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj.requires
+
+CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj.provides: CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj.provides.build
+.PHONY : CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj.provides
+
+CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj.provides.build: CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj
+
+
+CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj: CMakeFiles/2DEngine.dir/flags.make
+CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj: CMakeFiles/2DEngine.dir/includes_CXX.rsp
+CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj: ../objects/handlers/GUIHandler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Chris\Dev\2DEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\2DEngine.dir\objects\handlers\GUIHandler.cpp.obj -c C:\Users\Chris\Dev\2DEngine\objects\handlers\GUIHandler.cpp
+
+CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Chris\Dev\2DEngine\objects\handlers\GUIHandler.cpp > CMakeFiles\2DEngine.dir\objects\handlers\GUIHandler.cpp.i
+
+CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Chris\Dev\2DEngine\objects\handlers\GUIHandler.cpp -o CMakeFiles\2DEngine.dir\objects\handlers\GUIHandler.cpp.s
+
+CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj.requires:
+
+.PHONY : CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj.requires
+
+CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj.provides: CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj.provides.build
+.PHONY : CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj.provides
+
+CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj.provides.build: CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj
+
+
 # Object files for target 2DEngine
 2DEngine_OBJECTS = \
 "CMakeFiles/2DEngine.dir/main.cpp.obj" \
@@ -239,7 +289,9 @@ CMakeFiles/2DEngine.dir/objects/World.cpp.obj.provides.build: CMakeFiles/2DEngin
 "CMakeFiles/2DEngine.dir/objects/Timer.cpp.obj" \
 "CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj" \
 "CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj" \
-"CMakeFiles/2DEngine.dir/objects/World.cpp.obj"
+"CMakeFiles/2DEngine.dir/objects/World.cpp.obj" \
+"CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj" \
+"CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj"
 
 # External object files for target 2DEngine
 2DEngine_EXTERNAL_OBJECTS =
@@ -251,6 +303,8 @@ CMakeFiles/2DEngine.dir/objects/World.cpp.obj.provides.build: CMakeFiles/2DEngin
 2DEngine.exe: CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj
 2DEngine.exe: CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj
 2DEngine.exe: CMakeFiles/2DEngine.dir/objects/World.cpp.obj
+2DEngine.exe: CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj
+2DEngine.exe: CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj
 2DEngine.exe: CMakeFiles/2DEngine.dir/build.make
 2DEngine.exe: C:/Program\ Files\ (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/lib/libSDL2main.a
 2DEngine.exe: C:/Program\ Files\ (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/lib/libSDL2.dll.a
@@ -259,7 +313,7 @@ CMakeFiles/2DEngine.dir/objects/World.cpp.obj.provides.build: CMakeFiles/2DEngin
 2DEngine.exe: CMakeFiles/2DEngine.dir/linklibs.rsp
 2DEngine.exe: CMakeFiles/2DEngine.dir/objects1.rsp
 2DEngine.exe: CMakeFiles/2DEngine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Chris\Dev\2DEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable 2DEngine.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Chris\Dev\2DEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable 2DEngine.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\2DEngine.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -274,6 +328,8 @@ CMakeFiles/2DEngine.dir/requires: CMakeFiles/2DEngine.dir/objects/Timer.cpp.obj.
 CMakeFiles/2DEngine.dir/requires: CMakeFiles/2DEngine.dir/objects/entity/player/EntityPlayer.cpp.obj.requires
 CMakeFiles/2DEngine.dir/requires: CMakeFiles/2DEngine.dir/objects/block/Tile.cpp.obj.requires
 CMakeFiles/2DEngine.dir/requires: CMakeFiles/2DEngine.dir/objects/World.cpp.obj.requires
+CMakeFiles/2DEngine.dir/requires: CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj.requires
+CMakeFiles/2DEngine.dir/requires: CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj.requires
 
 .PHONY : CMakeFiles/2DEngine.dir/requires
 

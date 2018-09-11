@@ -26,7 +26,7 @@ public:
     SDL_Rect getBounds();
     bool getSolid();
     tileTypes getType();
-    void handleEvent(SDL_Event* e, SDL_Rect camera);
+    void handleEvent(SDL_Event &e, SDL_Rect camera);
     void update();
     bool isOverlayDisplayed();
 private:
