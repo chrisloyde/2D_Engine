@@ -1,7 +1,3 @@
-//
-// Created by Chris on 9/9/2018.
-//
-
 #ifndef PLANETARYRESEARCHFACILITY_TILEGROUND_H
 #define PLANETARYRESEARCHFACILITY_TILEGROUND_H
 
@@ -31,8 +27,7 @@ public:
     void generateClips();
     void renderTile(SDL_Renderer *renderer, SDL_Rect camera, Tile tile);
 private:
-    SDL_Texture *SDL_spriteSheet;
-    Texture spriteSheet;
+    Texture *spriteSheet;
     SDL_Rect *clipStorage;
     int numOfSprites, spriteW, spriteH, rawW, rawH;
 

@@ -7,10 +7,16 @@ EntityPlayer::EntityPlayer(int worldX, int worldY, int width, int height) {
     gTexture = new Texture();
 }
 void EntityPlayer::render(SDL_Renderer *renderer, SDL_Rect camera) {
-    gTexture->render(renderer,(int)EntityPlayer::worldXPos-camera.x, (int)worldYPos-camera.y);
+    GameObject::render(renderer,camera);
 }
 void EntityPlayer::update(float timeStep) {
+    GameObject::update(timeStep);
     move(timeStep);
+    if (xVel != 0 || yVel !=0) {
+        anim = 1;
+    } else {
+        anim = 0;
+    }
 }
 void EntityPlayer::handleEvent(SDL_Event &e) {
     if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
@@ -44,6 +50,7 @@ void EntityPlayer::handleEvent(SDL_Event &e) {
 void EntityPlayer::move(float timeStep) {
     worldXPos += xVel * timeStep;
     worldYPos += yVel * timeStep;
+    setPos((int)worldXPos, (int)worldYPos);
 }
 
 int EntityPlayer::getXPos() {return (int)worldXPos;}

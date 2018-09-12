@@ -306,6 +306,56 @@ CMakeFiles/2DEngine.dir/objects/block/GameObject.cpp.obj.provides: CMakeFiles/2D
 CMakeFiles/2DEngine.dir/objects/block/GameObject.cpp.obj.provides.build: CMakeFiles/2DEngine.dir/objects/block/GameObject.cpp.obj
 
 
+CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.obj: CMakeFiles/2DEngine.dir/flags.make
+CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.obj: CMakeFiles/2DEngine.dir/includes_CXX.rsp
+CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.obj: ../objects/handlers/GameObjectHandler.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Chris\Dev\2DEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\2DEngine.dir\objects\handlers\GameObjectHandler.cpp.obj -c C:\Users\Chris\Dev\2DEngine\objects\handlers\GameObjectHandler.cpp
+
+CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Chris\Dev\2DEngine\objects\handlers\GameObjectHandler.cpp > CMakeFiles\2DEngine.dir\objects\handlers\GameObjectHandler.cpp.i
+
+CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Chris\Dev\2DEngine\objects\handlers\GameObjectHandler.cpp -o CMakeFiles\2DEngine.dir\objects\handlers\GameObjectHandler.cpp.s
+
+CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.obj.requires:
+
+.PHONY : CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.obj.requires
+
+CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.obj.provides: CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.obj.provides.build
+.PHONY : CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.obj.provides
+
+CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.obj.provides.build: CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.obj
+
+
+CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.obj: CMakeFiles/2DEngine.dir/flags.make
+CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.obj: CMakeFiles/2DEngine.dir/includes_CXX.rsp
+CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.obj: ../textures/sprites/renderers/SpriteRenderer.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\Chris\Dev\2DEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.obj"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles\2DEngine.dir\textures\sprites\renderers\SpriteRenderer.cpp.obj -c C:\Users\Chris\Dev\2DEngine\textures\sprites\renderers\SpriteRenderer.cpp
+
+CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.i"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Chris\Dev\2DEngine\textures\sprites\renderers\SpriteRenderer.cpp > CMakeFiles\2DEngine.dir\textures\sprites\renderers\SpriteRenderer.cpp.i
+
+CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.s"
+	C:\PROGRA~2\MINGW-~1\I686-7~1.0-P\mingw32\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Chris\Dev\2DEngine\textures\sprites\renderers\SpriteRenderer.cpp -o CMakeFiles\2DEngine.dir\textures\sprites\renderers\SpriteRenderer.cpp.s
+
+CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.obj.requires:
+
+.PHONY : CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.obj.requires
+
+CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.obj.provides: CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.obj.requires
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.obj.provides.build
+.PHONY : CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.obj.provides
+
+CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.obj.provides.build: CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.obj
+
+
 # Object files for target 2DEngine
 2DEngine_OBJECTS = \
 "CMakeFiles/2DEngine.dir/main.cpp.obj" \
@@ -317,7 +367,9 @@ CMakeFiles/2DEngine.dir/objects/block/GameObject.cpp.obj.provides.build: CMakeFi
 "CMakeFiles/2DEngine.dir/objects/World.cpp.obj" \
 "CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj" \
 "CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj" \
-"CMakeFiles/2DEngine.dir/objects/block/GameObject.cpp.obj"
+"CMakeFiles/2DEngine.dir/objects/block/GameObject.cpp.obj" \
+"CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.obj" \
+"CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.obj"
 
 # External object files for target 2DEngine
 2DEngine_EXTERNAL_OBJECTS =
@@ -332,6 +384,8 @@ CMakeFiles/2DEngine.dir/objects/block/GameObject.cpp.obj.provides.build: CMakeFi
 2DEngine.exe: CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj
 2DEngine.exe: CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj
 2DEngine.exe: CMakeFiles/2DEngine.dir/objects/block/GameObject.cpp.obj
+2DEngine.exe: CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.obj
+2DEngine.exe: CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.obj
 2DEngine.exe: CMakeFiles/2DEngine.dir/build.make
 2DEngine.exe: C:/Program\ Files\ (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/lib/libSDL2main.a
 2DEngine.exe: C:/Program\ Files\ (x86)/mingw-w64/i686-7.2.0-posix-dwarf-rt_v5-rev1/mingw32/lib/libSDL2.dll.a
@@ -340,7 +394,7 @@ CMakeFiles/2DEngine.dir/objects/block/GameObject.cpp.obj.provides.build: CMakeFi
 2DEngine.exe: CMakeFiles/2DEngine.dir/linklibs.rsp
 2DEngine.exe: CMakeFiles/2DEngine.dir/objects1.rsp
 2DEngine.exe: CMakeFiles/2DEngine.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Chris\Dev\2DEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable 2DEngine.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\Chris\Dev\2DEngine\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable 2DEngine.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\2DEngine.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -358,6 +412,8 @@ CMakeFiles/2DEngine.dir/requires: CMakeFiles/2DEngine.dir/objects/World.cpp.obj.
 CMakeFiles/2DEngine.dir/requires: CMakeFiles/2DEngine.dir/objects/gui/GUI.cpp.obj.requires
 CMakeFiles/2DEngine.dir/requires: CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.obj.requires
 CMakeFiles/2DEngine.dir/requires: CMakeFiles/2DEngine.dir/objects/block/GameObject.cpp.obj.requires
+CMakeFiles/2DEngine.dir/requires: CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.obj.requires
+CMakeFiles/2DEngine.dir/requires: CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.obj.requires
 
 .PHONY : CMakeFiles/2DEngine.dir/requires
 

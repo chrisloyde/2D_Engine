@@ -40,6 +40,7 @@ EntityPlayer player(WORLD_WIDTH/2, (WORLD_HEIGHT/2), 32, 32);
 bool init();
 bool loadMedia();
 void close();
+int render(void *data);
 
 int main(int argv, char** args) {
 
@@ -112,6 +113,7 @@ int main(int argv, char** args) {
             //Clear Screen
             SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
             SDL_RenderClear(renderer); // clear screen
+
 
             //Call Renderers
             world.render(&tileRenderer, renderer, camera); // render world
@@ -196,7 +198,8 @@ bool init() {
 bool loadMedia() {
     bool success = true;
     tileRenderer.init(renderer,"./textures/sprites/tiles.png"); // load spritesheet for tileRenderer
-    player.init(renderer, "./textures/sprites/player.png"); // initilaize player
+    int playerAnimArr[2] {4,3};
+    player.init(renderer, "./textures/sprites/ss_player.png", playerAnimArr,2, 32, 32); // initialize player
     systemFont = TTF_OpenFont("./fonts/rpg.otf", 12); // load systemfont
     if (systemFont == nullptr) {
         std::cerr << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
