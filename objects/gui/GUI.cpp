@@ -18,19 +18,15 @@ void GUI::loadMedia(SDL_Renderer *renderer, std::string path) {
     gTexture->loadFromFile(renderer, path);
 }
 void GUI::update() {
-    if (mouseEnter) {
-        onHover();
-    }
-}
-void GUI::handleEvent(SDL_Event &e) {
     int mouseX, mouseY, mouseW, mouseH;
     SDL_GetMouseState(&mouseX, &mouseY);
     mouseW = 1; mouseH = 1;
     // create a bounding box for the mouse
-    SDL_Rect mRect;
-    mRect.x = mouseX; mRect.y = mouseY;
-    mRect.w = mouseW; mRect.h = mouseH;
-    if (Tile::checkCollision(mRect, rect)) {
+    mouseBounds.x = mouseX; mouseBounds.y = mouseY;
+    mouseBounds.w = mouseW; mouseBounds.h = mouseH;
+}
+void GUI::handleEvent(SDL_Event &e) {
+    if (Tile::checkCollision(mouseBounds, rect)) {
         mouseEnter = true;
         switch(e.type) {
             case SDL_MOUSEBUTTONDOWN: onClick(e); break;

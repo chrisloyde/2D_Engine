@@ -91,7 +91,13 @@
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/World.cpp">
 			<Option target="2DEngine"/>
 		</Unit>
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/block/GameObject.cpp">
+			<Option target="2DEngine"/>
+		</Unit>
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/block/Tile.cpp">
+			<Option target="2DEngine"/>
+		</Unit>
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/block/headers/GameObject.h">
 			<Option target="2DEngine"/>
 		</Unit>
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/block/headers/Tile.h">

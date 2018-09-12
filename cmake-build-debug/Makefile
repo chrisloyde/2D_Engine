@@ -203,6 +203,33 @@ objects/World.cpp.s:
 	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/World.cpp.s
 .PHONY : objects/World.cpp.s
 
+objects/block/GameObject.obj: objects/block/GameObject.cpp.obj
+
+.PHONY : objects/block/GameObject.obj
+
+# target to build an object file
+objects/block/GameObject.cpp.obj:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/block/GameObject.cpp.obj
+.PHONY : objects/block/GameObject.cpp.obj
+
+objects/block/GameObject.i: objects/block/GameObject.cpp.i
+
+.PHONY : objects/block/GameObject.i
+
+# target to preprocess a source file
+objects/block/GameObject.cpp.i:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/block/GameObject.cpp.i
+.PHONY : objects/block/GameObject.cpp.i
+
+objects/block/GameObject.s: objects/block/GameObject.cpp.s
+
+.PHONY : objects/block/GameObject.s
+
+# target to generate assembly for a file
+objects/block/GameObject.cpp.s:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/block/GameObject.cpp.s
+.PHONY : objects/block/GameObject.cpp.s
+
 objects/block/Tile.obj: objects/block/Tile.cpp.obj
 
 .PHONY : objects/block/Tile.obj
@@ -383,6 +410,9 @@ help:
 	@echo ... objects/World.obj
 	@echo ... objects/World.i
 	@echo ... objects/World.s
+	@echo ... objects/block/GameObject.obj
+	@echo ... objects/block/GameObject.i
+	@echo ... objects/block/GameObject.s
 	@echo ... objects/block/Tile.obj
 	@echo ... objects/block/Tile.i
 	@echo ... objects/block/Tile.s

@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/Chris/Dev/2DEngine/objects/entity/player/EntityPlayer.cpp" "C:/Users/Chris/Dev/2DEngine/cmake-build-debug/CMakeFiles/2DEngine.dir/Objects/Entity/Player/EntityPlayer.cpp.obj"
   "C:/Users/Chris/Dev/2DEngine/objects/Timer.cpp" "C:/Users/Chris/Dev/2DEngine/cmake-build-debug/CMakeFiles/2DEngine.dir/Objects/Timer.cpp.obj"
   "C:/Users/Chris/Dev/2DEngine/objects/World.cpp" "C:/Users/Chris/Dev/2DEngine/cmake-build-debug/CMakeFiles/2DEngine.dir/Objects/World.cpp.obj"
+  "C:/Users/Chris/Dev/2DEngine/objects/block/GameObject.cpp" "C:/Users/Chris/Dev/2DEngine/cmake-build-debug/CMakeFiles/2DEngine.dir/Objects/block/GameObject.cpp.obj"
   "C:/Users/Chris/Dev/2DEngine/objects/block/Tile.cpp" "C:/Users/Chris/Dev/2DEngine/cmake-build-debug/CMakeFiles/2DEngine.dir/Objects/block/Tile.cpp.obj"
   "C:/Users/Chris/Dev/2DEngine/objects/gui/GUI.cpp" "C:/Users/Chris/Dev/2DEngine/cmake-build-debug/CMakeFiles/2DEngine.dir/Objects/gui/GUI.cpp.obj"
   "C:/Users/Chris/Dev/2DEngine/objects/handlers/GUIHandler.cpp" "C:/Users/Chris/Dev/2DEngine/cmake-build-debug/CMakeFiles/2DEngine.dir/Objects/handlers/GUIHandler.cpp.obj"

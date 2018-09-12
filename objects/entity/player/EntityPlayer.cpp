@@ -1,18 +1,13 @@
 #include "../headers/EntityPlayer.h"
-EntityPlayer::EntityPlayer(int worldX, int worldY) {
+EntityPlayer::EntityPlayer(int worldX, int worldY, int width, int height) {
     worldXPos = worldX;
     worldYPos = worldY;
+    setBounds(worldX, worldY, width, height);
     facing = south;
-}
-EntityPlayer::~EntityPlayer() {
-    texture.free();
-}
-void EntityPlayer::init(SDL_Renderer *renderer, std::string path) {
-    //load media
-    texture.loadFromFile(renderer, path);
+    gTexture = new Texture();
 }
 void EntityPlayer::render(SDL_Renderer *renderer, SDL_Rect camera) {
-    texture.render(renderer,(int)worldXPos-camera.x, (int)worldYPos-camera.y);
+    gTexture->render(renderer,(int)EntityPlayer::worldXPos-camera.x, (int)worldYPos-camera.y);
 }
 void EntityPlayer::update(float timeStep) {
     move(timeStep);
@@ -32,6 +27,7 @@ void EntityPlayer::handleEvent(SDL_Event &e) {
             case SDLK_d:
             case SDLK_RIGHT:
                 xVel += SPEED; facing = west; break;
+            default: break;
         }
     } else
     if(e.type == SDL_KEYUP && e.key.repeat == 0) {
@@ -40,6 +36,7 @@ void EntityPlayer::handleEvent(SDL_Event &e) {
             case SDLK_s: case SDLK_DOWN: yVel -= SPEED; break;
             case SDLK_a: case SDLK_LEFT: xVel += SPEED; break;
             case SDLK_d: case SDLK_RIGHT: xVel -= SPEED; break;
+            default: break;
         }
     }
 }

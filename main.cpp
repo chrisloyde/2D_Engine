@@ -30,12 +30,11 @@ SDL_Color systemTextColor = {0,0,0,255};
 TTF_Font *systemFont = nullptr;
 
 TileRenderer tileRenderer(4,32,32);
-Texture fpsTextTexture;
 GUIHandler gHandler;
 
 SDL_Rect camera = {0,0,SCREEN_WIDTH, SCREEN_HEIGHT};
 World world(WORLD_WIDTH/32, (WORLD_HEIGHT/32), 32, 32);
-EntityPlayer player(WORLD_WIDTH/2, (WORLD_HEIGHT/2));
+EntityPlayer player(WORLD_WIDTH/2, (WORLD_HEIGHT/2), 32, 32);
 
 // define functions
 bool init();
@@ -49,9 +48,13 @@ int main(int argv, char** args) {
     init(); //Initialize
     SDL_Event e; // event handler
 
+    Texture fpsTextTexture;
+    Texture playerInfoTexture;
+
     Timer fpsTimer;
     Timer stepTimer;
     std::stringstream fpsText;
+    std::stringstream playerInfo;
 
     //start counting fps
     int countedFrames = 0;
@@ -115,7 +118,10 @@ int main(int argv, char** args) {
             player.render(renderer, camera); // render player
             gHandler.render(renderer);
 
+            // update text renderers
             fpsTextTexture.render(renderer, 0, 0); // render fps
+            playerInfoTexture.render(renderer,0,24);
+
             SDL_RenderPresent(renderer); // update screen
 
             // calculate FPS
@@ -123,10 +129,17 @@ int main(int argv, char** args) {
             if (avgFPS > 2000000) { // ensure fps doesn't get too high
                 avgFPS = 0;
             }
+            // Update Texts
             fpsText.str("");
-            fpsText << "FPS: " << avgFPS;
+            fpsText << "FPS: " << (int)avgFPS;
+
             if (!fpsTextTexture.loadFromRenderedText(renderer, fpsText.str().c_str(), systemFont, systemTextColor)) {
                 std::cerr << "Unable to render FPS texture!" << std::endl;
+            }
+            playerInfo.str("");
+            playerInfo << "x: " << player.getXPos() << " y: " << player.getYPos();
+            if (!playerInfoTexture.loadFromRenderedText(renderer, playerInfo.str().c_str(), systemFont, systemTextColor)) {
+                std::cerr << "Unable to render Player Info texture" <<std::endl;
             }
 
             ++countedFrames;
@@ -153,7 +166,7 @@ bool init() {
             success = false;
         } else {
             // create a renderer for the window.
-            renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+            renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
             if (renderer == nullptr) {
                 std::cerr << "Renderer could not be created! SDL Error: " << SDL_GetError() << std::endl;
                 success = false;

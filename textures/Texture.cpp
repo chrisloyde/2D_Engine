@@ -58,8 +58,7 @@ bool Texture::loadFromRenderedText(SDL_Renderer *renderer, std::string textureTe
     else {
         std::cerr << "Unable to render text surface! SDL_ttf Error " << TTF_GetError() << std::endl;
     }
-
-    return hTexture != nullptr;
+    return (hTexture != nullptr);
 }
 void Texture::free() {
     // Free texture if it exists
