@@ -9,3 +9,4 @@ Libraries: SDL2, SDL2_Image, SDL2_ttf
 Future Capabilities: Mouse input, parental objects to make extensions and modifications easier, audio capabiliites, world, player, etc. managers, and a proper rendering and updating system to make game management and modification simple.
 
 Working Directory must be set to project's root directory.
+CMake.txt does not belong in the src folder!! The src folder acts as a subdirectory in the main project folder, if you were to open this project in Clion you would need to create a project, add the src folder in, and move cmake.txt to the projects main directory.
