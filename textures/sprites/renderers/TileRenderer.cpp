@@ -5,7 +5,7 @@ TileRenderer::TileRenderer(int numOfSpritesIn, int w, int h) {
     spriteH = h;
     rawW = 0;
     rawH = 0;
-    SDL_spriteSheet = nullptr;
+    spriteSheet = new Texture();
     clipStorage = new SDL_Rect[numOfSpritesIn];
 
 }
@@ -14,18 +14,13 @@ TileRenderer::~TileRenderer() {
 }
 
 void TileRenderer::free() {
-    if (SDL_spriteSheet != nullptr) {
-        SDL_DestroyTexture(SDL_spriteSheet);
-        SDL_spriteSheet = nullptr;
-        rawH = 0;
-        rawW = 0;
-    }
+    spriteSheet->free();
 }
 
 bool TileRenderer::init(SDL_Renderer *renderer, std::string path) {
     free();
 
-    spriteSheet.loadFromFile(renderer, path);
+    spriteSheet->loadFromFile(renderer, path);
     generateClips();
 
 }
@@ -43,16 +38,16 @@ void TileRenderer::render(SDL_Renderer *renderer, SDL_Rect camera, int x, int y,
     switch(type) {
         case Tile::tile_default:
         default:
-            spriteSheet.render(renderer, x-camera.x, y-camera.y, &clipStorage[0]);
+            spriteSheet->render(renderer, x-camera.x, y-camera.y, &clipStorage[0]);
             break;
         case Tile::tile_dirt:
-            spriteSheet.render(renderer, x-camera.x, y-camera.y, &clipStorage[1]);
+            spriteSheet->render(renderer, x-camera.x, y-camera.y, &clipStorage[1]);
             break;
         case Tile::tile_grass:
-            spriteSheet.render(renderer, x-camera.x, y-camera.y, &clipStorage[2]);
+            spriteSheet->render(renderer, x-camera.x, y-camera.y, &clipStorage[2]);
             break;
         case Tile::tile_water:
-            spriteSheet.render(renderer, x-camera.x, y-camera.y, &clipStorage[3]);
+            spriteSheet->render(renderer, x-camera.x, y-camera.y, &clipStorage[3]);
             break;
     }
 }

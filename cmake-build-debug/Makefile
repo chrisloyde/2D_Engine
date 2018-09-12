@@ -338,6 +338,33 @@ objects/handlers/GUIHandler.cpp.s:
 	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/handlers/GUIHandler.cpp.s
 .PHONY : objects/handlers/GUIHandler.cpp.s
 
+objects/handlers/GameObjectHandler.obj: objects/handlers/GameObjectHandler.cpp.obj
+
+.PHONY : objects/handlers/GameObjectHandler.obj
+
+# target to build an object file
+objects/handlers/GameObjectHandler.cpp.obj:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.obj
+.PHONY : objects/handlers/GameObjectHandler.cpp.obj
+
+objects/handlers/GameObjectHandler.i: objects/handlers/GameObjectHandler.cpp.i
+
+.PHONY : objects/handlers/GameObjectHandler.i
+
+# target to preprocess a source file
+objects/handlers/GameObjectHandler.cpp.i:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.i
+.PHONY : objects/handlers/GameObjectHandler.cpp.i
+
+objects/handlers/GameObjectHandler.s: objects/handlers/GameObjectHandler.cpp.s
+
+.PHONY : objects/handlers/GameObjectHandler.s
+
+# target to generate assembly for a file
+objects/handlers/GameObjectHandler.cpp.s:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/objects/handlers/GameObjectHandler.cpp.s
+.PHONY : objects/handlers/GameObjectHandler.cpp.s
+
 textures/Texture.obj: textures/Texture.cpp.obj
 
 .PHONY : textures/Texture.obj
@@ -364,6 +391,33 @@ textures/Texture.s: textures/Texture.cpp.s
 textures/Texture.cpp.s:
 	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/textures/Texture.cpp.s
 .PHONY : textures/Texture.cpp.s
+
+textures/sprites/renderers/SpriteRenderer.obj: textures/sprites/renderers/SpriteRenderer.cpp.obj
+
+.PHONY : textures/sprites/renderers/SpriteRenderer.obj
+
+# target to build an object file
+textures/sprites/renderers/SpriteRenderer.cpp.obj:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.obj
+.PHONY : textures/sprites/renderers/SpriteRenderer.cpp.obj
+
+textures/sprites/renderers/SpriteRenderer.i: textures/sprites/renderers/SpriteRenderer.cpp.i
+
+.PHONY : textures/sprites/renderers/SpriteRenderer.i
+
+# target to preprocess a source file
+textures/sprites/renderers/SpriteRenderer.cpp.i:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.i
+.PHONY : textures/sprites/renderers/SpriteRenderer.cpp.i
+
+textures/sprites/renderers/SpriteRenderer.s: textures/sprites/renderers/SpriteRenderer.cpp.s
+
+.PHONY : textures/sprites/renderers/SpriteRenderer.s
+
+# target to generate assembly for a file
+textures/sprites/renderers/SpriteRenderer.cpp.s:
+	$(MAKE) -f CMakeFiles\2DEngine.dir\build.make CMakeFiles/2DEngine.dir/textures/sprites/renderers/SpriteRenderer.cpp.s
+.PHONY : textures/sprites/renderers/SpriteRenderer.cpp.s
 
 textures/sprites/renderers/TileRenderer.obj: textures/sprites/renderers/TileRenderer.cpp.obj
 
@@ -425,9 +479,15 @@ help:
 	@echo ... objects/handlers/GUIHandler.obj
 	@echo ... objects/handlers/GUIHandler.i
 	@echo ... objects/handlers/GUIHandler.s
+	@echo ... objects/handlers/GameObjectHandler.obj
+	@echo ... objects/handlers/GameObjectHandler.i
+	@echo ... objects/handlers/GameObjectHandler.s
 	@echo ... textures/Texture.obj
 	@echo ... textures/Texture.i
 	@echo ... textures/Texture.s
+	@echo ... textures/sprites/renderers/SpriteRenderer.obj
+	@echo ... textures/sprites/renderers/SpriteRenderer.i
+	@echo ... textures/sprites/renderers/SpriteRenderer.s
 	@echo ... textures/sprites/renderers/TileRenderer.obj
 	@echo ... textures/sprites/renderers/TileRenderer.i
 	@echo ... textures/sprites/renderers/TileRenderer.s

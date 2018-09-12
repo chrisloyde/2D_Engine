@@ -702,6 +702,10 @@ C:/Users/Chris/Dev/2DEngine/objects/handlers/GUIHandler.cpp
 headers/GUIHandler.h
 C:/Users/Chris/Dev/2DEngine/objects/handlers/headers/GUIHandler.h
 
+C:/Users/Chris/Dev/2DEngine/objects/handlers/GameObjectHandler.cpp
+headers/GameObjectHandler.h
+C:/Users/Chris/Dev/2DEngine/objects/handlers/headers/GameObjectHandler.h
+
 C:/Users/Chris/Dev/2DEngine/objects/handlers/headers/GUIHandler.h
 SDL2/SDL_render.h
 -
@@ -709,6 +713,12 @@ vector
 -
 ../../gui/headers/GUI.h
 C:/Users/Chris/Dev/2DEngine/objects/gui/headers/GUI.h
+
+C:/Users/Chris/Dev/2DEngine/objects/handlers/headers/GameObjectHandler.h
+vector
+-
+../../block/headers/GameObject.h
+C:/Users/Chris/Dev/2DEngine/objects/block/headers/GameObject.h
 
 C:/Users/Chris/Dev/2DEngine/objects/headers/Timer.h
 SDL2/SDL_stdinc.h
@@ -744,9 +754,19 @@ SDL_image.h
 SDL_ttf.h
 -
 
+C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/SpriteRenderer.cpp
+headers/SpriteRenderer.h
+C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/headers/SpriteRenderer.h
+
 C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/TileRenderer.cpp
 headers/TileRenderer.h
 C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/headers/TileRenderer.h
+
+C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/headers/SpriteRenderer.h
+SDL2/SDL_render.h
+-
+../../../../objects/block/headers/GameObject.h
+C:/Users/Chris/Dev/2DEngine/objects/block/headers/GameObject.h
 
 C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/headers/TileRenderer.h
 iostream

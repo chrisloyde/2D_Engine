@@ -118,7 +118,13 @@
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/handlers/GUIHandler.cpp">
 			<Option target="2DEngine"/>
 		</Unit>
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/handlers/GameObjectHandler.cpp">
+			<Option target="2DEngine"/>
+		</Unit>
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/handlers/headers/GUIHandler.h">
+			<Option target="2DEngine"/>
+		</Unit>
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/handlers/headers/GameObjectHandler.h">
 			<Option target="2DEngine"/>
 		</Unit>
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/objects/headers/Timer.h">
@@ -133,7 +139,13 @@
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/textures/Texture.h">
 			<Option target="2DEngine"/>
 		</Unit>
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/SpriteRenderer.cpp">
+			<Option target="2DEngine"/>
+		</Unit>
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/TileRenderer.cpp">
+			<Option target="2DEngine"/>
+		</Unit>
+		<Unit filename="C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/headers/SpriteRenderer.h">
 			<Option target="2DEngine"/>
 		</Unit>
 		<Unit filename="C:/Users/Chris/Dev/2DEngine/textures/sprites/renderers/headers/TileRenderer.h">
