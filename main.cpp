@@ -4,6 +4,7 @@
 #include <cstdio>
 #include <string>
 #include <sstream>
+
 #include "textures/Texture.h"
 #include "textures/sprites/renderers/headers/TileRenderer.h"
 #include "objects/headers/Timer.h"
@@ -12,6 +13,7 @@
 #include "objects/headers/World.h"
 #include "objects/gui/headers/GUI.h"
 #include "objects/handlers/headers/GUIHandler.h"
+
 #include <SDL_ttf.h>
 
 // define program variables
