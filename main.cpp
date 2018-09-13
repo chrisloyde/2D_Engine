@@ -38,7 +38,7 @@ GameObjectHandler oHandler;
 
 SDL_Rect camera = {0,0,SCREEN_WIDTH, SCREEN_HEIGHT};
 World world(WORLD_WIDTH/32, (WORLD_HEIGHT/32), 32, 32);
-EntityPlayer player((SCREEN_WIDTH/2)-32, (SCREEN_HEIGHT/2)-32, 32, 32);
+EntityPlayer player((WORLD_WIDTH/2)-32, (WORLD_HEIGHT/2)-32, 32, 32);
 
 // define functions
 bool init();
@@ -59,6 +59,9 @@ int main(int argv, char** args) {
     Timer stepTimer;
     std::stringstream fpsText;
     std::stringstream playerInfo;
+    // center camera on player
+    camera.x = (player.getXPos() + player.width/2)-SCREEN_WIDTH/2;
+    camera.y = (player.getYPos() +player.height/2)-SCREEN_HEIGHT/2;
 
     //start counting fps
     int countedFrames = 0;
@@ -93,23 +96,7 @@ int main(int argv, char** args) {
             gHandler.update();
             stepTimer.start();
 
-            // Adjust Camera
-            // center camera on player
-            //camera.x = (player.getXPos() + 32/2)-SCREEN_WIDTH/2;
-            //camera.y = (player.getYPos() +32/2)-SCREEN_HEIGHT/2;
-            //keep camera in bounds
-            if (camera.x < 0) {
-                camera.x = 0;
-            }
-            if (camera.y < 0) {
-                camera.y = 0;
-            }
-            if (camera.x > WORLD_WIDTH - camera.w) {
-                camera.x = WORLD_WIDTH - camera.w;
-            }
-            if (camera.y > WORLD_HEIGHT - camera.h) {
-                camera.y = WORLD_HEIGHT - camera.h;
-            }
+
 
 
             //Clear Screen
@@ -215,7 +202,11 @@ bool loadMedia() {
     SDL_Rect rock;
     rock.x = 64; rock.y = 64; rock.w = 32; rock.h = 48;
     oHandler.createBasicAndAdd(rock, 0, 16, renderer, "./textures/sprites/rock.png", 32, 48, &camera);
-    rock.x = 512; rock.y = 512; rock.w = 32; rock.h = 48;
+    rock.x = 96; rock.y = 64; rock.w = 32; rock.h = 48;
+    oHandler.createBasicAndAdd(rock, 0, 16, renderer, "./textures/sprites/rock.png", 32, 48, &camera);
+    rock.x = 32*24; rock.y = 32*8; rock.w = 32; rock.h = 48;
+    oHandler.createBasicAndAdd(rock, 0, 16, renderer, "./textures/sprites/rock.png", 32, 48, &camera);
+    rock.x = 32*16; rock.y = 32; rock.w = 32; rock.h = 48;
     oHandler.createBasicAndAdd(rock, 0, 16, renderer, "./textures/sprites/rock.png", 32, 48, &camera);
 
     // add GUI elements to handler

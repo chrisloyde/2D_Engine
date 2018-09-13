@@ -1,4 +1,6 @@
 #include "../headers/EntityPlayer.h"
+#include "../../headers/World.h"
+
 EntityPlayer::EntityPlayer(int worldX, int worldY, int width, int height) {
     worldXPos = worldX;
     worldYPos = worldY;
@@ -12,9 +14,9 @@ void EntityPlayer::render(SDL_Renderer *renderer) {
 }
 void EntityPlayer::update(float timeStep) {
     GameObject::update(timeStep);
+    step = timeStep;
 
-    bounds.x += xVel * timeStep;
-    bounds.y += yVel * timeStep;
+    move(timeStep);
 
     // change animation state
     if (xVel != 0 || yVel !=0) {
@@ -27,9 +29,39 @@ void EntityPlayer::update(float timeStep) {
     worldXPos = bounds.x;
     worldYPos = bounds.y;
 
-    // update camera to follow player.
-    cam->x = (getXPos() + 32/2)-640/2;
-    cam->y = (getYPos() +32/2)-480/2;
+    // update camera to follow player and keep camera in bounds.
+    if (cam->x < World::WORLD_WIDTH - cam->w) {
+        // handle right
+        if (worldXPos >= cam->x + (cam->w) - World::SCREEN_WIDTH / 2.5) {
+            if (xVel > 0) {
+                cam->x += xVel * timeStep;
+            }
+        }
+    }
+    if (cam->x > 0) {
+        // handle left
+        if ((worldXPos + width) - World::SCREEN_WIDTH / 2.5 <= cam->x) {
+            if (xVel < 0) {
+                cam->x += xVel * timeStep;
+            }
+        }
+    }
+    if (cam->y < World::WORLD_HEIGHT - cam->h) {
+        // handle down
+        if (worldYPos >= cam->y + (cam->h) - World::SCREEN_HEIGHT / 2.5) {
+            if (yVel > 0) {
+                cam->y += yVel * timeStep;
+            }
+        }
+    }
+    if (cam->y > 0) {
+        // handle up
+        if ((worldYPos + height) - World::SCREEN_HEIGHT / 2.5 <= cam->y) {
+            if (yVel < 0) {
+                cam->y += yVel * timeStep;
+            }
+        }
+    }
 }
 void EntityPlayer::handleEvent(SDL_Event &e, SDL_Rect camera) {
     GameObject::handleEvent(e, camera); // run parent event handling
@@ -63,14 +95,24 @@ void EntityPlayer::handleEvent(SDL_Event &e, SDL_Rect camera) {
     }
 }
 
+void EntityPlayer::handleCollision(GameObject *other) {
+    if (other->isSolid) {
+        while(readDistance(other) <= 1) {
+            unMove(step);
+        }
+    }
+}
+
 void EntityPlayer::move(float timeStep) {
+    // moving right
     worldXPos += xVel * timeStep;
     worldYPos += yVel * timeStep;
     setPos((int)worldXPos, (int)worldYPos);
+    setBounds((int)worldXPos, (int)worldYPos, width, height, 0,0);
 }
 void EntityPlayer::unMove(float timeStep) {
-    worldXPos -= (xVel)*timeStep;
-    worldYPos -= (yVel)*timeStep;
+    worldXPos -= (xVel) * timeStep;
+    worldYPos -= (yVel) * timeStep;
     // reset position and bounds since update won't be called.
     setPos((int)worldXPos, (int)worldYPos);
     setBounds((int)worldXPos, (int)worldYPos, width, height, 0,0);

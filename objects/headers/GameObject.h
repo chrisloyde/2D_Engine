@@ -7,6 +7,7 @@
 #include <SDL2/SDL_events.h>
 #include <string>
 #include "../../textures/Texture.h"
+#include <array>
 
 class GameObject {
 public:
@@ -17,11 +18,14 @@ public:
     virtual void setPos(int x, int y);
     virtual void update(float timeStep); // updates game object per frame (uses frame independance with timestep)
     virtual void handleEvent(SDL_Event &e, SDL_Rect camera); // handle events
+    virtual void handleCollision(GameObject *other);
+    virtual float readDistance(GameObject *other);
     virtual void render(SDL_Renderer *renderer); // render game object per frame
     virtual void displayInfo();
     virtual void setSolid(bool s);
     ~GameObject();
     void addCamera(SDL_Rect *camera);
+    void setId(std::string *str);
     virtual void free(); // deconstruct game object
 
     std::string id = "GameObject";
@@ -29,7 +33,7 @@ public:
     int width, height;
     SDL_Rect bounds;
     Texture *gTexture;
-    bool isSolid;
+    bool isSolid; // whether player can go through or not.
 
     int spriteW, spriteH, animFrame{0}, numOfAnims{0}, anim{0};
     int *numOfSprites;

@@ -16,6 +16,8 @@ public:
     void render(SDL_Renderer *renderer) override;
     void update(float timeStep);
     void handleEvent(SDL_Event& e, SDL_Rect camera) override;
+    void handleCollision(GameObject *other) override;
+    //float readDistance(GameObject *other) override;
     void move(float timeStep);
     void unMove(float timeStep);
 
@@ -24,6 +26,7 @@ public:
 private:
     float worldXPos, worldYPos;
     directions facing;
+    float step;
 
 };
 

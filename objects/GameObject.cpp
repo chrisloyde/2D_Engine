@@ -119,6 +119,24 @@ void GameObject::render(SDL_Renderer *renderer) {
     }
 
 }
-void GameObject::free() {
-
+void GameObject::handleCollision(GameObject *other) {
 }
+float GameObject::readDistance(GameObject *other) {
+    return Tile::getDistance(bounds, other->bounds, width);
+}
+
+void GameObject::setId(std::string *str) {
+    id = *str;
+}
+void GameObject::free() {
+    gTexture->free();
+    if (numOfAnims > 1) {
+        for (int i = 0; i < numOfAnims; i++) {
+            delete[]  spriteStorage[i];
+        }
+    }
+    delete[] spriteStorage;
+    delete[] numOfSprites;
+    cam = nullptr;
+}
+
