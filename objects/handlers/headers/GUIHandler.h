@@ -9,6 +9,7 @@
 class GUIHandler {
 public:
     GUIHandler();
+    ~GUIHandler();
     void update();
     void render(SDL_Renderer *r);
     void handleEvents(SDL_Event &e);
@@ -16,7 +17,7 @@ public:
     void createAndAdd(int xPos, int yPos, int width, int height, SDL_Renderer *r, std::string path);
     void free();
 private:
-    std::vector<GUI> elements;
+    std::vector<GUI *> elements;
 };
 
 

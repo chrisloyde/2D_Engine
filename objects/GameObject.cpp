@@ -4,8 +4,11 @@
 GameObject::GameObject() {
     xPos = 0;
     yPos = 0;
+    xOffset = 0;
+    yOffset = 0;
     width = 32;
     height = 32;
+    isSolid = false;
     gTexture = new Texture();
 }
 GameObject::~GameObject() {
@@ -26,13 +29,15 @@ void GameObject::init(SDL_Renderer *r, std::string path, int *numOfSpritesIn, in
     numOfAnims = animNum;
 
     gTexture->loadFromFile(r, path);
-    // initialize 2D array for spriteStorage. Each animation is a row, each column is a sprite within the animation.
-    // numOfAnims controls the number of rows, while numOfSpritesIn controls the number of columns per row.
-    spriteStorage = new SDL_Rect*[numOfAnims]; // Anims would be all rows
-    for(int i = 0; i < numOfAnims; i++) {
-        spriteStorage[i] = new SDL_Rect[numOfSpritesIn[numOfAnims]](); // number of sprites at the particular animation.
+    if (numOfAnims > 1) {
+        // initialize 2D array for spriteStorage. Each animation is a row, each column is a sprite within the animation.
+        // numOfAnims controls the number of rows, while numOfSpritesIn controls the number of columns per row.
+        spriteStorage = new SDL_Rect *[numOfAnims]; // Anims would be all rows
+        for (int i = 0; i < numOfAnims; i++) {
+            spriteStorage[i] = new SDL_Rect[numOfSpritesIn[numOfAnims]](); // number of sprites at the particular animation.
+        }
+        generateSpriteClips();
     }
-    generateSpriteClips();
 }
 // assign the rectangles in spriteStorage positions for clipping the image.
 void GameObject::generateSpriteClips() {
@@ -45,9 +50,11 @@ void GameObject::generateSpriteClips() {
         }
     }
 }
-void GameObject::setBounds(int x, int y, int w, int h) {
-    bounds.x = x;
-    bounds.y = y;
+void GameObject::setBounds(int x, int y, int w, int h, int xOff, int yOff) {
+    xOffset = xOff;
+    yOffset = yOff;
+    bounds.x = (x + xOff);
+    bounds.y = (y + yOff);
     bounds.w = w;
     bounds.h = h;
 }
@@ -55,18 +62,25 @@ void GameObject::setPos(int x, int y) {
     xPos = x;
     yPos = y;
 }
+void GameObject::setSolid(bool s) {
+    isSolid = s;
+}
 void GameObject::update(float timeStep) {
-    ++animFrame; // increment animation frame
-    if ((animFrame/numOfSprites[anim]) >= numOfSprites[anim]) {
-        animFrame = 0;
-    }
     // if position has changed, update bounds.
-    if (bounds.x != xPos || bounds.y != yPos) {
-        setBounds((int) xPos, (int) yPos, width, height);
+    if (bounds.x != (xPos+xOffset) || bounds.y != (yPos+yOffset)) {
+        setPos(bounds.x, bounds.y);
+        //setBounds((int) xPos, (int) yPos, width, height, (int)xOffset, (int)yOffset);
     }
 
-    // update currentFrame of animation.
-    currentFrame = spriteStorage[anim][animFrame/numOfSprites[anim]];
+    // don't bother updating animation frames if it's just a single image.
+    if (numOfAnims > 1) {
+        ++animFrame; // increment animation frame
+        if ((animFrame / numOfSprites[anim]) >= numOfSprites[anim]) {
+            animFrame = 0;
+        }
+        // update currentFrame of animation.
+        currentFrame = spriteStorage[anim][animFrame / numOfSprites[anim]];
+    }
 }
 void GameObject::handleEvent(SDL_Event &e, SDL_Rect camera) {
     if (Tile::checkCollision(GUI::getMouseBoundsInWorld(camera), bounds)) {
@@ -81,10 +95,29 @@ void GameObject::handleEvent(SDL_Event &e, SDL_Rect camera) {
     }
 }
 void GameObject::displayInfo() {
-    std::cout << id << std::endl;
+    std::cout << id << " bounds: x: " << bounds.x << " y: " << yPos << " w: " << bounds.w << " h: " << bounds.w << std::endl;
 }
-void GameObject::render(SDL_Renderer *renderer, SDL_Rect camera) {
-    gTexture->render(renderer,(int)xPos-camera.x, (int)yPos-camera.y, &currentFrame);
+void GameObject::addCamera(SDL_Rect *camera) {
+    cam = camera;
+}
+void GameObject::render(SDL_Renderer *renderer) {
+    if (Tile::checkCollision(bounds, *cam)) {
+        if (numOfAnims <= 1) {
+            gTexture->render(renderer, (int) xPos - cam->x, (int) yPos - cam->y, nullptr);
+        } else {
+            gTexture->render(renderer, (int) xPos - cam->x, (int) yPos - cam->y, &currentFrame);
+        }
+        // draw hitbox around objects
+
+        SDL_Rect fakeBox;
+        fakeBox.x = (int)bounds.x-cam->x;
+        fakeBox.y = (int)bounds.y-cam->y;
+        fakeBox.w = width;
+        fakeBox.h = height;
+        SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
+        SDL_RenderDrawRect(renderer, &fakeBox);
+    }
+
 }
 void GameObject::free() {
 

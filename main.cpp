@@ -13,17 +13,18 @@
 #include "objects/headers/World.h"
 #include "objects/gui/headers/GUI.h"
 #include "objects/handlers/headers/GUIHandler.h"
+#include "objects/handlers/headers/GameObjectHandler.h"
 
 #include <SDL_ttf.h>
 
 // define program variables
 // defines number of pixels for the height and width of the world.
 // should be divisible by tile size (width and height) for clean results.
-const int WORLD_WIDTH = 1920;
-const int WORLD_HEIGHT = 1920;
+const static int WORLD_WIDTH = 1920;
+const static int WORLD_HEIGHT = 1920;
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
+const static int SCREEN_WIDTH = 640;
+const static int SCREEN_HEIGHT = 480;
 SDL_Window *window = nullptr; //The window being rendered to
 SDL_Surface *screenSurface = nullptr; // The surface contained by the window
 SDL_Renderer *renderer = nullptr; // window renderer
@@ -33,17 +34,16 @@ TTF_Font *systemFont = nullptr;
 
 TileRenderer tileRenderer(4,32,32);
 GUIHandler gHandler;
+GameObjectHandler oHandler;
 
 SDL_Rect camera = {0,0,SCREEN_WIDTH, SCREEN_HEIGHT};
 World world(WORLD_WIDTH/32, (WORLD_HEIGHT/32), 32, 32);
-//EntityPlayer player(WORLD_WIDTH/2, (WORLD_HEIGHT/2), 32, 32);
-EntityPlayer player(0,0,32,32);
+EntityPlayer player((SCREEN_WIDTH/2)-32, (SCREEN_HEIGHT/2)-32, 32, 32);
 
 // define functions
 bool init();
 bool loadMedia();
 void close();
-int render(void *data);
 
 int main(int argv, char** args) {
 
@@ -78,7 +78,7 @@ int main(int argv, char** args) {
                 }
                     // Get keyboard input events
                 else {
-                    player.handleEvent(e, camera);
+                    oHandler.handleEvents(e, camera);
                     world.handleEvent(e, camera);
                     gHandler.handleEvents(e);
                 }
@@ -89,15 +89,14 @@ int main(int argv, char** args) {
             float timeStep = stepTimer.getTicks() /1000.f;
 
             world.update();
-            player.update(timeStep);
+            oHandler.update(timeStep);
             gHandler.update();
-
             stepTimer.start();
 
             // Adjust Camera
             // center camera on player
-            camera.x = (player.getXPos() + 32/2)-SCREEN_WIDTH/2;
-            camera.y = (player.getYPos() +32/2)-SCREEN_HEIGHT/2;
+            //camera.x = (player.getXPos() + 32/2)-SCREEN_WIDTH/2;
+            //camera.y = (player.getYPos() +32/2)-SCREEN_HEIGHT/2;
             //keep camera in bounds
             if (camera.x < 0) {
                 camera.x = 0;
@@ -120,7 +119,7 @@ int main(int argv, char** args) {
 
             //Call Renderers
             world.render(&tileRenderer, renderer, camera); // render world
-            player.render(renderer, camera); // render player
+            oHandler.render(renderer, camera); // render player
             gHandler.render(renderer);
 
             // update text renderers
@@ -141,12 +140,13 @@ int main(int argv, char** args) {
             if (!fpsTextTexture.loadFromRenderedText(renderer, fpsText.str().c_str(), systemFont, systemTextColor)) {
                 std::cerr << "Unable to render FPS texture!" << std::endl;
             }
+            /*
             playerInfo.str("");
-            playerInfo << "x: " << player.getXPos() << " y: " << player.getYPos();
+            playerInfo << "xVel: " << player_pt->xVel << " yVel: " << player_pt->yVel;
             if (!playerInfoTexture.loadFromRenderedText(renderer, playerInfo.str().c_str(), systemFont, systemTextColor)) {
                 std::cerr << "Unable to render Player Info texture" <<std::endl;
             }
-
+    */
             ++countedFrames;
         }
     }
@@ -201,14 +201,24 @@ bool init() {
 bool loadMedia() {
     bool success = true;
     tileRenderer.init(renderer,"./textures/sprites/tiles.png"); // load spritesheet for tileRenderer
-    int playerAnimArr[2] {4,3};
-    player.init(renderer, "./textures/sprites/ss_player.png", playerAnimArr,2, 32, 32); // initialize player
     systemFont = TTF_OpenFont("./fonts/rpg.otf", 12); // load systemfont
     if (systemFont == nullptr) {
         std::cerr << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
         success = false;
     }
+    // initialize player
+    int playerAnimArr[2] {4,3};
+    player.init(renderer, "./textures/sprites/ss_player.png", playerAnimArr,2, 32, 32); // initialize player
+    player.addCamera(&camera);
+    // add GameObject elements to handler
+    oHandler.add(&player);
+    SDL_Rect rock;
+    rock.x = 64; rock.y = 64; rock.w = 32; rock.h = 48;
+    oHandler.createBasicAndAdd(rock, 0, 16, renderer, "./textures/sprites/rock.png", 32, 48, &camera);
+    rock.x = 512; rock.y = 512; rock.w = 32; rock.h = 48;
+    oHandler.createBasicAndAdd(rock, 0, 16, renderer, "./textures/sprites/rock.png", 32, 48, &camera);
 
+    // add GUI elements to handler
     gHandler.createAndAdd((SCREEN_WIDTH/2)-48,SCREEN_HEIGHT-64,96,32,renderer,"./textures/gui/basic_button.png");
     gHandler.createAndAdd((SCREEN_WIDTH/2)-144,SCREEN_HEIGHT-64,96,32,renderer,"./textures/gui/basic_button.png");
     return success;
