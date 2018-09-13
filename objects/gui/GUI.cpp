@@ -17,16 +17,32 @@ void GUI::setBounds(int x, int y, int w, int h) {
 void GUI::loadMedia(SDL_Renderer *renderer, std::string path) {
     gTexture->loadFromFile(renderer, path);
 }
-void GUI::update() {
-    int mouseX, mouseY, mouseW, mouseH;
+SDL_Rect GUI::getMouseBoundsInWorld(SDL_Rect camera) {
+    int mouseX, mouseY;
     SDL_GetMouseState(&mouseX, &mouseY);
-    mouseW = 1; mouseH = 1;
-    // create a bounding box for the mouse
-    mouseBounds.x = mouseX; mouseBounds.y = mouseY;
-    mouseBounds.w = mouseW; mouseBounds.h = mouseH;
+    mouseX = camera.x+mouseX;
+    mouseY = camera.y+mouseY;
+    SDL_Rect *mouseBounds;
+    mouseBounds = new SDL_Rect();
+    mouseBounds->x = mouseX; mouseBounds->y = mouseY;
+    mouseBounds->w = 1; mouseBounds->h = 1;
+
+    return *mouseBounds;
+}
+SDL_Rect GUI::getGUIMouseBounds() {
+    int mouseX, mouseY;
+    SDL_GetMouseState(&mouseX, &mouseY);
+    SDL_Rect *mouseBounds;
+    mouseBounds = new SDL_Rect();
+    mouseBounds->x = mouseX; mouseBounds->y = mouseY;
+    mouseBounds->w = 1; mouseBounds->h = 1;
+
+    return *mouseBounds;
+}
+void GUI::update() {
 }
 void GUI::handleEvent(SDL_Event &e) {
-    if (Tile::checkCollision(mouseBounds, rect)) {
+    if (Tile::checkCollision(GUI::getGUIMouseBounds(), rect)) {
         mouseEnter = true;
         switch(e.type) {
             case SDL_MOUSEBUTTONDOWN: onClick(e); break;

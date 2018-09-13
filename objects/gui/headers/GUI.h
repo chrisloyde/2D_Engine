@@ -16,14 +16,15 @@ public:
     virtual void update();
     virtual void handleEvent(SDL_Event &e);
     virtual void render(SDL_Renderer *renderer); // don't use camera in gui
-
     virtual void onClick(SDL_Event &e);
     virtual void onHover();
     virtual void displayInfo();
     virtual void free();
 
+    static SDL_Rect getMouseBoundsInWorld(SDL_Rect camera); // static method to retrieve mouse position in relation to the camera.
+    static SDL_Rect getGUIMouseBounds(); // static method to retrieve mouse position on screen.
+
     SDL_Rect rect;
-    SDL_Rect mouseBounds;
     int xPos, yPos, height, width;
     bool mouseEnter = false;
     Texture *gTexture;

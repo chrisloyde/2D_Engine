@@ -1,5 +1,6 @@
 #include <iostream>
 #include "headers/Tile.h"
+#include "../gui/headers/GUI.h"
 
 Tile::Tile() {
     xPos = 0;
@@ -55,17 +56,7 @@ float Tile::getDistance(SDL_Rect a, SDL_Rect b, int tileSize) {
 }
 void Tile::handleEvent(SDL_Event &e, SDL_Rect camera) {
     if(e.type == SDL_MOUSEMOTION) {
-        int mouseX, mouseY, mouseW, mouseH;
-        SDL_GetMouseState(&mouseX, &mouseY);
-        // add mouse position to camera position so mouse position works with camera scrolling
-        mouseX = mouseX + camera.x;
-        mouseY = mouseY + camera.y;
-        mouseW = 1; mouseH = 1;
-        // create a bounding box for the mouse
-        SDL_Rect rect;
-        rect.x = mouseX; rect.y = mouseY;
-        rect.w = mouseW; rect.h = mouseH;
-        if (Tile::checkCollision(rect, cBox)) {
+        if (Tile::checkCollision(GUI::getMouseBoundsInWorld(camera), cBox)) {
             displayOverlay = true;
         } else {
             displayOverlay = false;

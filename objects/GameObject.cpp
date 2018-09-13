@@ -1,4 +1,6 @@
 #include "headers/GameObject.h"
+#include "gui/headers/GUI.h"
+
 GameObject::GameObject() {
     xPos = 0;
     yPos = 0;
@@ -66,8 +68,20 @@ void GameObject::update(float timeStep) {
     // update currentFrame of animation.
     currentFrame = spriteStorage[anim][animFrame/numOfSprites[anim]];
 }
-void GameObject::handleEvent(SDL_Event &e) {
-
+void GameObject::handleEvent(SDL_Event &e, SDL_Rect camera) {
+    if (Tile::checkCollision(GUI::getMouseBoundsInWorld(camera), bounds)) {
+        switch(e.type) {
+            case SDL_MOUSEBUTTONDOWN:
+                if (e.button.button == SDL_BUTTON_LEFT) {
+                    displayInfo();
+                }
+                break;
+            default: break;
+        }
+    }
+}
+void GameObject::displayInfo() {
+    std::cout << id << std::endl;
 }
 void GameObject::render(SDL_Renderer *renderer, SDL_Rect camera) {
     gTexture->render(renderer,(int)xPos-camera.x, (int)yPos-camera.y, &currentFrame);

@@ -1,6 +1,3 @@
-//
-// Created by Chris on 9/11/2018.
-//
 
 #ifndef INC_2DENGINE_GAMEOBJECT_H
 #define INC_2DENGINE_GAMEOBJECT_H
@@ -9,7 +6,7 @@
 #include <SDL2/SDL_render.h>
 #include <SDL2/SDL_events.h>
 #include <string>
-#include "../../../textures/Texture.h"
+#include "../../textures/Texture.h"
 
 class GameObject {
 public:
@@ -19,11 +16,13 @@ public:
     virtual void setBounds(int x, int y, int width, int height); // intialize position and bounding box of game object
     virtual void setPos(int x, int y);
     virtual void update(float timeStep); // updates game object per frame (uses frame independance with timestep)
-    virtual void handleEvent(SDL_Event &e); // handle events
+    virtual void handleEvent(SDL_Event &e, SDL_Rect camera); // handle events
     virtual void render(SDL_Renderer *renderer, SDL_Rect camera); // render game object per frame
+    virtual void displayInfo();
     ~GameObject();
     virtual void free(); // deconstruct game object
 
+    std::string id = "GameObject";
     float xPos, yPos;
     int width, height;
     SDL_Rect bounds;

@@ -3,7 +3,7 @@
 
 
 #include <SDL2/SDL_render.h>
-#include "../../../../objects/block/headers/GameObject.h"
+#include "../../../../objects/headers/GameObject.h"
 
 class SpriteRenderer {
 public:

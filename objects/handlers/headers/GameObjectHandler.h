@@ -3,7 +3,7 @@
 #define INC_2DENGINE_GAMEOBJECTHANDLER_H
 
 #include <vector>
-#include "../../block/headers/GameObject.h"
+#include "../../headers/GameObject.h"
 
 class GameObjectHandler {
 public:

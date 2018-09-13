@@ -5,6 +5,7 @@ EntityPlayer::EntityPlayer(int worldX, int worldY, int width, int height) {
     setBounds(worldX, worldY, width, height);
     facing = south;
     gTexture = new Texture();
+    id = "Player";
 }
 void EntityPlayer::render(SDL_Renderer *renderer, SDL_Rect camera) {
     GameObject::render(renderer,camera);
@@ -18,7 +19,8 @@ void EntityPlayer::update(float timeStep) {
         anim = 0;
     }
 }
-void EntityPlayer::handleEvent(SDL_Event &e) {
+void EntityPlayer::handleEvent(SDL_Event &e, SDL_Rect camera) {
+    GameObject::handleEvent(e, camera); // run parent event handling
     if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
         switch(e.key.keysym.sym) {
             case SDLK_w:

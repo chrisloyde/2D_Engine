@@ -36,7 +36,8 @@ GUIHandler gHandler;
 
 SDL_Rect camera = {0,0,SCREEN_WIDTH, SCREEN_HEIGHT};
 World world(WORLD_WIDTH/32, (WORLD_HEIGHT/32), 32, 32);
-EntityPlayer player(WORLD_WIDTH/2, (WORLD_HEIGHT/2), 32, 32);
+//EntityPlayer player(WORLD_WIDTH/2, (WORLD_HEIGHT/2), 32, 32);
+EntityPlayer player(0,0,32,32);
 
 // define functions
 bool init();
@@ -77,7 +78,7 @@ int main(int argv, char** args) {
                 }
                     // Get keyboard input events
                 else {
-                    player.handleEvent(e);
+                    player.handleEvent(e, camera);
                     world.handleEvent(e, camera);
                     gHandler.handleEvents(e);
                 }
