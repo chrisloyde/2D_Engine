@@ -94,10 +94,8 @@ int main(int argv, char** args) {
             world.update();
             oHandler.update(timeStep);
             gHandler.update();
+
             stepTimer.start();
-
-
-
 
             //Clear Screen
             SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -113,6 +111,7 @@ int main(int argv, char** args) {
             fpsTextTexture.render(renderer, 0, 0); // render fps
             playerInfoTexture.render(renderer,0,24);
 
+
             SDL_RenderPresent(renderer); // update screen
 
             // calculate FPS
@@ -127,13 +126,13 @@ int main(int argv, char** args) {
             if (!fpsTextTexture.loadFromRenderedText(renderer, fpsText.str().c_str(), systemFont, systemTextColor)) {
                 std::cerr << "Unable to render FPS texture!" << std::endl;
             }
-            /*
+
             playerInfo.str("");
-            playerInfo << "xVel: " << player_pt->xVel << " yVel: " << player_pt->yVel;
+            playerInfo << "xVel: " << player.xVel << " yVel: " << player.yVel;
             if (!playerInfoTexture.loadFromRenderedText(renderer, playerInfo.str().c_str(), systemFont, systemTextColor)) {
                 std::cerr << "Unable to render Player Info texture" <<std::endl;
             }
-    */
+
             ++countedFrames;
         }
     }
@@ -204,7 +203,7 @@ bool loadMedia() {
     oHandler.createBasicAndAdd(rock, 0, 16, renderer, "./textures/sprites/rock.png", 32, 48, &camera);
     rock.x = 96; rock.y = 64; rock.w = 32; rock.h = 48;
     oHandler.createBasicAndAdd(rock, 0, 16, renderer, "./textures/sprites/rock.png", 32, 48, &camera);
-    rock.x = 32*24; rock.y = 32*8; rock.w = 32; rock.h = 48;
+    rock.x = 32*24; rock.y = 32*24; rock.w = 32; rock.h = 48;
     oHandler.createBasicAndAdd(rock, 0, 16, renderer, "./textures/sprites/rock.png", 32, 48, &camera);
     rock.x = 32*16; rock.y = 32; rock.w = 32; rock.h = 48;
     oHandler.createBasicAndAdd(rock, 0, 16, renderer, "./textures/sprites/rock.png", 32, 48, &camera);
@@ -212,6 +211,7 @@ bool loadMedia() {
     // add GUI elements to handler
     gHandler.createAndAdd((SCREEN_WIDTH/2)-48,SCREEN_HEIGHT-64,96,32,renderer,"./textures/gui/basic_button.png");
     gHandler.createAndAdd((SCREEN_WIDTH/2)-144,SCREEN_HEIGHT-64,96,32,renderer,"./textures/gui/basic_button.png");
+
     return success;
 }
 

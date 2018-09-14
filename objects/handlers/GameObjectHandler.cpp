@@ -21,6 +21,7 @@ void GameObjectHandler::createBasicAndAdd(SDL_Rect bounds, int xOff, int yOff, S
 
 void GameObjectHandler::update(float timeStep) {
     std::sort(elements.begin(), elements.end(), order_yPos);
+
     if (!elements.empty()) {
         for (auto &element : elements) {
             element->update(timeStep);

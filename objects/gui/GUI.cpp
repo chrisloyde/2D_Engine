@@ -54,6 +54,14 @@ void GUI::handleEvent(SDL_Event &e) {
 }
 void GUI::render(SDL_Renderer *r) {
     gTexture->render(r,rect.x,rect.y);
+    // draw hitbox around objects for debugging purposes
+    SDL_Rect fakeBox;
+    fakeBox.x = (int)rect.x;
+    fakeBox.y = (int)rect.y;
+    fakeBox.w = width;
+    fakeBox.h = height;
+    SDL_SetRenderDrawColor(r, 255, 0, 255, 255);
+    SDL_RenderDrawRect(r, &fakeBox);
 }
 void GUI::onClick(SDL_Event &e) {
     // left click

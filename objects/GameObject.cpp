@@ -107,8 +107,8 @@ void GameObject::render(SDL_Renderer *renderer) {
         } else {
             gTexture->render(renderer, (int) xPos - cam->x, (int) yPos - cam->y, &currentFrame);
         }
-        // draw hitbox around objects
 
+        // draw hitbox around objects for debugging purposes
         SDL_Rect fakeBox;
         fakeBox.x = (int)bounds.x-cam->x;
         fakeBox.y = (int)bounds.y-cam->y;
