@@ -25,10 +25,10 @@ void EntityPlayer::update(float timeStep) {
         anim = 0;
     }
 
-    // update camera to follow player and keep camera in bounds.
+// update camera to follow player and keep camera in bounds.
     if (cam->x < World::WORLD_WIDTH - cam->w) {
         // handle right
-        if (xPos >= cam->x + (cam->w) - World::SCREEN_WIDTH / 2.5) {
+        if ((bounds.x+bounds.w) >= cam->x + (cam->w) - World::SCREEN_WIDTH / 2.5) {
             if (xVel > 0) {
                 cam->x += xVel * timeStep;
             }
@@ -36,7 +36,7 @@ void EntityPlayer::update(float timeStep) {
     }
     if (cam->x > 0) {
         // handle left
-        if ((xPos + width) - World::SCREEN_WIDTH / 2.5 <= cam->x) {
+        if ((bounds.x) - World::SCREEN_WIDTH / 2.5 <= cam->x) {
             if (xVel < 0) {
                 cam->x += xVel * timeStep;
             }
@@ -44,7 +44,7 @@ void EntityPlayer::update(float timeStep) {
     }
     if (cam->y < World::WORLD_HEIGHT - cam->h) {
         // handle down
-        if (yPos >= cam->y + (cam->h) - World::SCREEN_HEIGHT / 2.5) {
+        if ((bounds.y+bounds.h) >= cam->y + (cam->h) - World::SCREEN_HEIGHT / 2.5) {
             if (yVel > 0) {
                 cam->y += yVel * timeStep;
             }
@@ -52,7 +52,7 @@ void EntityPlayer::update(float timeStep) {
     }
     if (cam->y > 0) {
         // handle up
-        if ((yPos + height) - World::SCREEN_HEIGHT / 2.5 <= cam->y) {
+        if ((bounds.y) - World::SCREEN_HEIGHT / 2.5 <= cam->y) {
             if (yVel < 0) {
                 cam->y += yVel * timeStep;
             }
