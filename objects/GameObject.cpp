@@ -53,10 +53,12 @@ void GameObject::generateSpriteClips() {
 void GameObject::setBounds(int x, int y, int w, int h, int xOff, int yOff) {
     xOffset = xOff;
     yOffset = yOff;
-    bounds.x = (x + xOff);
-    bounds.y = (y + yOff);
-    bounds.w = w;
-    bounds.h = h;
+    width = w;
+    height = h;
+    bounds.x = x + xOff;
+    bounds.y = y + yOff;
+    bounds.w =  width-xOff;
+    bounds.h = height-yOff;
 }
 void GameObject::setPos(int x, int y) {
     xPos = x;
@@ -68,8 +70,8 @@ void GameObject::setSolid(bool s) {
 void GameObject::update(float timeStep) {
     // if position has changed, update bounds.
     if (bounds.x != (xPos+xOffset) || bounds.y != (yPos+yOffset)) {
-        setPos(bounds.x, bounds.y);
-        //setBounds((int) xPos, (int) yPos, width, height, (int)xOffset, (int)yOffset);
+        //setPos(bounds.x, bounds.y);
+        setBounds((int) xPos, (int) yPos, width, height, (int)xOffset, (int)yOffset);
     }
 
     // don't bother updating animation frames if it's just a single image.
@@ -110,10 +112,10 @@ void GameObject::render(SDL_Renderer *renderer) {
 
         // draw hitbox around objects for debugging purposes
         SDL_Rect fakeBox;
-        fakeBox.x = (int)bounds.x-cam->x;
-        fakeBox.y = (int)bounds.y-cam->y;
-        fakeBox.w = width;
-        fakeBox.h = height;
+        fakeBox.x = bounds.x-cam->x;
+        fakeBox.y = bounds.y-cam->y;
+        fakeBox.w = bounds.w;
+        fakeBox.h = bounds.h;
         SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
         SDL_RenderDrawRect(renderer, &fakeBox);
     }
@@ -122,7 +124,7 @@ void GameObject::render(SDL_Renderer *renderer) {
 void GameObject::handleCollision(GameObject *other) {
 }
 float GameObject::readDistance(GameObject *other) {
-    return Tile::getDistance(bounds, other->bounds, width);
+    return Tile::getDistance(bounds, other->bounds, bounds.w);
 }
 
 void GameObject::setId(std::string *str) {

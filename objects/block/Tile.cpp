@@ -48,8 +48,9 @@ bool Tile::checkCollision(SDL_Rect a, SDL_Rect b) {
 float Tile::getDistance(SDL_Rect a, SDL_Rect b, int tileSize) {
     float xDist;
     float yDist;
-    xDist = abs(a.x-b.x);
-    yDist = abs(a.y-b.y);
+    // get center points of rectangles for distance calculations
+    xDist = abs((a.x+a.w/2)-(b.x+b.w/2));
+    yDist = abs((a.y+a.h/2)-(b.y+b.h/2));
     // return whichever distance is larger
     // divide by tile size to determine how many tiles away
     return (xDist < yDist ? yDist : xDist)/tileSize;

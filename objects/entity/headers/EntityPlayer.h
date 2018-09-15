@@ -24,7 +24,6 @@ public:
     int getXPos(); // retrieves world position
     int getYPos(); // retrieves world position
 private:
-    float worldXPos, worldYPos;
     directions facing;
     float step;
 

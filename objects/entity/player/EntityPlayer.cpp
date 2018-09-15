@@ -2,8 +2,8 @@
 #include "../../headers/World.h"
 
 EntityPlayer::EntityPlayer(int worldX, int worldY, int width, int height) {
-    worldXPos = worldX;
-    worldYPos = worldY;
+    xPos = worldX;
+    yPos = worldY;
     setBounds(worldX, worldY, width, height, 0, 0);
     facing = south;
     gTexture = new Texture();
@@ -25,14 +25,10 @@ void EntityPlayer::update(float timeStep) {
         anim = 0;
     }
 
-    // update world positions based off bounds.
-    worldXPos = bounds.x;
-    worldYPos = bounds.y;
-
     // update camera to follow player and keep camera in bounds.
     if (cam->x < World::WORLD_WIDTH - cam->w) {
         // handle right
-        if (worldXPos >= cam->x + (cam->w) - World::SCREEN_WIDTH / 2.5) {
+        if (xPos >= cam->x + (cam->w) - World::SCREEN_WIDTH / 2.5) {
             if (xVel > 0) {
                 cam->x += xVel * timeStep;
             }
@@ -40,7 +36,7 @@ void EntityPlayer::update(float timeStep) {
     }
     if (cam->x > 0) {
         // handle left
-        if ((worldXPos + width) - World::SCREEN_WIDTH / 2.5 <= cam->x) {
+        if ((xPos + width) - World::SCREEN_WIDTH / 2.5 <= cam->x) {
             if (xVel < 0) {
                 cam->x += xVel * timeStep;
             }
@@ -48,7 +44,7 @@ void EntityPlayer::update(float timeStep) {
     }
     if (cam->y < World::WORLD_HEIGHT - cam->h) {
         // handle down
-        if (worldYPos >= cam->y + (cam->h) - World::SCREEN_HEIGHT / 2.5) {
+        if (yPos >= cam->y + (cam->h) - World::SCREEN_HEIGHT / 2.5) {
             if (yVel > 0) {
                 cam->y += yVel * timeStep;
             }
@@ -56,7 +52,7 @@ void EntityPlayer::update(float timeStep) {
     }
     if (cam->y > 0) {
         // handle up
-        if ((worldYPos + height) - World::SCREEN_HEIGHT / 2.5 <= cam->y) {
+        if ((yPos + height) - World::SCREEN_HEIGHT / 2.5 <= cam->y) {
             if (yVel < 0) {
                 cam->y += yVel * timeStep;
             }
@@ -105,18 +101,18 @@ void EntityPlayer::handleCollision(GameObject *other) {
 
 void EntityPlayer::move(float timeStep) {
     // moving right
-    worldXPos += xVel * timeStep;
-    worldYPos += yVel * timeStep;
-    setPos((int)worldXPos, (int)worldYPos);
-    setBounds((int)worldXPos, (int)worldYPos, width, height, 0,0);
+    xPos += xVel * timeStep;
+    yPos += yVel * timeStep;
+    setPos((int)xPos, (int)yPos);
+    setBounds((int)xPos, (int)yPos, width, height, (int)xOffset,(int)yOffset);
 }
 void EntityPlayer::unMove(float timeStep) {
-    worldXPos -= (xVel) * timeStep;
-    worldYPos -= (yVel) * timeStep;
+    xPos -= (xVel) * timeStep;
+    yPos -= (yVel) * timeStep;
     // reset position and bounds since update won't be called.
-    setPos((int)worldXPos, (int)worldYPos);
-    setBounds((int)worldXPos, (int)worldYPos, width, height, 0,0);
+    setPos((int)xPos, (int)yPos);
+    setBounds((int)xPos, (int)yPos, width, height, (int)xOffset,(int)yOffset);
 }
 
-int EntityPlayer::getXPos() {return (int)worldXPos;}
-int EntityPlayer::getYPos() {return (int)worldYPos;}
+int EntityPlayer::getXPos() {return (int)xPos;}
+int EntityPlayer::getYPos() {return (int)yPos;}

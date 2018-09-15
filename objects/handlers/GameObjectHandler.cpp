@@ -13,7 +13,7 @@ void GameObjectHandler::createBasicAndAdd(SDL_Rect bounds, int xOff, int yOff, S
     GameObject *gO = new GameObject();
     gO->init(renderer, path, new int[1]{1}, 1, 32, 48); // load image
     gO->setPos(bounds.x+xOff, bounds.y+yOff);
-    gO->setBounds(bounds.x+xOff, bounds.y+yOff,bounds.w-xOff,bounds.h-yOff,xOff,yOff);
+    gO->setBounds(bounds.x, bounds.y,bounds.w,bounds.h,xOff,yOff);
     gO->setSolid(true);
     gO->addCamera(cam);
     add(gO);
