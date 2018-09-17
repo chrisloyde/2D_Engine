@@ -6,6 +6,12 @@ GameObjectHandler::GameObjectHandler() {
 GameObjectHandler::~GameObjectHandler() {
     free();
 }
+GameObjectHandler* GameObjectHandler::getInstance() {
+    if(instance == 0) {
+        instance = new GameObjectHandler;
+    }
+    return instance;
+}
 void GameObjectHandler::add(GameObject *o) {
     elements.push_back(o);
 }

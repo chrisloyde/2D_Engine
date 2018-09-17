@@ -9,8 +9,8 @@
 
 class GameObjectHandler {
 public:
-    GameObjectHandler();
     ~GameObjectHandler();
+    static GameObjectHandler* getInstance();
     void update(float timeStep);
     void render(SDL_Renderer *r, SDL_Rect camera);
     void handleEvents(SDL_Event &e, SDL_Rect cam);
@@ -20,13 +20,17 @@ public:
     void add(GameObject *o);
     void free();
 private:
+    static GameObjectHandler* instance;
     std::vector<GameObject *> elements;
     // struct for ordering vector to move elements depending on their y position.
     // We do this to make objects render above and below eachother.
+    GameObjectHandler();
     struct order
     {
         bool operator() (GameObject *lhs, GameObject *rhs) {
-            return (lhs->bounds.y <= rhs->bounds.y);
+            if (lhs != NULL && rhs != NULL) {
+                return (lhs->bounds.y < rhs->bounds.y);
+            }
         }
     } order_yPos;
 };

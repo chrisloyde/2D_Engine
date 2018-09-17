@@ -34,7 +34,8 @@ TTF_Font *systemFont = nullptr;
 
 TileRenderer tileRenderer(4,32,32);
 GUIHandler gHandler;
-GameObjectHandler oHandler;
+GameObjectHandler * GameObjectHandler::instance = 0;
+GameObjectHandler *oHandler = GameObjectHandler::getInstance();
 
 SDL_Rect camera = {0,0,SCREEN_WIDTH, SCREEN_HEIGHT};
 World world(WORLD_WIDTH/32, (WORLD_HEIGHT/32), 32, 32);
@@ -81,7 +82,7 @@ int main(int argv, char** args) {
                 }
                     // Get keyboard input events
                 else {
-                    oHandler.handleEvents(e, camera);
+                    oHandler->handleEvents(e, camera);
                     world.handleEvent(e, camera);
                     gHandler.handleEvents(e);
                 }
@@ -92,7 +93,7 @@ int main(int argv, char** args) {
             float timeStep = stepTimer.getTicks() /1000.f;
 
             world.update();
-            oHandler.update(timeStep);
+            oHandler->update(timeStep);
             gHandler.update();
 
             stepTimer.start();
@@ -104,7 +105,7 @@ int main(int argv, char** args) {
 
             //Call Renderers
             world.render(&tileRenderer, renderer, camera); // render world
-            oHandler.render(renderer, camera); // render player
+            oHandler->render(renderer, camera); // render player
             gHandler.render(renderer);
 
             // update text renderers
@@ -197,16 +198,16 @@ bool loadMedia() {
     player.init(renderer, "./textures/sprites/ss_player.png", playerAnimArr,2, 32, 32); // initialize player
     player.addCamera(&camera);
     // add GameObject elements to handler
-    oHandler.add(&player);
+    oHandler->add(&player);
     SDL_Rect rock;
     rock.x = 64; rock.y = 64; rock.w = 32; rock.h = 48;
-    oHandler.createBasicAndAdd(rock, 0, 16, renderer, "./textures/sprites/rock.png", 32, 48, &camera);
+    oHandler->createBasicAndAdd(rock, 0, 16, renderer, "./textures/sprites/rock.png", 32, 48, &camera);
     rock.x = 96; rock.y = 64; rock.w = 32; rock.h = 48;
-    oHandler.createBasicAndAdd(rock, 0, 16, renderer, "./textures/sprites/rock.png", 32, 48, &camera);
+    oHandler->createBasicAndAdd(rock, 0, 16, renderer, "./textures/sprites/rock.png", 32, 48, &camera);
     rock.x = 32*24; rock.y = 32*24; rock.w = 32; rock.h = 48;
-    oHandler.createBasicAndAdd(rock, 0, 16, renderer, "./textures/sprites/rock.png", 32, 48, &camera);
+    oHandler->createBasicAndAdd(rock, 0, 16, renderer, "./textures/sprites/rock.png", 32, 48, &camera);
     rock.x = 32*16; rock.y = 32; rock.w = 32; rock.h = 48;
-    oHandler.createBasicAndAdd(rock, 0, 16, renderer, "./textures/sprites/rock.png", 32, 48, &camera);
+    oHandler->createBasicAndAdd(rock, 0, 16, renderer, "./textures/sprites/rock.png", 32, 48, &camera);
 
     // add GUI elements to handler
     gHandler.createAndAdd((SCREEN_WIDTH/2)-48,SCREEN_HEIGHT-64,96,32,renderer,"./textures/gui/basic_button.png");
