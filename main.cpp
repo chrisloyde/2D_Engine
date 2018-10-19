@@ -14,9 +14,13 @@
 #include "objects/gui/headers/GUI.h"
 #include "objects/handlers/headers/GUIHandler.h"
 #include "objects/handlers/headers/GameObjectHandler.h"
+#include "Engine.h"
 
 #include <SDL_ttf.h>
 
+/* REMOVED, but remaining as reference.
+ *
+ *
 // define program variables
 // defines number of pixels for the height and width of the world.
 // should be divisible by tile size (width and height) for clean results.
@@ -34,7 +38,6 @@ TTF_Font *systemFont = nullptr;
 
 TileRenderer tileRenderer(4,32,32);
 GUIHandler gHandler;
-GameObjectHandler * GameObjectHandler::instance = 0;
 GameObjectHandler *oHandler = GameObjectHandler::getInstance();
 
 SDL_Rect camera = {0,0,SCREEN_WIDTH, SCREEN_HEIGHT};
@@ -228,4 +231,4 @@ void close() {
     //quit subsystems
     IMG_Quit();
     SDL_Quit();
-}
+}*/

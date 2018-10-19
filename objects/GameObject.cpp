@@ -111,6 +111,7 @@ void GameObject::render(SDL_Renderer *renderer) {
         }
 
         // draw hitbox around objects for debugging purposes
+        /*
         SDL_Rect fakeBox;
         fakeBox.x = bounds.x-cam->x;
         fakeBox.y = bounds.y-cam->y;
@@ -118,10 +119,12 @@ void GameObject::render(SDL_Renderer *renderer) {
         fakeBox.h = bounds.h;
         SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
         SDL_RenderDrawRect(renderer, &fakeBox);
+         */
     }
 
 }
 void GameObject::handleCollision(GameObject *other) {
+    printf("Collision: %s - %s\n", id.c_str(), other->id.c_str());
 }
 float GameObject::readDistance(GameObject *other) {
     return Tile::getDistance(bounds, other->bounds, bounds.w);

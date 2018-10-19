@@ -23,7 +23,7 @@ public:
     virtual void render(SDL_Renderer *renderer); // render game object per frame
     virtual void displayInfo();
     virtual void setSolid(bool s);
-    ~GameObject();
+    virtual ~GameObject();
     void addCamera(SDL_Rect *camera);
     void setId(std::string *str);
     virtual void free(); // deconstruct game object
@@ -40,6 +40,7 @@ public:
     SDL_Rect **spriteStorage;
     SDL_Rect currentFrame;
     SDL_Rect *cam = nullptr;
+    bool flagged = false;
 private:
 };
 

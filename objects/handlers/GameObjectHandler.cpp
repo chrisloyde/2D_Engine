@@ -1,6 +1,8 @@
 #include "headers/GameObjectHandler.h"
 #include "../block/headers/Tile.h"
 
+GameObjectHandler * GameObjectHandler::instance = 0;
+
 GameObjectHandler::GameObjectHandler() {
 }
 GameObjectHandler::~GameObjectHandler() {
@@ -62,6 +64,7 @@ void GameObjectHandler::render(SDL_Renderer *r, SDL_Rect camera) {
         }
 
         // draw lines between object center points.
+        /*
         for (int i = 0; i < elements.size(); i++) {
             for (int j = i+1; j < elements.size(); j++) { // add one to intializer since we don't need to check the first element twice
                 SDL_SetRenderDrawColor(r, 255, 0, 0, 255);
@@ -72,6 +75,7 @@ void GameObjectHandler::render(SDL_Renderer *r, SDL_Rect camera) {
                                    (elements[j]->bounds.y + elements[j]->bounds.h / 2) - camera.y);
             }
         }
+         */
     }
 }
 
@@ -90,6 +94,16 @@ void GameObjectHandler::free() {
         }
     }
     elements.clear();;
+}
+
+void GameObjectHandler::removeFlagged() {
+    for (int i = 0; i < elements.size(); i++) {
+        if (elements[i]->flagged) {
+            //elements[i]->free();
+            //delete elements[i];
+            elements.erase(elements.begin()+i);
+        }
+    }
 }
 
 

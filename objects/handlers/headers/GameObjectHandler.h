@@ -17,6 +17,7 @@ public:
     int* handleCollisions(); // returns an array (length 2) which provides the two objects colliding in the elements list.
     // only use for single sprites, auto sets to solid
     void createBasicAndAdd(SDL_Rect bounds, int xOff, int yOff, SDL_Renderer *, std::string , int spriteWidth, int SpriteHeight, SDL_Rect *cam);
+    void removeFlagged();
     void add(GameObject *o);
     void free();
 private:
