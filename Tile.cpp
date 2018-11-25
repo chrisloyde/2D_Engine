@@ -45,7 +45,7 @@ bool Tile::checkCollision(SDL_Rect a, SDL_Rect b) {
 
     return true;
 }
-float Tile::getDistance(SDL_Rect a, SDL_Rect b, int tileSize) {
+float Tile::getDistance(SDL_Rect a, SDL_Rect b, int divisor) {
     float xDist;
     float yDist;
     // get center points of rectangles for distance calculations
@@ -53,7 +53,7 @@ float Tile::getDistance(SDL_Rect a, SDL_Rect b, int tileSize) {
     yDist = abs((a.y+a.h/2)-(b.y+b.h/2));
     // return whichever distance is larger
     // divide by tile size to determine how many tiles away
-    return (xDist < yDist ? yDist : xDist)/tileSize;
+    return (xDist < yDist ? yDist : xDist)/divisor;
 }
 void Tile::handleEvent(SDL_Event &e, SDL_Rect camera) {
     if(e.type == SDL_MOUSEMOTION) {

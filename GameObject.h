@@ -11,21 +11,21 @@
 class GameObject {
 public:
     GameObject(); // construct default game object
-    virtual void init(SDL_Renderer *r, std::string path,int *numOfSpritesArr, int animNum, int sWidth, int sHeight); // initializes and loads media for game object
-    virtual void generateSpriteClips();
-    virtual void setBounds(int x, int y, int width, int height, int xOff, int yOff); // intialize position and bounding box of game object
-    virtual void setPos(int x, int y);
-    virtual void update(float timeStep); // updates game object per frame (uses frame independance with timestep)
-    virtual void handleEvent(SDL_Event &e, SDL_Rect camera); // handle events
-    virtual void handleCollision(GameObject *other);
-    virtual float readDistance(GameObject *other);
-    virtual void render(SDL_Renderer *renderer); // render game object per frame
-    virtual void displayInfo();
-    virtual void setSolid(bool s);
+    virtual void init(SDL_Renderer *r, std::string path,int *numOfSpritesArr, int animNum, int sWidth, int sHeight);	// initializes and loads media for game object.
+	void addCamera(SDL_Rect *camera);													// add camera to object.
+	void setId(std::string str);														// assign ID to object.
+    virtual void generateSpriteClips();													// clips object's sprite sheet to create animations.
+    virtual void setBounds(int x, int y, int width, int height, int xOff, int yOff);	// intialize position and bounding box of game object.
+    virtual void setPos(int x, int y);													// assigns object position to a new one.
+    virtual void update(float timeStep);												// updates game object per frame (uses frame independance with timestep).
+    virtual void handleEvent(SDL_Event &e);												// handle events.
+    virtual void handleCollision(GameObject *other);									// handle collisions between objects.
+    virtual float readDistance(GameObject *other);										// calculate and read distance between two objects.
+    virtual void render(SDL_Renderer *renderer);										// render game object per frame.
+    virtual void displayInfo();															// prints object information to console.
+    virtual void setSolid(bool s);														// assign the object to solid, or not.
     virtual ~GameObject();
-    void addCamera(SDL_Rect *camera);
-    void setId(std::string *str);
-    virtual void free(); // deconstruct game object
+    virtual void free();																// deconstruct game object.
 
     std::string id = "GameObject";
     float xPos, yPos, xOffset, yOffset;

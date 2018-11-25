@@ -11,7 +11,7 @@ Engine* Engine::getInstance(int screenWidth, int screenHeight, char *namePtr) {
 	return instance;
 }
 
-Engine *Engine::getInstance() {
+Engine *Engine::getExistingInstance() {
 	if (instance == 0) {
 		return nullptr;
 	}
@@ -76,8 +76,13 @@ void Engine::kill() {
 	SDL_DestroyWindow(gWindow);
 	gWindow = nullptr;
 	gRenderer = nullptr;
+	instance = nullptr;
 
 	IMG_Quit();
 	SDL_Quit();
 	printf("Engine Killed\n");
+}
+
+Engine::~Engine() {
+	kill();
 }

@@ -20,10 +20,11 @@ public:
 
     void update(float timeStep) override;
     void render(SDL_Renderer *r) override;
-    void handleEvent(SDL_Event& e, SDL_Rect camera) override;
+    void handleEvent(SDL_Event& e) override;
     void init(SDL_Renderer *r, std::string path, int *numOfSpritesIn, int animNum, int sWidth, int sHeight, bool isHead);
     void handleCollision(GameObject *other) override ;
     static void getNextPosition(int currentPosition[], directions facing, int worldWidth, int worldHeight);
+	~EntitySnake();
 private:
     directions facing;
     EntityTail *tail = nullptr;

@@ -11,6 +11,7 @@ public:
     void moveToPosition(int xPos, int yPos);
     void render(SDL_Renderer *r) override;
     void flag(bool flag);
+	~EntityTail();
 private:
     int dFH;
     int facing;

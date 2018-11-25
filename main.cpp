@@ -14,9 +14,9 @@ const int SCREEN_WIDTH = 640;
 const int SCREEN_HEIGHT = 480;
 const int SPRITE_SIZE = 16;
 char NAME[24] = "Engine Example: Snake";
-SDL_Rect camera = { 0,0,SCREEN_WIDTH,SCREEN_HEIGHT };
-SDL_Color fontColor = { 255,255,255,255 };
-TTF_Font *font = nullptr;
+SDL_Rect camera = { 0,0,SCREEN_WIDTH,SCREEN_HEIGHT };	// Setup Camera	
+SDL_Color fontColor = { 255,255,255,255 };				// Setup Color for font
+TTF_Font *font = nullptr;								// Font pointer
 
 Engine* engine = nullptr;
 GameObjectHandler *oHandler = nullptr;
@@ -24,6 +24,7 @@ EntitySnake *player = nullptr;
 
 void gameLoop();
 bool loadGameObjects();
+void kill();
 
 int main(int argv, char** args) {
 
@@ -35,7 +36,7 @@ int main(int argv, char** args) {
 	loadGameObjects();
 	gameLoop();
 
-	engine->kill();
+	kill();
 
 	return 0;
 }
@@ -61,7 +62,7 @@ void gameLoop() {
 				quit = true;
 			}
 			else {
-				oHandler->handleEvents(e, camera);
+				oHandler->handleEvents(e);
 			}
 		}
 		float timeStep = stepTimer.getTicks() / 1000.f;
@@ -96,7 +97,7 @@ bool loadGameObjects() {
 	player = new EntitySnake((SCREEN_WIDTH / 2) - 16, (SCREEN_HEIGHT / 16) + 16, SPRITE_SIZE, SCREEN_WIDTH / 16, SCREEN_HEIGHT / 16);
 	player->addCamera(&camera);
 	player->init(engine->getRenderer(), "snake/sprites/snake_block.png", new int[1]{ 1 }, 1, SPRITE_SIZE, SPRITE_SIZE, true);
-	player->setId(new string("Player"));
+	player->setId(std::string("Player"));
 	oHandler->add(player);
 
 	for (int i = 0; i < 4; i++) {
@@ -104,7 +105,7 @@ bool loadGameObjects() {
 		fruit->init(engine->getRenderer(), "snake/sprites/fruit_block.png", new int[1]{ 1 }, 1,
 			SPRITE_SIZE, SPRITE_SIZE);
 		fruit->addCamera(&camera);
-		fruit->setId(new string("Fruit"));
+		fruit->setId(string("Fruit"));
 		oHandler->add(fruit);
 	}
 
@@ -121,4 +122,13 @@ bool loadGameObjects() {
 		cerr << "Error Loading Game Objects" << endl;
 	}
 	return success;
+}
+
+void kill() {
+	TTF_CloseFont(font);
+	TTF_Quit();
+	font = nullptr;
+	player = nullptr;
+	delete oHandler;
+	delete engine;
 }

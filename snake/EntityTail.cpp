@@ -45,3 +45,6 @@ void EntityTail::flag(bool flag) {
     flagged = flag;
 }
 
+EntityTail::~EntityTail() {
+	tail = nullptr;
+}

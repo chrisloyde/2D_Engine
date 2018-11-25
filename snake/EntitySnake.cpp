@@ -5,10 +5,9 @@
 EntitySnake::EntitySnake(int x, int y, int size, int worldWidth, int worldHeight) {
     setPos(x,y);
     setBounds(x,y,size,size,0,0);
-    setId(new std::string("Player"));
+    setId(std::string("Player"));
     worldW = worldWidth;
     worldH = worldHeight;
-    gTexture = new Texture();
     facing = south;
 	updateTimer.start();
 }
@@ -21,14 +20,14 @@ void EntitySnake::handleCollision(GameObject *other) {
     GameObject::handleCollision(other);
     if (strcmp(other->id.c_str(), "Fruit") == 0) {
         ++score;
-        Engine *engine = Engine::getInstance();
+        Engine *engine = Engine::getExistingInstance();
         GameObjectHandler *oHandler = GameObjectHandler::getInstance();
-        if (engine != nullptr) {
+		if (engine != nullptr) {
             EntityTail *newTail = new EntityTail(score, width, (int) facing);
             newTail->addCamera(cam);
-            newTail->gTexture = gTexture;
-            newTail->setId(new std::string("Tail"));
-            printf("New Tail Created\n");
+			newTail->init(engine->getRenderer(), "snake/sprites/snake_block.png", new int[1]{ 1 }, 1, 16, 16);
+            newTail->setId(std::string("Tail"));
+            std::cout << "New Tail Created\n";
             oHandler->add(newTail);
             if (tail == nullptr) {
                 tail = newTail;
@@ -73,8 +72,8 @@ void EntitySnake::render(SDL_Renderer *r) {
     GameObject::render(r);
 }
 
-void EntitySnake::handleEvent(SDL_Event& e, SDL_Rect camera) {
-    GameObject::handleEvent(e,camera);
+void EntitySnake::handleEvent(SDL_Event& e) {
+    GameObject::handleEvent(e);
 	if (canMove) {
 		if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
 			switch (e.key.keysym.sym) {
@@ -151,4 +150,10 @@ void EntitySnake::getNextPosition(int currentPosition[], directions facing, int 
             currentPosition[1] = currentPosition[1];
             break;
     }
+}
+
+EntitySnake::~EntitySnake() {
+	tail = nullptr;
+	score = 0;
+	canMove = false;
 }

@@ -9,12 +9,12 @@ GameObject::GameObject() {
     width = 32;
     height = 32;
     isSolid = false;
-    gTexture = new Texture();
 }
 GameObject::~GameObject() {
     free();
 }
 void GameObject::init(SDL_Renderer *r, std::string path, int *numOfSpritesIn, int animNum, int sWidth, int sHeight) {
+	gTexture = new Texture();
     // numOfSprites is the number of sprites per animation row in the spritesheet
     // from the integer array provided, we can determine the number of sprites per animation
     // and copy into a local array in the game object.
@@ -38,13 +38,15 @@ void GameObject::init(SDL_Renderer *r, std::string path, int *numOfSpritesIn, in
         }
         generateSpriteClips();
     }
+
+	delete numOfSpritesIn; // delete number of sprites in since its no longer required.
 }
 // assign the rectangles in spriteStorage positions for clipping the image.
 void GameObject::generateSpriteClips() {
     for (int i = 0; i < numOfAnims; i++) {
         for (int j = 0; j < numOfSprites[i]; j++) {
             spriteStorage[i][j].x = (j * spriteW);
-            spriteStorage[i][j].y = (i*spriteH);
+            spriteStorage[i][j].y = (i * spriteH);
             spriteStorage[i][j].w = spriteW;
             spriteStorage[i][j].h = spriteH;
         }
@@ -84,8 +86,8 @@ void GameObject::update(float timeStep) {
         currentFrame = spriteStorage[anim][animFrame / numOfSprites[anim]];
     }
 }
-void GameObject::handleEvent(SDL_Event &e, SDL_Rect camera) {
-    if (Tile::checkCollision(GUI::getMouseBoundsInWorld(camera), bounds)) {
+void GameObject::handleEvent(SDL_Event &e) {
+    if (Tile::checkCollision(GUI::getMouseBoundsInWorld(*cam), bounds)) {
         switch(e.type) {
             case SDL_MOUSEBUTTONDOWN:
                 if (e.button.button == SDL_BUTTON_LEFT) {
@@ -130,11 +132,11 @@ float GameObject::readDistance(GameObject *other) {
     return Tile::getDistance(bounds, other->bounds, bounds.w);
 }
 
-void GameObject::setId(std::string *str) {
-    id = *str;
+void GameObject::setId(std::string str) {
+    id = str;
 }
 void GameObject::free() {
-    gTexture->free();
+	id = "";
     if (numOfAnims > 1) {
         for (int i = 0; i < numOfAnims; i++) {
             delete[]  spriteStorage[i];
@@ -142,6 +144,8 @@ void GameObject::free() {
     }
     delete[] spriteStorage;
     delete[] numOfSprites;
+	delete gTexture;
     cam = nullptr;
+	gTexture = nullptr;
 }
 

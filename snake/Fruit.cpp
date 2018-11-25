@@ -10,7 +10,6 @@ Fruit::Fruit(int worldWidth, int worldHeight, int size) {
     width = size;
     height = size;
     isSolid = false;
-    gTexture = new Texture();
 
     changePos();
 }

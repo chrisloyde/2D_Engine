@@ -42,6 +42,7 @@ void GameObjectHandler::update(float timeStep) {
         elements[chk[0]]->handleCollision(elements[chk[1]]);
         elements[chk[1]]->handleCollision(elements[chk[0]]);
     }
+	delete chk; // free chk since the collision is irrelevant once elements have been informed.
 }
 
 int* GameObjectHandler::handleCollisions() {
@@ -79,32 +80,49 @@ void GameObjectHandler::render(SDL_Renderer *r, SDL_Rect camera) {
     }
 }
 
-void GameObjectHandler::handleEvents(SDL_Event &e, SDL_Rect cam) {
+void GameObjectHandler::handleEvents(SDL_Event &e) {
     if (!elements.empty()) {
         for (auto element : elements) {
-            element->handleEvent(e, cam);
+            element->handleEvent(e);
         }
     }
 }
 
 void GameObjectHandler::free() {
-    if (!elements.empty()) {
-        for (auto &element : elements) {
-            element->free();
-        }
-    }
-    elements.clear();;
+	for (std::vector<GameObject *>::iterator it = elements.begin(); it != elements.end(); ++it) {
+		delete *it;
+	}
+
+	elements.clear();
 }
 
 void GameObjectHandler::removeFlagged() {
+	int i = 0;
+
+	for (std::vector<GameObject *>::iterator it = elements.begin(); it != elements.end(); ) {
+		if (elements.at(i)->flagged) {
+			std::cout << "Deleting " << elements.at(i)->id << std::endl;
+			delete *it;
+			elements.erase(it);
+			it = elements.begin();
+			i = 0;
+		}
+		else {
+			++i;
+			++it;
+		}
+	}
+	/*
     for (int i = 0; i < elements.size(); i++) {
         if (elements[i]->flagged) {
             //elements[i]->free();
-            //delete elements[i];
+            //delete &elements[i];
             elements.erase(elements.begin()+i);
         }
     }
+	*/
 }
+
 
 
 

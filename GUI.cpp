@@ -22,12 +22,11 @@ SDL_Rect GUI::getMouseBoundsInWorld(SDL_Rect camera) {
     SDL_GetMouseState(&mouseX, &mouseY);
     mouseX = camera.x+mouseX;
     mouseY = camera.y+mouseY;
-    SDL_Rect *mouseBounds;
-    mouseBounds = new SDL_Rect();
-    mouseBounds->x = mouseX; mouseBounds->y = mouseY;
-    mouseBounds->w = 1; mouseBounds->h = 1;
+    SDL_Rect mouseBounds;
+    mouseBounds.x = mouseX; mouseBounds.y = mouseY;
+    mouseBounds.w = 1; mouseBounds.h = 1;
 
-    return *mouseBounds;
+    return mouseBounds;
 }
 SDL_Rect GUI::getGUIMouseBounds() {
     int mouseX, mouseY;

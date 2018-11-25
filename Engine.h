@@ -6,12 +6,12 @@
 class Engine
 {
 public:
-	static Engine* getInstance(int screenWidth, int screenHeight, char *namePtr);
-	static Engine* getInstance();
-	bool init(int screenWidth, int screenHeight, const char *namePtr);
-	SDL_Window* getWindow() { return gWindow; }
-	SDL_Renderer* getRenderer() { return gRenderer; }
-	void kill();
+	static Engine* getInstance(int screenWidth, int screenHeight, char *namePtr);	// Create Engine instance and retrieve it. 
+	static Engine* getExistingInstance();											// Get an existing Engine Instance.
+	bool init(int screenWidth, int screenHeight, const char *namePtr);				// Initialize Engine
+	SDL_Window* getWindow() { return gWindow; }										// Get Engine Window	
+	SDL_Renderer* getRenderer() { return gRenderer; }								// Get Engine Renderer
+	void kill();																	// Kill Engine and free memory.
 	~Engine();
 private:
 	int sW, sH;
