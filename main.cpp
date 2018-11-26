@@ -10,33 +10,54 @@
 
 using namespace std;
 
-const int SCREEN_WIDTH = 640;
-const int SCREEN_HEIGHT = 480;
-const int SPRITE_SIZE = 16;
-char NAME[24] = "Engine Example: Snake";
-SDL_Rect camera = { 0,0,SCREEN_WIDTH,SCREEN_HEIGHT };	// Setup Camera	
-SDL_Color fontColor = { 255,255,255,255 };				// Setup Color for font
-TTF_Font *font = nullptr;								// Font pointer
+Engine* engine				= nullptr;	// REQUIRED
+GameObjectHandler *oHandler = nullptr;	// REQUIRED
+int SCREEN_WIDTH			= 640;		// SEMI-REQUIRED - Width used for Engine Initialization, but values can be modified
+int SCREEN_HEIGHT			= 480;		// SEMI-REQUIRED - Height used for Engine Initialization, but values can be modified.
+float SCALE_SIZE_X			= 1.25;		// SEMI-REQUIRED - Scale size is used to determine drawing scale, values can be modified (1 default)
+float SCALE_SIZE_Y			= 1.25;
+										// SEMI-REQUIRED - Camera represents the view port of what the player sees on screen. Effects what is rendered. Values can be modified
+SDL_Rect camera = { 0,0,SCREEN_WIDTH / SCALE_SIZE_X, SCREEN_HEIGHT / SCALE_SIZE_Y };	
 
-Engine* engine = nullptr;
-GameObjectHandler *oHandler = nullptr;
-EntitySnake *player = nullptr;
+/*
+**********
+GAME SPECIFIC START
+*/
+#define SPRITE_SIZE 16
+char NAME[24]			= "Engine Example: Snake";
+EntitySnake *player		= nullptr;
+
+stringstream score;
+Texture scoreTex;
+
+/*
+GAME SPECIFIC END
+**********
+*/
 
 void gameLoop();
-bool loadGameObjects();
-void kill();
+bool loadGameObjects();						// loadGameObjects is game specific, meaning the entire function needs to change depending on the game.
+
+void gameSpecificEvent(SDL_Event &e);		// gameSpecificEvent() is for event handling game specific events without needing to alter the gameloop.
+void gameSpecificUpdates(float timestep);	// gameSpecificUpdates is for updating game specific updates without needing to alter the gameloop.
+void gameSpecificRenders(SDL_Renderer *r);	// gameSpecificRenders is for updating game specific renders without needing to alter the gameloop.
+void gameSpecificDeallocate();				// gameSpecificDeallocate if for deallocating and killing objects that are specific to the game.
+
+void kill();								// Free memory assosciated with required objects.
+
 
 int main(int argv, char** args) {
 
-	printf("Hello World Snake\n");
 	srand(time(0));
-	engine = Engine::getInstance(SCREEN_WIDTH, SCREEN_HEIGHT, NAME);
-	oHandler = GameObjectHandler::getInstance();
+	engine		= Engine::getInstance(SCREEN_WIDTH, SCREEN_HEIGHT, NAME);	// Initalize Engine
+	engine->assignRenderScale(SCALE_SIZE_X, SCALE_SIZE_Y);					// Set Window Scale
+	oHandler	= GameObjectHandler::getInstance();							// Initialize Game Object Handler
 
-	loadGameObjects();
-	gameLoop();
+	loadGameObjects();			// load game specific objects
+	gameLoop();					// run game loop
 
-	kill();
+	gameSpecificDeallocate();	// Kill and Deallocate Memory from Game Specific Objects.
+	kill();						// Kill and Deallocate Memory from Required Objects.
 
 	return 0;
 }
@@ -47,72 +68,76 @@ void gameLoop() {
 	SDL_Event e;
 
 	Timer stepTimer;
-	int countedFrames = 0;
-	stringstream score;
-	Texture scoreTex;
+	//int countedFrames = 0;
+
 	stepTimer.start();
 
 	printf("Game Started Successfully!\n");
 
 	while (!quit) {
-		// Handle Events
+		/*
+		**********
+		EVENT CYCLE
+		**********
+		*/
 
 		while (SDL_PollEvent(&e) != 0) {
 			if (e.type == SDL_QUIT) {
 				quit = true;
 			}
 			else {
-				oHandler->handleEvents(e);
+				gameSpecificEvent(e);								// Tell Game Specific Objects, that are not in Object Handler, to Handle Events
+				oHandler->handleEvents(e);							// Tell Objects to Handle Events in Object Handler
 			}
 		}
 		float timeStep = stepTimer.getTicks() / 1000.f;
 
-		// Update Cycle
-		oHandler->update(timeStep);
+		/*
+		**********
+		UPDATE CYCLE
+		**********
+		*/
+		gameSpecificUpdates(timeStep);								// Update Game Specific Objects that are not in Object Handler
+
+		oHandler->update(timeStep);									// Update Objects in Object Handler
 
 		stepTimer.start();
-		// Render Cycle
-		SDL_SetRenderDrawColor(engine->getRenderer(), 0, 0, 0, 0);
-		SDL_RenderClear(engine->getRenderer());
+
+		oHandler->removeFlagged();									// Remove objects from Object Handler that are flagged for removal.
+		/*
+		**********
+		RENDER CYCLE
+		**********
+		*/
+		SDL_SetRenderDrawColor(engine->getRenderer(), 0, 0, 0, 0);	// Set background draw color (black)
+		SDL_RenderClear(engine->getRenderer());						// Clear window (also assigns background draw color to renderer)
 		// Call Renderers
-		oHandler->render(engine->getRenderer(), camera);
-		scoreTex.render(engine->getRenderer(), 0, 0);
+		gameSpecificRenders(engine->getRenderer());					// Render Game Specific Objects that are not in Object Handler
+		oHandler->render(engine->getRenderer());					// Render Objects in Object Handler
+		scoreTex.render(engine->getRenderer(), 0, 0);				// Render Score Texture (Text which displays "score" and how much fruit the player got).
 
-		SDL_RenderPresent(engine->getRenderer()); // update screen
+		SDL_RenderPresent(engine->getRenderer());					// update screen
 
-		oHandler->removeFlagged();
 
-		//Update Screen Text
-		score.str("");
-		score << "Score: " << player->score;
-		if (!scoreTex.loadFromRenderedText(engine->getRenderer(), score.str().c_str(), font, fontColor)) {
-			cerr << "Unable to render Score Texture" << endl;
-		}
 	}
 }
 
 bool loadGameObjects() {
 	bool success = true;
 	printf("Loading Game Objects...\n");
-	player = new EntitySnake((SCREEN_WIDTH / 2) - 16, (SCREEN_HEIGHT / 16) + 16, SPRITE_SIZE, SCREEN_WIDTH / 16, SCREEN_HEIGHT / 16);
+	player = new EntitySnake((SCREEN_WIDTH / 2) - 16, (SCREEN_HEIGHT / 16) + 16, SPRITE_SIZE, ((SCREEN_WIDTH / 16)/SCALE_SIZE_X), ((SCREEN_HEIGHT / 16)/SCALE_SIZE_Y));
 	player->addCamera(&camera);
 	player->init(engine->getRenderer(), "snake/sprites/snake_block.png", new int[1]{ 1 }, 1, SPRITE_SIZE, SPRITE_SIZE, true);
 	player->setId(std::string("Player"));
 	oHandler->add(player);
 
 	for (int i = 0; i < 4; i++) {
-		Fruit *fruit = new Fruit((SCREEN_WIDTH / 16), (SCREEN_HEIGHT / 16), SPRITE_SIZE);
+		Fruit *fruit = new Fruit((SCREEN_WIDTH / 16)/SCALE_SIZE_X, (SCREEN_HEIGHT / 16)/SCALE_SIZE_Y, SPRITE_SIZE);
 		fruit->init(engine->getRenderer(), "snake/sprites/fruit_block.png", new int[1]{ 1 }, 1,
 			SPRITE_SIZE, SPRITE_SIZE);
 		fruit->addCamera(&camera);
 		fruit->setId(string("Fruit"));
 		oHandler->add(fruit);
-	}
-
-	font = TTF_OpenFont("fonts/Vegur-Regular.otf", 24);
-	if (font == nullptr) {
-		cerr << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << endl;
-		success = false;
 	}
 
 	if (success) {
@@ -124,11 +149,33 @@ bool loadGameObjects() {
 	return success;
 }
 
+void gameSpecificEvent(SDL_Event &e) {
+	// Do not call events on objects already in GameObjectHandler
+}
+
+void gameSpecificUpdates(float timestep) {
+	// Do not call update on objects already in GameObjectHandler
+}
+
+void gameSpecificRenders(SDL_Renderer *r) {
+	// Do no call render on objects already in GameObjectHandler
+
+	//Update Screen Text
+	score.str("");							// clear string
+	score.seekp(0);							// set position to beginning of string
+	score << "Score: " << player->score;	// assign score to stringstream.
+	if (!scoreTex.loadFromRenderedText(r, score.str().c_str(), engine->getSystemFont(), SDL_Color() = { 255,255,255,255 })) {
+		cerr << "Unable to render Score Texture" << endl;
+	}
+}
+
+void gameSpecificDeallocate() {
+	// Do not deallocate objects that are REQUIRED or alraedy in GameObjectHandler
+
+	score.flush();	// clear score string stream.
+}
+
 void kill() {
-	TTF_CloseFont(font);
-	TTF_Quit();
-	font = nullptr;
-	player = nullptr;
 	delete oHandler;
 	delete engine;
 }

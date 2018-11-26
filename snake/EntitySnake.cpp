@@ -3,12 +3,12 @@
 
 
 EntitySnake::EntitySnake(int x, int y, int size, int worldWidth, int worldHeight) {
-    setPos(x,y);
-    setBounds(x,y,size,size,0,0);
-    setId(std::string("Player"));
     worldW = worldWidth;
     worldH = worldHeight;
     facing = south;
+	setPos(x, y);
+	setBounds(x, y, size, size, 0, 0);
+	setId(std::string("Player"));
 	updateTimer.start();
 }
 
@@ -27,7 +27,7 @@ void EntitySnake::handleCollision(GameObject *other) {
             newTail->addCamera(cam);
 			newTail->init(engine->getRenderer(), "snake/sprites/snake_block.png", new int[1]{ 1 }, 1, 16, 16);
             newTail->setId(std::string("Tail"));
-            std::cout << "New Tail Created\n";
+            std::cout << "New Tail Created" << std::endl;
             oHandler->add(newTail);
             if (tail == nullptr) {
                 tail = newTail;
@@ -127,7 +127,7 @@ void EntitySnake::getNextPosition(int currentPosition[], directions facing, int 
             break;
         case EntitySnake::south:
             currentPosition[0] = currentPosition[0];
-            if (currentPosition[1] >= worldHeight) {
+            if (currentPosition[1] >= worldHeight-1) {
                 currentPosition[1] = 0;
             } else {
                 currentPosition[1] = currentPosition[1]+1;
@@ -142,7 +142,7 @@ void EntitySnake::getNextPosition(int currentPosition[], directions facing, int 
             currentPosition[1] = currentPosition[1];
             break;
         case EntitySnake::west:
-            if (currentPosition[0] >= worldWidth) {
+            if (currentPosition[0] >= worldWidth-1) {
                 currentPosition[0] = 0;
             } else {
                 currentPosition[0] = currentPosition[0] + 1;

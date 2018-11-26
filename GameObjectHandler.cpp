@@ -56,7 +56,7 @@ int* GameObjectHandler::handleCollisions() {
     return new int[2]{-1,-1};
 }
 
-void GameObjectHandler::render(SDL_Renderer *r, SDL_Rect camera) {
+void GameObjectHandler::render(SDL_Renderer *r) {
     if (!elements.empty()) {
         if (!elements.empty()) {
             for (auto &element : elements) {
@@ -112,15 +112,6 @@ void GameObjectHandler::removeFlagged() {
 			++it;
 		}
 	}
-	/*
-    for (int i = 0; i < elements.size(); i++) {
-        if (elements[i]->flagged) {
-            //elements[i]->free();
-            //delete &elements[i];
-            elements.erase(elements.begin()+i);
-        }
-    }
-	*/
 }
 
 

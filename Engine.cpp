@@ -18,10 +18,61 @@ Engine *Engine::getExistingInstance() {
 	return instance;
 }
 
+bool Engine::assignSystemFont(const char *path, int size) {
+	bool success = true;
+
+	TTF_CloseFont(sysFont);
+	sysFont = TTF_OpenFont("fonts/Vegur-Regular.otf", size);
+
+	if (sysFont == nullptr) {
+		std::cerr << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
+		success = false;
+	}
+
+	return success;
+}
+
+void Engine::assignWindowName(const char* name) {
+
+	if (gWindow != nullptr) {
+		nPtr = nullptr;
+		SDL_SetWindowTitle(gWindow, nPtr);
+		nPtr = name;
+	}
+}
+
+void Engine::assignWindowSize(int width, int height) {
+	if (gWindow != nullptr) {
+		// check if the width or height changed
+		if (width != sW || height != sH) {
+			SDL_SetWindowSize(gWindow, width, height);
+			sW = width;
+			sH = height;
+		}
+	}
+}
+
+bool Engine::assignRenderScale(float scaleX, float scaleY) {
+	int val = 0;
+	// check if scalex or scale y changed
+	if (scaleX != sX || scaleY != sY) {
+		val = SDL_RenderSetScale(gRenderer, scaleX, scaleY);
+		if (val != 0) {
+			std::cerr << "Unable to set drawing scale: " << SDL_GetError() << std::endl;
+		}
+		sX = scaleX;
+		sY = scaleY;
+	}
+	return val;
+}
+
+void EngineUpdate() {
+}
+
 bool Engine::init(int screenWidth, int screenHeight, const char *namePtr) {
 	sW = screenWidth;
 	sH = screenHeight;
-	nPtr = namePtr;
+	assignWindowName(namePtr);
 
 	printf("Initializing Engine...\n");
 	bool success = true;
@@ -62,6 +113,16 @@ bool Engine::init(int screenWidth, int screenHeight, const char *namePtr) {
 			}
 		}
 	}
+
+	// Load Default System Font
+	// assignSystemFont should only effect success if success is already true, this prevents initalization from returning a false success.
+	if (success) {
+		success = assignSystemFont("fonts/Vegur-Regular.otf", 24);
+	}
+	else {
+		assignSystemFont("fonts/Vegur-Regular.otf", 24);
+	}
+
 	if (success) {
 		printf("Engine initialized successfully\n");
 	}
@@ -74,11 +135,15 @@ bool Engine::init(int screenWidth, int screenHeight, const char *namePtr) {
 void Engine::kill() {
 	SDL_DestroyRenderer(gRenderer);
 	SDL_DestroyWindow(gWindow);
+	TTF_CloseFont(sysFont);
 	gWindow = nullptr;
 	gRenderer = nullptr;
+	sysFont = nullptr;
+	nPtr = nullptr;
 	instance = nullptr;
 
 	IMG_Quit();
+	TTF_Quit();
 	SDL_Quit();
 	printf("Engine Killed\n");
 }

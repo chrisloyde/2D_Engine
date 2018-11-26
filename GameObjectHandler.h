@@ -10,7 +10,7 @@ public:
     ~GameObjectHandler();
     static GameObjectHandler* getInstance();			// Create or retrive existing instance of object handler.
     void update(float timeStep);						// Sends update signals to all objects contained in handler.
-    void render(SDL_Renderer *r, SDL_Rect camera);		// Sends render signals to all objects contained in handler.
+    void render(SDL_Renderer *r);		// Sends render signals to all objects contained in handler.
     void handleEvents(SDL_Event &e);					// Sends event signals to all objects contained in handler.
     
 	// only use for single sprites, auto sets to solid
