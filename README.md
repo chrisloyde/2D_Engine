@@ -36,4 +36,4 @@ Developed in C++
   
 ***
 **[Downloads]**
-Snake example: [Dpwnload](petersonchris.me/downloads/Snake.zip)
+Snake example: [Download](petersonchris.me/downloads/Snake.zip)
