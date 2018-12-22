@@ -18,6 +18,10 @@ public:
 	SDL_Renderer* getRenderer() { return gRenderer; }								// Get Engine Renderer
 	TTF_Font* getSystemFont() { return sysFont; }									// Get Font loaded in Engine
 	const char* getWindowTitle() { return nPtr; }
+	int getScreenHeight() { return sH; }
+	int getScreenWidth() { return sW; }
+	float getScaleX() { return sX; }
+	float getScaleY() { return sY; }
 	void kill();																	// Kill Engine and free memory.
 	~Engine();
 private:

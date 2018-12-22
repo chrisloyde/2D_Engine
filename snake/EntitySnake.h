@@ -5,6 +5,7 @@
 #include "../GameObject.h"
 #include "../Engine.h"
 #include "../GameObjectHandler.h"
+#include "../GameObjectPool.h"
 #include "../Timer.h"
 #include "Point.h"
 #include "EntityTail.h"

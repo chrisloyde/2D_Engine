@@ -36,8 +36,8 @@ void Engine::assignWindowName(const char* name) {
 
 	if (gWindow != nullptr) {
 		nPtr = nullptr;
-		SDL_SetWindowTitle(gWindow, nPtr);
 		nPtr = name;
+		SDL_SetWindowTitle(gWindow, nPtr);
 	}
 }
 
@@ -72,7 +72,6 @@ void EngineUpdate() {
 bool Engine::init(int screenWidth, int screenHeight, const char *namePtr) {
 	sW = screenWidth;
 	sH = screenHeight;
-	assignWindowName(namePtr);
 
 	printf("Initializing Engine...\n");
 	bool success = true;
@@ -113,6 +112,8 @@ bool Engine::init(int screenWidth, int screenHeight, const char *namePtr) {
 			}
 		}
 	}
+
+	assignWindowName(namePtr);
 
 	// Load Default System Font
 	// assignSystemFont should only effect success if success is already true, this prevents initalization from returning a false success.

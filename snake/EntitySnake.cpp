@@ -21,14 +21,14 @@ void EntitySnake::handleCollision(GameObject *other) {
     if (strcmp(other->id.c_str(), "Fruit") == 0) {
         ++score;
         Engine *engine = Engine::getExistingInstance();
-        GameObjectHandler *oHandler = GameObjectHandler::getInstance();
+		GameObjectPool *pool = GameObjectPool::getInstance();
 		if (engine != nullptr) {
             EntityTail *newTail = new EntityTail(score, width, (int) facing);
             newTail->addCamera(cam);
 			newTail->init(engine->getRenderer(), "snake/sprites/snake_block.png", new int[1]{ 1 }, 1, 16, 16);
             newTail->setId(std::string("Tail"));
             std::cout << "New Tail Created" << std::endl;
-            oHandler->add(newTail);
+			pool->add(*newTail);
             if (tail == nullptr) {
                 tail = newTail;
             } else {

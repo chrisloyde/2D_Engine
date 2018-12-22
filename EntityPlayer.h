@@ -13,7 +13,7 @@ public:
     EntityPlayer(int worldX, int worldY,int width, int height);
     void render(SDL_Renderer *renderer) override;				// Called every render cycle.
     void update(float timeStep);								// Called every update cycle.
-    void handleEvent(SDL_Event& e) override;	// Called when a SDL event occurs.
+    void handleEvent(SDL_Event& e) override;					// Called when a SDL event occurs.
     void handleCollision(GameObject *other) override;			// Called when player collides with another object.
     void move(float timeStep);									// move the player according to xVel and yVel set during the update cycle.
     void unMove(float timeStep);								// Negate movement of player according to xVel and yVel set during the update cylce.
