@@ -4,11 +4,11 @@
 #include <vector>
 #include "../GameObject.h"
 #include "../Engine.h"
-#include "../GameObjectHandler.h"
 #include "../GameObjectPool.h"
 #include "../Timer.h"
 #include "Point.h"
 #include "EntityTail.h"
+//#include "SnakeRunner.h"
 
 #define SPEED 100.f
 
@@ -22,7 +22,7 @@ public:
     void update(float timeStep) override;
     void render(SDL_Renderer *r) override;
     void handleEvent(SDL_Event& e) override;
-    void init(SDL_Renderer *r, std::string path, int *numOfSpritesIn, int animNum, int sWidth, int sHeight, bool isHead);
+    //void init(SDL_Renderer *r, std::string path, int *numOfSpritesIn, int animNum, int sWidth, int sHeight, bool isHead);
     void handleCollision(GameObject *other) override ;
     static void getNextPosition(int currentPosition[], directions facing, int worldWidth, int worldHeight);
 	~EntitySnake();

@@ -1,6 +1,9 @@
 #include "SnakeRunner.h"
 
+#include "../TextureManager.h"
 
+Texture* SnakeRunner::RED_BLOCK;
+Texture* SnakeRunner::BLUE_BLOCK;
 
 SnakeRunner::SnakeRunner() {
 	engine = nullptr;
@@ -57,6 +60,9 @@ void SnakeRunner::kill() {
 bool SnakeRunner::init() {
 	bool success = true;
 
+	RED_BLOCK = TextureManager::registerTexture(engine->getRenderer(), "snake/sprites/snake_block.png");
+	BLUE_BLOCK = TextureManager::registerTexture(engine->getRenderer(), "snake/sprites/fruit_block.png");
+
 	int screenWidth = engine->getScreenWidth();																						// Get screen and scale values from engine.
 	int screenHeight = engine->getScreenHeight();
 	float scaleX = engine->getScaleX();
@@ -70,7 +76,7 @@ bool SnakeRunner::init() {
 	
 	/* Initialize Player */
 	player->addCamera(&camera);
-	player->init(engine->getRenderer(), "snake/sprites/snake_block.png", new int[1]{ 1 }, 1, SPRITE_SIZE, SPRITE_SIZE, true);		
+	player->init(engine->getRenderer(), BLUE_BLOCK, new int[1]{ 1 }, 1, SPRITE_SIZE, SPRITE_SIZE);		
 	player->setId(std::string("Player"));
 
 	pool->add(*player);																												// Add Player to object pool.
@@ -78,7 +84,7 @@ bool SnakeRunner::init() {
 	/* Initialize Fruits */
 	for (int i = 0; i < 4; i++) {																									// Use a loop to create and intialize fruit objects then add them to the object pool.
 		Fruit *fruit = new Fruit((screenWidth / 16) / scaleX, (screenHeight / 16) / scaleY, SPRITE_SIZE);
-		fruit->init(engine->getRenderer(), "snake/sprites/fruit_block.png", new int[1]{ 1 }, 1, SPRITE_SIZE, SPRITE_SIZE);
+		fruit->init(engine->getRenderer(), RED_BLOCK, new int[1]{ 1 }, 1, SPRITE_SIZE, SPRITE_SIZE);
 		fruit->addCamera(&camera);
 		fruit->setId(std::string("Fruit"));
 		pool->add(*fruit);
@@ -139,8 +145,8 @@ int SnakeRunner::gameLoop() {
 		SDL_SetRenderDrawColor(engine->getRenderer(), 0, 0, 0, 0);		// Set background draw color (black)
 		SDL_RenderClear(engine->getRenderer());							// Clear window (also assigns background draw color to renderer)
 		/* Call Renderers */
-		addRenders(engine->getRenderer());								// Render additional Render tasks.
 		pool->render(engine->getRenderer());							// Singal pool to render all GameObjects.
+		addRenders(engine->getRenderer());								// Render additional Render tasks.
 
 		SDL_RenderPresent(engine->getRenderer());						// Update screen.
 
@@ -164,11 +170,15 @@ void SnakeRunner::addRenders(SDL_Renderer *renderer) {
 	score << "Score: " << player->score;
 	if (!scroreTexture.loadFromRenderedText(renderer, score.str().c_str(), engine->getSystemFont(), SDL_Color() = { 255,255,255,255 })) {
 		std::cerr << "Unable to render Score Texture" << std::endl;
+		return;
 	}
+	scroreTexture.render(renderer, 0, 0);
 }
 
 void SnakeRunner::addDeallocations() {
 	score.flush();
+	delete RED_BLOCK;
+	delete BLUE_BLOCK;
 }
 
 SnakeRunner::~SnakeRunner() {

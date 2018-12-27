@@ -13,8 +13,8 @@ GameObject::GameObject() {
 GameObject::~GameObject() {
     free();
 }
-void GameObject::init(SDL_Renderer *r, std::string path, int *numOfSpritesIn, int animNum, int sWidth, int sHeight) {
-	gTexture = new Texture();
+void GameObject::init(SDL_Renderer *r, Texture *texture, int *numOfSpritesIn, int animNum, int sWidth, int sHeight) {
+	gTexture = texture;
     // numOfSprites is the number of sprites per animation row in the spritesheet
     // from the integer array provided, we can determine the number of sprites per animation
     // and copy into a local array in the game object.
@@ -28,7 +28,6 @@ void GameObject::init(SDL_Renderer *r, std::string path, int *numOfSpritesIn, in
     spriteH = sHeight;
     numOfAnims = animNum;
 
-    gTexture->loadFromFile(r, path);
     if (numOfAnims > 1) {
         // initialize 2D array for spriteStorage. Each animation is a row, each column is a sprite within the animation.
         // numOfAnims controls the number of rows, while numOfSpritesIn controls the number of columns per row.
@@ -144,7 +143,6 @@ void GameObject::free() {
     }
     delete[] spriteStorage;
     delete[] numOfSprites;
-	delete gTexture;
     cam = nullptr;
 	gTexture = nullptr;
 }

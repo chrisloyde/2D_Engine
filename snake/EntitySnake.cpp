@@ -12,9 +12,9 @@ EntitySnake::EntitySnake(int x, int y, int size, int worldWidth, int worldHeight
 	updateTimer.start();
 }
 
-void EntitySnake::init(SDL_Renderer *r, std::string path, int *numOfSpritesIn, int animNum, int sWidth, int sHeight, bool isHead) {
-    GameObject::init(r,path,numOfSpritesIn,animNum,sWidth,sHeight);
-}
+//void EntitySnake::init(SDL_Renderer *r, Texture *texture, int *numOfSpritesIn, int animNum, int sWidth, int sHeight, bool isHead) {
+//    GameObject::init(r,texture,numOfSpritesIn,animNum,sWidth,sHeight);
+//}
 
 void EntitySnake::handleCollision(GameObject *other) {
     GameObject::handleCollision(other);
@@ -25,7 +25,7 @@ void EntitySnake::handleCollision(GameObject *other) {
 		if (engine != nullptr) {
             EntityTail *newTail = new EntityTail(score, width, (int) facing);
             newTail->addCamera(cam);
-			newTail->init(engine->getRenderer(), "snake/sprites/snake_block.png", new int[1]{ 1 }, 1, 16, 16);
+			newTail->init(engine->getRenderer(), gTexture, new int[1]{ 1 }, 1, 16, 16);
             newTail->setId(std::string("Tail"));
             std::cout << "New Tail Created" << std::endl;
 			pool->add(*newTail);

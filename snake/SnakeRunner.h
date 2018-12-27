@@ -14,6 +14,9 @@
 class SnakeRunner : public GameRunner
 {
 public:
+	static Texture* RED_BLOCK;
+	static Texture* BLUE_BLOCK; 
+
 	SnakeRunner();
 	int run() override;
 	bool attachEngine(Engine &engine) override;

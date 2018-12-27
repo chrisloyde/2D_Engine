@@ -11,7 +11,7 @@
 class GameObject {
 public:
     GameObject(); // construct default game object
-    virtual void init(SDL_Renderer *r, std::string path,int *numOfSpritesArr, int animNum, int sWidth, int sHeight);	// initializes and loads media for game object.
+    virtual void init(SDL_Renderer *r, Texture *texture, int *numOfSpritesArr, int animNum, int sWidth, int sHeight);	// initializes and loads media for game object.
 	void addCamera(SDL_Rect *camera);													// add camera to object.
 	void setId(std::string str);														// assign ID to object.
     virtual void generateSpriteClips();													// clips object's sprite sheet to create animations.
