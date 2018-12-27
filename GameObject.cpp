@@ -9,6 +9,9 @@ GameObject::GameObject() {
     width = 32;
     height = 32;
     isSolid = false;
+	randomTickChance = 100;
+	numberOfFramesBeforeTick = 100 * 10; // 10 seconds
+	tickCounter = 0;
 }
 GameObject::~GameObject() {
     free();
@@ -84,7 +87,25 @@ void GameObject::update(float timeStep) {
         // update currentFrame of animation.
         currentFrame = spriteStorage[anim][animFrame / numOfSprites[anim]];
     }
+
+	if ((rand() % randomTickChance) == 0) {
+		randomTick(timeStep);
+	}
+
+	if (tickCounter >= numberOfFramesBeforeTick) {
+		tickCounter = 0;
+		slowTick(timeStep);
+	}
+
+	++tickCounter;
 }
+
+void GameObject::randomTick(float timeStep) {
+}
+
+void GameObject::slowTick(float timeStep) {
+}
+
 void GameObject::handleEvent(SDL_Event &e) {
     if (Tile::checkCollision(GUI::getMouseBoundsInWorld(*cam), bounds)) {
         switch(e.type) {

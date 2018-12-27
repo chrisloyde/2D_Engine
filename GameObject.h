@@ -18,6 +18,8 @@ public:
     virtual void setBounds(int x, int y, int width, int height, int xOff, int yOff);	// intialize position and bounding box of game object.
     virtual void setPos(int x, int y);													// assigns object position to a new one.
     virtual void update(float timeStep);												// updates game object per frame (uses frame independance with timestep).
+	virtual void randomTick(float timeStep);											// updates game object randomly.
+	virtual void slowTick(float timeStep);												// updates game object after a set number of frames.
     virtual void handleEvent(SDL_Event &e);												// handle events.
     virtual void handleCollision(GameObject *other);									// handle collisions between objects.
     virtual float readDistance(GameObject *other);										// calculate and read distance between two objects.
@@ -40,5 +42,9 @@ public:
     SDL_Rect currentFrame;
     SDL_Rect *cam = nullptr;
     bool flagged = false;
+
+	int randomTickChance;
+	int numberOfFramesBeforeTick;
+	int tickCounter;
 private:
 };
