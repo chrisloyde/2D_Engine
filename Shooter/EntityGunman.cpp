@@ -5,6 +5,7 @@ EntityGunman::EntityGunman() {
 	numberOfFramesBeforeTick = 1;
 	xVelocity = 0;
 	speed = 250;
+	isEnabled = true;
 }
 
 void EntityGunman::handleEvent(SDL_Event &e) {
@@ -57,8 +58,8 @@ void EntityGunman::update(float timeStep) {
 	}
 }
 
-void EntityGunman::slowTick(float timeStep) {
-	GameObject::slowTick(timeStep);
+void EntityGunman::slowTick() {
+	GameObject::slowTick();
 
 	if (isShooting) {
 		EntityBullet *bullet = new EntityBullet();

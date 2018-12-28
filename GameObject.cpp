@@ -78,32 +78,35 @@ void GameObject::update(float timeStep) {
         setBounds((int) xPos, (int) yPos, width, height, (int)xOffset, (int)yOffset);
     }
 
-    // don't bother updating animation frames if it's just a single image.
-    if (numOfAnims > 1) {
-        ++animFrame; // increment animation frame
-        if ((animFrame / numOfSprites[anim]) >= numOfSprites[anim]) {
-            animFrame = 0;
-        }
-        // update currentFrame of animation.
-        currentFrame = spriteStorage[anim][animFrame / numOfSprites[anim]];
-    }
+	// don't bother updating animation frames if it's just a single image.
+	if (numOfAnims > 1) {
+		++animFrame;															// increment animation frame
+		if ((animFrame / numOfSprites[anim]) >= numOfSprites[anim]) {			// Determine if animation frame should be reset to 0.
+			animFrame = 0;
+		}
 
-	if ((rand() % randomTickChance) == 0) {
-		randomTick(timeStep);
+		currentFrame = spriteStorage[anim][animFrame / numOfSprites[anim]];		// Update current frame of animation.
+	}
+}
+
+void GameObject::tick() {
+
+	if ((rand() % randomTickChance) == 0) {										// Determine if randomTick should be called.
+		randomTick();
 	}
 
-	if (tickCounter >= numberOfFramesBeforeTick) {
+	if (tickCounter >= numberOfFramesBeforeTick) {								// Determine if the number of ticks have been reached to call slowTick.
 		tickCounter = 0;
-		slowTick(timeStep);
+		slowTick();
 	}
 
-	++tickCounter;
+	++tickCounter;																// increment tickCounter because another tick has passed.
 }
 
-void GameObject::randomTick(float timeStep) {
+void GameObject::randomTick() {
 }
 
-void GameObject::slowTick(float timeStep) {
+void GameObject::slowTick() {
 }
 
 void GameObject::handleEvent(SDL_Event &e) {

@@ -3,7 +3,6 @@
 GameObjectPool* GameObjectPool::instance = 0;
 
 GameObjectPool::GameObjectPool() {
-	key = 0;
 }
 
 GameObjectPool* GameObjectPool::getInstance() {
@@ -13,10 +12,11 @@ GameObjectPool* GameObjectPool::getInstance() {
 	return instance;
 }
 
-void GameObjectPool::add(GameObject &object) {		
+void GameObjectPool::add(GameObject &object) {	
+	int key = findValidKey();
+	std::cout << "Creating object with Key [" << key << "] With ID: " << object.id << std::endl;
 	pool[key] = &object;													// add object to map according to current key.
 	keys.push_back(SimpleGameObject(key));									// add key to keys vector.
-	++key;																	// increment key to prepare for the next object.
 		
 }
 
@@ -25,9 +25,8 @@ void GameObjectPool::update(float timeStep) {
 	for (auto k : keys) {
 		auto it = pool.find(k.getKey());
 		if (it != pool.end()) {
-			GameObject *temp = it->second;
-			temp->update(timeStep);
-			keys[i].update(temp->bounds.y);
+			it->second->update(timeStep);									// update game object
+			keys[i].update(it->second->bounds.y);							// update simple game object with game objects new y position
 		}
 		++i;
 	}
@@ -43,10 +42,18 @@ void GameObjectPool::update(float timeStep) {
 	std::sort(keys.begin(), keys.end(), orderByYPos);						// sort objects by y axis.
 }
 
+void GameObjectPool::tick() {
+	for (auto k : keys) {
+		auto it = pool.find(k.getKey());
+		if (it != pool.end()) {
+			it->second->tick();
+		}
+	}
+}
+
 int* GameObjectPool::handleCollisions() {
 	for (int i = 0; i < keys.size(); i++) {
 		for (int j = i + 1; j < keys.size(); j++) {
-			//if (Tile::checkCollision(pool[keys[i]]->bounds, pool[keys[j]]->bounds)) {
 			if (Tile::checkCollision(pool.find(keys[i].getKey())->second->bounds, pool.find(keys[j].getKey())->second->bounds)) {
 				return new int[2]{ keys[i].getKey(), keys[j].getKey() };	// return 2 length int array of both GameObject's map key.
 			}
@@ -72,11 +79,14 @@ void GameObjectPool::handleEvents(SDL_Event &e) {
 
 void GameObjectPool::removeFlagged() {
 	int i = 0;
+	int key = 0;
 	for (std::vector<SimpleGameObject>::iterator it = keys.begin(); it != keys.end();) {
-		if (pool.find(keys[i].getKey())->second->flagged) {
-			std::cout << "Deleting " << pool[keys[i].getKey()]->id << std::endl;
-			delete pool[keys[i].getKey()];									// Free GameObject in pool.
-			pool.erase(keys[i].getKey());									// Erase GameObject space from pool.
+		key = keys[i].getKey();
+		auto pIt = pool.find(key);
+		if (pIt->second->flagged) {
+			std::cout << "Deleting Object with Key [" << key << "] With ID: " << pIt->second->id << std::endl;
+			delete pIt->second;												// Free GameObject in pool.
+			pool.erase(key);												// Erase GameObject space from pool.
 			keys.erase(it);													// Erase integer from keys.
 			it = keys.begin();												// reset iterators to iterate from beginning.
 			i = 0;
@@ -88,12 +98,35 @@ void GameObjectPool::removeFlagged() {
 	}
 }
 
-GameObjectPool::~GameObjectPool() {
-	for (auto k : keys) {
-		pool[k.getKey()]->flagged = true;						// Flag all GameObjects for removal.
+int GameObjectPool::findValidKey() {
+	if (keys.empty()) {
+		return 0;
 	}
 
-	removeFlagged();											// Remove all flagged GameObjects.
+	int checkKey = 0;							// Current key to check.
+	bool validate;								// Key number is vald.
+	for (auto k : keys) {
+		validate = true;						// Key number is percieved as valid at the start of the loop.
+		for (auto k2 : keys) {					// Nested loop to find any available keys.
+			if (checkKey == k2.getKey()) {		// If a key is determined invalid, mark validation as false, and move on to next number.
+				validate = false;
+				break;
+			}
+		}
+		if (validate) {							// if the check key was not found in the pool, return it.
+			return checkKey;
+		}
+		++checkKey;
+	}
+	return checkKey;							// If all keys are used up, then create a new one. (note since the end of the loop increments, we don't need to increment again here.
+}
+
+GameObjectPool::~GameObjectPool() {
+	for (auto k : keys) {
+		pool[k.getKey()]->flagged = true;		// Flag all GameObjects for removal.
+	}
+
+	removeFlagged();							// Remove all flagged GameObjects.
 	keys.clear();
 	instance = 0;
 }

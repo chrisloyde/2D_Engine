@@ -14,8 +14,8 @@ void EntityBullet::update(float timeStep) {
 	}
 }
 
-void EntityBullet::slowTick(float timeStep) {
-	GameObject::update(timeStep);
+void EntityBullet::slowTick() {
+	GameObject::slowTick();
 	flagged = true;							// flag for deletion.
 }
 

@@ -10,16 +10,14 @@
 #include "EntityTail.h"
 //#include "SnakeRunner.h"
 
-#define SPEED 100.f
-
 class EntitySnake: public GameObject {
 public:
     int score = 0;
     enum directions {north = 0,south = 1,east = 2,west = 3};
-    //const int SPEED = 1;
     EntitySnake(int x, int y, int size, int worldWidth, int worldHeight);
 
     void update(float timeStep) override;
+	void slowTick() override;
     void render(SDL_Renderer *r) override;
     void handleEvent(SDL_Event& e) override;
     //void init(SDL_Renderer *r, std::string path, int *numOfSpritesIn, int animNum, int sWidth, int sHeight, bool isHead);
@@ -33,9 +31,6 @@ private:
     float xVel = 0;
     int worldW, worldH;
 	bool canMove = true;
-	bool shouldUpdate = false;
-	int currentTime = 0;
-	int previousTime = -1;
 	Timer updateTimer;
 };
 

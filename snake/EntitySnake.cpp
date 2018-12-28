@@ -10,6 +10,7 @@ EntitySnake::EntitySnake(int x, int y, int size, int worldWidth, int worldHeight
 	setBounds(x, y, size, size, 0, 0);
 	setId(std::string("Player"));
 	updateTimer.start();
+	numberOfFramesBeforeTick = 6;
 }
 
 //void EntitySnake::init(SDL_Renderer *r, Texture *texture, int *numOfSpritesIn, int animNum, int sWidth, int sHeight, bool isHead) {
@@ -49,9 +50,7 @@ void EntitySnake::handleCollision(GameObject *other) {
 
 void EntitySnake::update(float timeStep) {
     GameObject::update(timeStep);
-	currentTime = updateTimer.getTicks() / SPEED;
-	shouldUpdate = currentTime != previousTime;
-
+	/*
 	if (shouldUpdate) {
 		int pos[2]{ (int)xPos / width, (int)yPos / height };
 		getNextPosition(pos, facing, worldW, worldH);
@@ -66,6 +65,22 @@ void EntitySnake::update(float timeStep) {
 	}
 
 	previousTime = currentTime;
+	*/
+}
+
+void EntitySnake::slowTick() {
+	GameObject::slowTick();
+
+	int pos[2]{ (int)xPos / width, (int)yPos / height };
+	getNextPosition(pos, facing, worldW, worldH);
+
+	if (tail != nullptr) {
+		tail->moveToPosition(xPos, yPos);
+	}
+
+	setPos(pos[0] * spriteW, pos[1] * spriteH);
+	setBounds((int)xPos, (int)yPos, width, height, 0, 0);
+	canMove = true;
 }
 
 void EntitySnake::render(SDL_Renderer *r) {

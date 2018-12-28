@@ -6,8 +6,6 @@ Texture* SnakeRunner::RED_BLOCK;
 Texture* SnakeRunner::BLUE_BLOCK;
 
 SnakeRunner::SnakeRunner() {
-	engine = nullptr;
-	pool = nullptr;
 	screenWidth = 0;
 	screenHeight = 0;
 	scaleSizeX = 0;
@@ -32,29 +30,9 @@ int SnakeRunner::run() {
 	}
 
 	init();
-	gameLoop();
-
-	addDeallocations();
-	kill();
-
+	GameRunner::gameLoop();
+	GameRunner::kill();
 	return 0;
-}
-
-bool SnakeRunner::attachEngine(Engine &inEngine) {
-	engine = &inEngine;
-
-	return (pool != nullptr);
-}
-
-bool SnakeRunner::attachObjectPool(GameObjectPool &inPool) {
-	pool = &inPool;
-
-	return (pool != nullptr);
-}
-
-void SnakeRunner::kill() {
-	delete pool;
-	delete engine;
 }
 
 bool SnakeRunner::init() {
@@ -100,62 +78,6 @@ bool SnakeRunner::init() {
 	return success;
 }
 
-int SnakeRunner::gameLoop() {
-	bool quit = false;
-	SDL_Event e;
-	Timer stepTimer;
-
-	stepTimer.start();
-
-	while (!quit) {
-		/*
-		**********
-		EVENT CYCLE
-		**********
-		*/
-
-		while (SDL_PollEvent(&e) != 0) {
-			if (e.type == SDL_QUIT) {
-				quit = true;
-			}
-			else {
-				addEvents(e);											// Send Event singals to objects outside of GameObject pool.
-				pool->handleEvents(e);									// Signal pool to send events to all GameObjects.
-			}
-		}
-		float timeStep = stepTimer.getTicks() / 1000.f;
-
-		/*
-		**********
-		UPDATE CYCLE
-		**********
-		*/
-
-		addUpdates(timeStep);											// Update objects outside of GameObject Pool.
-
-		pool->update(timeStep);											// Signal pool to update all GameObjects.
-		stepTimer.start();
-
-		pool->removeFlagged();											// Signal pool to remove all flagged GameObjects from the pool.
-		/*
-		**********
-		RENDER CYCLE
-		**********
-		*/
-		SDL_SetRenderDrawColor(engine->getRenderer(), 0, 0, 0, 0);		// Set background draw color (black)
-		SDL_RenderClear(engine->getRenderer());							// Clear window (also assigns background draw color to renderer)
-		/* Call Renderers */
-		pool->render(engine->getRenderer());							// Singal pool to render all GameObjects.
-		addRenders(engine->getRenderer());								// Render additional Render tasks.
-
-		SDL_RenderPresent(engine->getRenderer());						// Update screen.
-
-
-	}
-
-	return 0;
-}
-
 void SnakeRunner::addEvents(SDL_Event &e) {
 
 }
@@ -177,9 +99,8 @@ void SnakeRunner::addRenders(SDL_Renderer *renderer) {
 
 void SnakeRunner::addDeallocations() {
 	score.flush();
+	delete player;
 	delete RED_BLOCK;
 	delete BLUE_BLOCK;
 }
 
-SnakeRunner::~SnakeRunner() {
-}

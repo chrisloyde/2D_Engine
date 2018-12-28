@@ -6,7 +6,7 @@ class EntityBullet :
 public:
 	EntityBullet();
 	void update(float timeStep) override;
-	void slowTick(float timeStep) override;
+	void slowTick() override;
 	void handleCollision(GameObject *other) override;
 	~EntityBullet();
 private:

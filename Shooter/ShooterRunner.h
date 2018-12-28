@@ -18,20 +18,13 @@ class ShooterRunner :
 public:
 	ShooterRunner();
 	int run() override;
-	bool attachEngine(Engine &engine) override;
-	bool attachObjectPool(GameObjectPool &pool) override;
-	void kill() override;
-	~ShooterRunner() override;
 protected:
 	bool init() override;
-	int gameLoop() override;
 	void addEvents(SDL_Event &e) override;
 	void addUpdates(float timeStep) override;
 	void addRenders(SDL_Renderer *renderer) override;
 	void addDeallocations() override;
 private:
-	Engine *engine;
-	GameObjectPool *pool;
 	EntityGunman *player;
 
 	int screenWidth;
