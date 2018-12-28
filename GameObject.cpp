@@ -133,7 +133,8 @@ void GameObject::render(SDL_Renderer *renderer) {
         }
 
         // draw hitbox around objects for debugging purposes
-        /*
+        
+		/*
         SDL_Rect fakeBox;
         fakeBox.x = bounds.x-cam->x;
         fakeBox.y = bounds.y-cam->y;
@@ -141,7 +142,7 @@ void GameObject::render(SDL_Renderer *renderer) {
         fakeBox.h = bounds.h;
         SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
         SDL_RenderDrawRect(renderer, &fakeBox);
-         */
+        */
     }
 
 }

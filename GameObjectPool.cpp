@@ -23,12 +23,13 @@ void GameObjectPool::add(GameObject &object) {
 void GameObjectPool::update(float timeStep) {
 	int i = 0;
 	for (auto k : keys) {
-		GameObject *temp = pool.find(k.getKey())->second;
-		temp->update(timeStep);
-		keys[i].update(temp->bounds.y);
+		auto it = pool.find(k.getKey());
+		if (it != pool.end()) {
+			GameObject *temp = it->second;
+			temp->update(timeStep);
+			keys[i].update(temp->bounds.y);
+		}
 		++i;
-		//pool.find(k.getKey())->second->update(timeStep);
-		//pool[k]->update(timeStep);
 	}
 
 	int *chk;
