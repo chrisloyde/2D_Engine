@@ -1,11 +1,18 @@
-# 2DEngine
-Developed in C++
+# Ruin2D
 
 ***
-**[Description]** I decided I wanted to make a 2DEngine, using SDL2 libraries, as a way of learning C++ and improving my programming skills altogether. The goal is to create an Engine where making 2D games can be as theoretically simple as inherting the correct parent objects and adding independant code and resources for each individual game which can be kept seperate from the engine itself. All required DLLs (visual studio) are included in the repository and are x86 versions of SDL2. 
+**[Description]** I decided I wanted to make a 2D Engine, using SDL2 libraries, as a way of learning C++ and improving my programming skills altogether. The goal is to create an Engine where making 2D games can be as theoretically simple as inherting the correct parent objects and adding independant code and resources for each individual game which can be kept seperate from the engine itself. I do not plan for this engine to compete with any other engines and it is lacking many features that you can find elsewhere.
 
 ***
-**[Setting up]** To setup the engine for Visual Studio I highly recommend looking at lazyfoo's guides (http://lazyfoo.net/) for setting up your enviroment. You can then simply copy the entire repository into your Visual Studio project's directory, as long as Visual Studio is setup to use SDL2 and other requirements, and it will compile and run correctly. 
+**[Setting up]** This engine was developed in **Visual Studio 2017** so this guide will be primarily focused around the VS IDE, however the steps are not complex and should translate to other IDEs. 
+
+On your local computer, create a repository where you want the root of your project to be, for Visual Studio this is where the IDE creates all files by default (directory contains the .vcxproj files by default).
+
+Pull this repository as a submodule to your created repository, name it ruin_engine. This is required for the Engine to load files it requires on runtime; Visual studio requires file paths to start from root directory.
+
+At this point you will need to setup the **required** .dlls in Visual studio, and add the required .dlls to the project's base directory.
+
+To start creating a game you will want to look over the GameRunner.h and GameRunner.cpp files. Create a new class which inherits the GameRunner class and define the required pure virutal functions. In main, calling run will handle the rest and give you a window on your screen showing that everything is working properly. 
 
 ***
 **[Requirements]**
@@ -16,23 +23,28 @@ Developed in C++
   
   SDL2_ttf   (x86 development)    https://www.libsdl.org/projects/SDL_ttf/
 
+**Visual Studio Requirements**
+
+I have not tested this engine with other IDEs besides Visual Studio, but Visual Studio 2017 requires certain .dlls to be in the root folder of your project (folder, by default, containing .vcxproj files). These dlls can be found in your SDL libraries' ~/lib/x86 folder.
+
+SDL2.dll, SDL2_image.dll, SDL2_ttf.dll, libfreetype-6.dll, libjpeg-9.dll, libpng16-16.dll, libtiff-5.dll, libwebp-7.dll, zlib1.dll. 
+
+
+
 ***
 **[Future Inclusions]**
 
   SDL2_Mixer support.
   
-  x86 and x64 support.
-  
-  Main loader, instead of having to adjust main for each individual project I'd like to be able to load individual main functions for increased independence and structure.
+  x64 support.
+
 
 ***
 **[Known Issues]**
 
-  Not optimized to prevent memory leaks.
-  
-  There may be an issue with creating and destroying objects rapidly.
-  
-  Engine and example projects are not well documented.
+  There may be some memory leak issues.
+
+  Engine does not appear to be optimised very well and framerate drops happen when there are ~100 objects on camera at once (have not       determined if this is a rendering or update issue).
   
 ***
 **[Downloads]**
