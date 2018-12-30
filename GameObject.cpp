@@ -16,6 +16,44 @@ GameObject::GameObject() {
 GameObject::~GameObject() {
     free();
 }
+
+bool GameObject::checkCollision(SDL_Rect a, SDL_Rect b) {
+	int leftA, leftB;
+	int rightA, rightB;
+	int topA, topB;
+	int bottomA, bottomB;
+
+	// calculate sides of the rectangles
+	leftA = a.x; rightA = a.x + a.w; topA = a.y; bottomA = a.y + a.h;
+	leftB = b.x; rightB = b.x + b.w; topB = b.y; bottomB = b.y + b.h;
+	// check for any intersections between A and B
+	if (bottomA <= topB) {
+		return false;
+	}
+	if (topA >= bottomB) {
+		return false;
+	}
+	if (rightA <= leftB) {
+		return false;
+	}
+	if (leftA >= rightB) {
+		return false;
+	}
+
+	return true;
+}
+
+float GameObject::getDistance(SDL_Rect a, SDL_Rect b, int divisor) {
+	float xDist;
+	float yDist;
+	// get center points of rectangles for distance calculations
+	xDist = abs((a.x + a.w / 2) - (b.x + b.w / 2));
+	yDist = abs((a.y + a.h / 2) - (b.y + b.h / 2));
+	// return whichever distance is larger
+	// divide by tile size to determine how many tiles away
+	return (xDist < yDist ? yDist : xDist) / divisor;
+}
+
 void GameObject::init(SDL_Renderer *r, Texture *texture, int *numOfSpritesIn, int animNum, int sWidth, int sHeight) {
 	gTexture = texture;
     // numOfSprites is the number of sprites per animation row in the spritesheet
@@ -110,7 +148,7 @@ void GameObject::slowTick() {
 }
 
 void GameObject::handleEvent(SDL_Event &e) {
-    if (Tile::checkCollision(GUI::getMouseBoundsInWorld(*cam), bounds)) {
+    if (GameObject::checkCollision(GUI::getMouseBoundsInWorld(*cam), bounds)) {
         switch(e.type) {
             case SDL_MOUSEBUTTONDOWN:
                 if (e.button.button == SDL_BUTTON_LEFT) {
@@ -128,7 +166,7 @@ void GameObject::addCamera(SDL_Rect *camera) {
     cam = camera;
 }
 void GameObject::render(SDL_Renderer *renderer) {
-    if (Tile::checkCollision(bounds, *cam)) {
+    if (GameObject::checkCollision(bounds, *cam)) {
         if (numOfAnims <= 1) {
             gTexture->render(renderer, (int) xPos - cam->x, (int) yPos - cam->y, nullptr);
         } else {
@@ -153,7 +191,7 @@ void GameObject::handleCollision(GameObject *other) {
     printf("Collision: %s - %s\n", id.c_str(), other->id.c_str());
 }
 float GameObject::readDistance(GameObject *other) {
-    return Tile::getDistance(bounds, other->bounds, bounds.w);
+    return GameObject::getDistance(bounds, other->bounds, bounds.w);
 }
 
 void GameObject::setId(std::string str) {

@@ -16,17 +16,17 @@ void GameObjectPool::add(GameObject &object) {
 	int key = findValidKey();
 	std::cout << "Creating object with Key [" << key << "] With ID: " << object.id << std::endl;
 	pool[key] = &object;													// add object to map according to current key.
-	keys.push_back(SimpleGameObject(key));									// add key to keys vector.
+	keys.push_back(struct SimpleGameObject(key));							// add key to keys vector.
 		
 }
 
 void GameObjectPool::update(float timeStep) {
 	int i = 0;
 	for (auto k : keys) {
-		auto it = pool.find(k.getKey());
+		auto it = pool.find(k.key);
 		if (it != pool.end()) {
 			it->second->update(timeStep);									// update game object
-			keys[i].update(it->second->bounds.y);							// update simple game object with game objects new y position
+			keys[i].yAxis = it->second->bounds.y;								// update simple game object with game objects new y position
 		}
 		++i;
 	}
@@ -44,7 +44,7 @@ void GameObjectPool::update(float timeStep) {
 
 void GameObjectPool::tick() {
 	for (auto k : keys) {
-		auto it = pool.find(k.getKey());
+		auto it = pool.find(k.key);
 		if (it != pool.end()) {
 			it->second->tick();
 		}
@@ -54,8 +54,8 @@ void GameObjectPool::tick() {
 int* GameObjectPool::handleCollisions() {
 	for (int i = 0; i < keys.size(); i++) {
 		for (int j = i + 1; j < keys.size(); j++) {
-			if (Tile::checkCollision(pool.find(keys[i].getKey())->second->bounds, pool.find(keys[j].getKey())->second->bounds)) {
-				return new int[2]{ keys[i].getKey(), keys[j].getKey() };	// return 2 length int array of both GameObject's map key.
+			if (GameObject::checkCollision(pool.find(keys[i].key)->second->bounds, pool.find(keys[j].key)->second->bounds)) {
+				return new int[2]{ keys[i].key, keys[j].key };	// return 2 length int array of both GameObject's map key.
 			}
 		}
 	}
@@ -65,14 +65,14 @@ int* GameObjectPool::handleCollisions() {
 
 void GameObjectPool::render(SDL_Renderer *renderer) {
 	for (auto k : keys) {
-		pool.find(k.getKey())->second->render(renderer);
+		pool.find(k.key)->second->render(renderer);
 		//pool[k]->render(renderer);
 	}
 }
 
 void GameObjectPool::handleEvents(SDL_Event &e) {
 	for (auto k : keys) {
-		pool.find(k.getKey())->second->handleEvent(e);
+		pool.find(k.key)->second->handleEvent(e);
 		//pool[k]->handleEvent(event);
 	}
 }
@@ -80,20 +80,22 @@ void GameObjectPool::handleEvents(SDL_Event &e) {
 void GameObjectPool::removeFlagged() {
 	int i = 0;
 	int key = 0;
-	for (std::vector<SimpleGameObject>::iterator it = keys.begin(); it != keys.end();) {
-		key = keys[i].getKey();
+	for (std::vector<struct SimpleGameObject>::iterator it = keys.begin(); it != keys.end();) {
+		key = keys[i].key;
 		auto pIt = pool.find(key);
-		if (pIt->second->flagged) {
-			std::cout << "Deleting Object with Key [" << key << "] With ID: " << pIt->second->id << std::endl;
-			delete pIt->second;												// Free GameObject in pool.
-			pool.erase(key);												// Erase GameObject space from pool.
-			keys.erase(it);													// Erase integer from keys.
-			it = keys.begin();												// reset iterators to iterate from beginning.
-			i = 0;
-		}
-		else {
-			++i;
-			++it;
+		if (pIt != pool.end()) {
+			if (pIt->second->flagged) {
+				std::cout << "Deleting Object with Key [" << key << "] With ID: " << pIt->second->id << std::endl;
+				delete pIt->second;												// Free GameObject in pool.
+				pool.erase(key);												// Erase GameObject space from pool.
+				keys.erase(it);													// Erase integer from keys.
+				it = keys.begin();												// reset iterators to iterate from beginning.
+				i = 0;
+			}
+			else {
+				++i;
+				++it;
+			}
 		}
 	}
 }
@@ -108,7 +110,7 @@ int GameObjectPool::findValidKey() {
 	for (auto k : keys) {
 		validate = true;						// Key number is percieved as valid at the start of the loop.
 		for (auto k2 : keys) {					// Nested loop to find any available keys.
-			if (checkKey == k2.getKey()) {		// If a key is determined invalid, mark validation as false, and move on to next number.
+			if (checkKey == k2.key) {			// If a key is determined invalid, mark validation as false, and move on to next number.
 				validate = false;
 				break;
 			}
@@ -123,7 +125,7 @@ int GameObjectPool::findValidKey() {
 
 GameObjectPool::~GameObjectPool() {
 	for (auto k : keys) {
-		pool[k.getKey()]->flagged = true;		// Flag all GameObjects for removal.
+		pool[k.key]->flagged = true;			// Flag all GameObjects for removal.
 	}
 
 	removeFlagged();							// Remove all flagged GameObjects.

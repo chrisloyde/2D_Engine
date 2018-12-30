@@ -2,7 +2,7 @@
 
 #include <iostream>
 #include <SDL_events.h>
-#include "Tile.h"
+//#include "Tile.h"
 #include "Texture.h"
 
 class GUI {

@@ -11,6 +11,8 @@
 class GameObject {
 public:
     GameObject(); // construct default game object
+	static bool checkCollision(SDL_Rect a, SDL_Rect b);
+	static float getDistance(SDL_Rect a, SDL_Rect b, int divisor);
     virtual void init(SDL_Renderer *r, Texture *texture, int *numOfSpritesArr, int animNum, int sWidth, int sHeight);	// initializes and loads media for game object.
 	void addCamera(SDL_Rect *camera);													// add camera to object.
 	void setId(std::string str);														// assign ID to object.

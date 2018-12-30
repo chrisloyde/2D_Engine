@@ -41,7 +41,7 @@ SDL_Rect GUI::getGUIMouseBounds() {
 void GUI::update() {
 }
 void GUI::handleEvent(SDL_Event &e) {
-    if (Tile::checkCollision(GUI::getGUIMouseBounds(), rect)) {
+    if (SDL_IntersectRect(&GUI::getGUIMouseBounds(), &rect, nullptr)) {
         mouseEnter = true;
         switch(e.type) {
             case SDL_MOUSEBUTTONDOWN: onClick(e); break;
