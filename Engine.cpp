@@ -22,7 +22,7 @@ bool Engine::assignSystemFont(const char *path, int size) {
 	bool success = true;
 
 	TTF_CloseFont(sysFont);
-	sysFont = TTF_OpenFont("fonts/Vegur-Regular.otf", size);
+	sysFont = TTF_OpenFont("engine/fonts/Vegur-Regular.otf", size);
 
 	if (sysFont == nullptr) {
 		std::cerr << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
