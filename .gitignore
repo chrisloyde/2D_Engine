@@ -1,8 +1,11 @@
 # Don't track content of these folders
 Debug/
 Release/
+BasicGame/
+ruin_engine/
 
-
+# Files #
+main.cpp
 # Compiled source #
 ###################
 *.vcxproj

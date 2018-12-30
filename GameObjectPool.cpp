@@ -14,7 +14,7 @@ GameObjectPool* GameObjectPool::getInstance() {
 
 void GameObjectPool::add(GameObject &object) {	
 	int key = findValidKey();
-	std::cout << "Creating object with Key [" << key << "] With ID: " << object.id << std::endl;
+	std::cout << "Creating object with Key [" << key << "] With ID: " << object.getId() << std::endl;
 	pool[key] = &object;													// add object to map according to current key.
 	keys.push_back(struct SimpleGameObject(key));							// add key to keys vector.
 		
@@ -85,7 +85,7 @@ void GameObjectPool::removeFlagged() {
 		auto pIt = pool.find(key);
 		if (pIt != pool.end()) {
 			if (pIt->second->flagged) {
-				std::cout << "Deleting Object with Key [" << key << "] With ID: " << pIt->second->id << std::endl;
+				std::cout << "Deleting Object with Key [" << key << "] With ID: " << pIt->second->getId() << std::endl;
 				delete pIt->second;												// Free GameObject in pool.
 				pool.erase(key);												// Erase GameObject space from pool.
 				keys.erase(it);													// Erase integer from keys.

@@ -1,7 +1,7 @@
 #include "GameRunner.h"
 
 int GameRunner::run() {
-	char windowName[24] = "Default Game Runner";
+	char windowName[24] = "Ruin2D is working";
 	attachEngine(*Engine::getInstance(DEFAULT_SCREEN_WIDTH, DEFAULT_SCREEN_HEIGHT, windowName));
 	attachObjectPool(*GameObjectPool::getInstance());
 	init();

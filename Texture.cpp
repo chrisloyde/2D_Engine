@@ -2,7 +2,7 @@
 #include "Texture.h"
 // Construct Texture Object
 Texture::Texture() {
-    hTexture = nullptr;
+    loadedTexture = nullptr;
     width = 0;
     height = 0;
 }
@@ -35,17 +35,17 @@ bool Texture::loadFromFile(SDL_Renderer *renderer, std::string path) {
         }
         SDL_FreeSurface(loadedSurface); // loadedSurface no longer required
     }
-    hTexture = newTexture;
+    loadedTexture = newTexture;
 
     std::cout << " : Finished" << std::endl;
-    return hTexture != nullptr;
+    return loadedTexture != nullptr;
 }
 bool Texture::loadFromRenderedText(SDL_Renderer *renderer, std::string textureText, TTF_Font *font, SDL_Color textColor) {
     free();
     SDL_Surface *textSurface = TTF_RenderText_Solid(font, textureText.c_str(), textColor);
     if (textSurface != nullptr) {
-        hTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
-        if (hTexture == nullptr) {
+        loadedTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+        if (loadedTexture == nullptr) {
             std::cerr << "Unable to create texture from rendered text! SDL Error: " << SDL_GetError() << std::endl;
         }
         else {
@@ -57,13 +57,13 @@ bool Texture::loadFromRenderedText(SDL_Renderer *renderer, std::string textureTe
     else {
         std::cerr << "Unable to render text surface! SDL_ttf Error " << TTF_GetError() << std::endl;
     }
-    return (hTexture != nullptr);
+    return (loadedTexture != nullptr);
 }
 void Texture::free() {
     // Free texture if it exists
-    if (hTexture != nullptr) {
-        SDL_DestroyTexture(hTexture);
-        hTexture = nullptr;
+    if (loadedTexture != nullptr) {
+        SDL_DestroyTexture(loadedTexture);
+        loadedTexture = nullptr;
         width = 0;
         height = 0;
     }
@@ -81,7 +81,11 @@ void Texture::render(SDL_Renderer *renderer, int x, int y, SDL_Rect *clip) {
         renderQuad.h = clip->h;
     }
     // render to screen
-    SDL_RenderCopy(renderer, hTexture, clip, &renderQuad);
+    SDL_RenderCopy(renderer, loadedTexture, clip, &renderQuad);
+}
+
+void Texture::render(SDL_Renderer *renderer, int x, int y) {
+	render(renderer, x, y, nullptr);
 }
 
 int Texture::getWidth() { return width;}

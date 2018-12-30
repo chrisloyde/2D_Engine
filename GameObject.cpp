@@ -160,7 +160,7 @@ void GameObject::handleEvent(SDL_Event &e) {
     }
 }
 void GameObject::displayInfo() {
-    std::cout << id << " bounds: x: " << bounds.x << " y: " << yPos << " w: " << bounds.w << " h: " << bounds.w << std::endl;
+    std::cout << getId() << " bounds: x: " << bounds.x << " y: " << yPos << " w: " << bounds.w << " h: " << bounds.w << std::endl;
 }
 void GameObject::addCamera(SDL_Rect *camera) {
     cam = camera;
@@ -188,17 +188,21 @@ void GameObject::render(SDL_Renderer *renderer) {
 
 }
 void GameObject::handleCollision(GameObject *other) {
-    printf("Collision: %s - %s\n", id.c_str(), other->id.c_str());
+    printf("Collision: %s - %s\n", getId(), other->getId());
 }
 float GameObject::readDistance(GameObject *other) {
     return GameObject::getDistance(bounds, other->bounds, bounds.w);
 }
 
 void GameObject::setId(std::string str) {
-    id = str;
+	strcpy_s(id, 64, str.c_str());
 }
+
+const char* GameObject::getId() {
+	return id;
+}
+
 void GameObject::free() {
-	id = "";
     if (numOfAnims > 1) {
         for (int i = 0; i < numOfAnims; i++) {
             delete[]  spriteStorage[i];

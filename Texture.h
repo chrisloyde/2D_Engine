@@ -1,28 +1,25 @@
 #pragma once
 
+#include "ITexture.h"
 #include <iostream>
-#include <cstdio>
-#include <string>
 #include <SDL_rect.h>
-#include <SDL_render.h>
 #include <SDL_image.h>
-#include <SDL_ttf.h>
 
-class Texture {
+class Texture : public ITexture {
 public:
-    Texture(); // constructor
-    ~Texture(); // deallocates memory
-    bool loadFromFile(SDL_Renderer *renderer, std::string path); // load image from path
-    void free(); //deallocates texture
-    void render(SDL_Renderer *renderer, int x, int y, SDL_Rect *clip = nullptr); // renders texture at point
-    bool loadFromRenderedText(SDL_Renderer *renderer,std::string textureText, TTF_Font *font, SDL_Color textColor);
+    Texture();
+    ~Texture() override;	
+	bool loadFromFile(SDL_Renderer *renderer, std::string path) override;
+    void free();															
+	void render(SDL_Renderer *renderer, int posX, int posY) override;
+    void render(SDL_Renderer *renderer, int x, int y, SDL_Rect *clip);
+    bool loadFromRenderedText(SDL_Renderer *renderer,std::string textureText, TTF_Font *font, SDL_Color textColor) override;		
 
-    //getters
     int getWidth();
     int getHeight();
 
 private:
-    SDL_Texture *hTexture; // hardware texture
+    //SDL_Texture *hTexture; // hardware texture
     int width;
     int height;
 

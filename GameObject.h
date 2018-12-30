@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include "IGameObject.h"
 #include <string>
 #include <array>
 #include <SDL_render.h>
@@ -8,7 +9,7 @@
 #include "Texture.h"
 #include "GUI.h"
 
-class GameObject {
+class GameObject : public IGameObject {
 public:
     GameObject(); // construct default game object
 	static bool checkCollision(SDL_Rect a, SDL_Rect b);
@@ -31,8 +32,8 @@ public:
     virtual void setSolid(bool s);														// assign the object to solid, or not.
     virtual ~GameObject();
     virtual void free();																// deconstruct game object.
+	virtual const char* getId();
 
-    std::string id = "GameObject";
     float xPos, yPos, xOffset, yOffset;
     int width, height;
     SDL_Rect bounds;

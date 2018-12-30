@@ -5,7 +5,10 @@ Engine* Engine::instance = 0;
 Engine* Engine::getInstance(int screenWidth, int screenHeight, char *namePtr) {
 	if (instance == 0) {
 		instance = new Engine;
-		instance->init(screenWidth, screenHeight, namePtr);
+		if (!instance->init(screenWidth, screenHeight, namePtr)) {
+			return nullptr;
+		}
+
 	}
 
 	return instance;
@@ -22,7 +25,7 @@ bool Engine::assignSystemFont(const char *path, int size) {
 	bool success = true;
 
 	TTF_CloseFont(sysFont);
-	sysFont = TTF_OpenFont("engine/fonts/Vegur-Regular.otf", size);
+	sysFont = TTF_OpenFont(path, size);
 
 	if (sysFont == nullptr) {
 		std::cerr << "Failed to load font! SDL_ttf Error: " << TTF_GetError() << std::endl;
@@ -118,10 +121,10 @@ bool Engine::init(int screenWidth, int screenHeight, const char *namePtr) {
 	// Load Default System Font
 	// assignSystemFont should only effect success if success is already true, this prevents initalization from returning a false success.
 	if (success) {
-		success = assignSystemFont("fonts/Vegur-Regular.otf", 24);
+		success = assignSystemFont("ruin_engine/fonts/Vegur-Regular.otf", 24);
 	}
 	else {
-		assignSystemFont("fonts/Vegur-Regular.otf", 24);
+		assignSystemFont("ruin_engine/fonts/Vegur-Regular.otf", 24);
 	}
 
 	if (success) {
