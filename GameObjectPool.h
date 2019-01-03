@@ -41,7 +41,7 @@ private:
 	{
 		bool operator() (struct SimpleGameObject lhs, struct SimpleGameObject rhs) {
 			//if (lhs != NULL && rhs != NULL) {
-			return (lhs.yAxis > rhs.yAxis);
+			return (lhs.yAxis < rhs.yAxis);
 			//}
 			return false;
 		}
