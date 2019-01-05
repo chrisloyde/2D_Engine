@@ -37,7 +37,7 @@ public:
 	void kill();																	// Kill Engine and free memory.
 	~Engine();
 private:
-	const char version[24] = "1.0.1-alpha";
+	const char version[24] = "2.0.0-alpha";
 	int sW, sH;					// screen width, screen height
 	float sX = 1, sY = 1;		// scale X, scale Y
 	const char		*nPtr;
