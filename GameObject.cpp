@@ -121,6 +121,7 @@ void GameObject::update(float timeStep) {
 		++animFrame;															// increment animation frame
 		if ((animFrame / numOfSprites[anim]) >= numOfSprites[anim]) {			// Determine if animation frame should be reset to 0.
 			animFrame = 0;
+			onAnimationEnd();
 		}
 
 		currentFrame = spriteStorage[anim][animFrame / numOfSprites[anim]];		// Update current frame of animation.
@@ -159,6 +160,11 @@ void GameObject::handleEvent(SDL_Event &e) {
         }
     }
 }
+
+void GameObject::onAnimationEnd() {
+
+}
+
 void GameObject::displayInfo() {
     std::cout << getId() << " bounds: x: " << bounds.x << " y: " << yPos << " w: " << bounds.w << " h: " << bounds.w << std::endl;
 }
@@ -166,29 +172,20 @@ void GameObject::addCamera(SDL_Rect *camera) {
     cam = camera;
 }
 void GameObject::render(SDL_Renderer *renderer) {
-    if (GameObject::checkCollision(bounds, *cam)) {
-        if (numOfAnims <= 1) {
-            gTexture->render(renderer, (int) xPos - cam->x, (int) yPos - cam->y, nullptr);
-        } else {
-            gTexture->render(renderer, (int) xPos - cam->x, (int) yPos - cam->y, &currentFrame);
-        }
-
-        // draw hitbox around objects for debugging purposes
-        
-		/*
-        SDL_Rect fakeBox;
-        fakeBox.x = bounds.x-cam->x;
-        fakeBox.y = bounds.y-cam->y;
-        fakeBox.w = bounds.w;
-        fakeBox.h = bounds.h;
-        SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
-        SDL_RenderDrawRect(renderer, &fakeBox);
-        */
-    }
+	if (gTexture != nullptr) {
+		if (GameObject::checkCollision(bounds, *cam)) {
+			if (numOfAnims <= 1) {
+				gTexture->render(renderer, (int)xPos - cam->x, (int)yPos - cam->y, nullptr);
+			}
+			else {
+				gTexture->render(renderer, (int)xPos - cam->x, (int)yPos - cam->y, &currentFrame);
+			}
+		}
+	}
 
 }
 void GameObject::handleCollision(GameObject *other) {
-    printf("Collision: %s - %s\n", getId(), other->getId());
+    //printf("Collision: %s - %s\n", getId(), other->getId());
 }
 float GameObject::readDistance(GameObject *other) {
     return GameObject::getDistance(bounds, other->bounds, bounds.w);

@@ -26,6 +26,7 @@ public:
 	virtual void slowTick();															// updates game object after a set number of frames.
     virtual void handleEvent(SDL_Event &e);												// handle events.
     virtual void handleCollision(GameObject *other);									// handle collisions between objects.
+	virtual void onAnimationEnd();
     virtual float readDistance(GameObject *other);										// calculate and read distance between two objects.
     virtual void render(SDL_Renderer *renderer);										// render game object per frame.
     virtual void displayInfo();															// prints object information to console.
