@@ -2,6 +2,7 @@
 
 #include <SDL_timer.h>
 #include <SDL_stdinc.h>
+#include <ctime>
 class Timer {
 public:
     Timer();
@@ -15,6 +16,8 @@ public:
 
     bool isStarted();
     bool isPaused();
+
+	int* getRealTime();
 private:
     Uint32 tStartTicks;
     Uint32 tPausedTicks;

@@ -6,6 +6,7 @@
 #include <vector>
 #include <array>
 #include "GameObject.h"
+#include "TilePool.h"
 
 /* inclusive of 0 */
 #define MAX_LAYERS 9
@@ -22,6 +23,8 @@ public:
 
 	void removeFlagged();								// remove and free memory of all flagged objects in pool.
 	void add(GameObject &object, int layer);			// adds a GameObject to the pool.
+	void clearPool(std::string preserveObjectId);		// Removes every object in the pool, except those with id matching paramter.
+	std::vector<GameObject*>* getObjectsById(std::string id);
 
 	/* SimpleGameObject: Stores essential information about objects, without storing entire object. */
 	struct SimpleGameObject {
@@ -60,6 +63,8 @@ public:
 			key = keyIn;
 		}
 	};
+
+	TilePool *tiles = nullptr;
 
 private:
 	static GameObjectPool* instance;

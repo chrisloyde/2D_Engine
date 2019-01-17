@@ -15,7 +15,8 @@ GameObjectPool* GameObjectPool::getInstance() {
 
 void GameObjectPool::add(GameObject &object, int layer) {	
 	int key = recursiveFindValidKey(0,0);
-	std::cout << "Creating object with Key [" << key << "] With ID: " << object.getId() << std::endl;
+	std::cout << "Creating object with Key [" << key << "] With ID: " << object.getId();
+	std::cout << "\t\tMemory Address {" << &(object) << "}" << std::endl;
 	pool[key] = &object;														// add object to map according to current key.
 	keys[layer].push_back(struct SimpleGameObject(layer, key));					// add key to keys vector.
 		
@@ -80,8 +81,33 @@ void GameObjectPool::handleCollisions() {
 	colliders.clear();
 }
 
+std::vector<GameObject*>* GameObjectPool::getObjectsById(std::string id) {
+	std::vector<GameObject*> *objects = new std::vector<GameObject*>();
+	for (int l = 0; l < nLayers; l++) {
+		for (auto k : keys[l]) {
+			auto it = pool.find(k.key);
+			if (it != pool.end()) {
+				if (strcmp(it->second->getId(), id.c_str()) == 0) {
+					objects->push_back(it->second);
+				}
+			}
+		}
+	}
+	return objects;
+}
+
 void GameObjectPool::render(SDL_Renderer *renderer) {
 	for (int l = 0; l < nLayers; l++) {
+
+		/* render tile layer before objects. */
+		if (tiles != nullptr) {
+			if (!tiles->isEmpty()) {
+				if (!tiles->isLayerEmpty(l)) {
+					tiles->render(renderer, l);
+				}
+			}
+		}
+
 		std::vector<struct SimpleGameObject> j = keys[l];
 		for (auto k : keys[l]) {
 			auto it = pool.find(k.key);
@@ -103,6 +129,20 @@ void GameObjectPool::handleEvents(SDL_Event &e) {
 	}
 }
 
+void GameObjectPool::clearPool(std::string preserveObjectId) {
+	for (int l = 0; l < nLayers; l++) {
+		for (auto k : keys[l]) {
+			auto it = pool.find(k.key);
+			if (it != pool.end()) {
+				if (strcmp(preserveObjectId.c_str(), it->second->getId()) != 0) {
+					it->second->flagged = true;
+				}
+			}
+		}
+	}
+	removeFlagged();
+}
+
 void GameObjectPool::removeFlagged() {
 	int i = 0;
 	int key = 0;
@@ -112,7 +152,8 @@ void GameObjectPool::removeFlagged() {
 			auto pIt = pool.find(key);
 			if (pIt != pool.end()) {
 				if (pIt->second->flagged) {
-					std::cout << "Deleting Object with Key [" << key << "] With ID: " << pIt->second->getId() << std::endl;
+					std::cout << "Deleting Object with Key [" << key << "] With ID: " << pIt->second->getId();
+					std::cout << "\t\tMemory Address {" << &(*(pIt->second)) << "}" << std::endl;
 					delete pIt->second;										// Free GameObject in pool.
 					pool.erase(key);										// Erase GameObject space from pool.
 					keys[l].erase(it);										// Erase integer from keys.

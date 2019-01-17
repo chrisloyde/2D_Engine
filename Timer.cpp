@@ -52,5 +52,18 @@ Uint32 Timer::getTicks() {
     return time;
 }
 
+int* Timer::getRealTime() {
+	Uint32 ticks = getTicks();
+	int seconds = ticks / 1000;
+	int minutes = seconds / 60;
+	int hours = minutes / 60;
+	
+	seconds = seconds - (60*minutes);
+	hours = hours - (60*hours);
+
+	int time[3] = {hours, minutes, seconds};
+	return time;
+}
+
 bool Timer::isStarted() {return tStarted;}
 bool Timer::isPaused() {return tPaused;}
