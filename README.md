@@ -48,4 +48,4 @@ SDL2.dll, SDL2_image.dll, SDL2_ttf.dll, libfreetype-6.dll, libjpeg-9.dll, libpng
   
 ***
 **[Downloads]**
-Snake example: [Download](https://petersonchris.me/downloads/Snake.zip)
+Snake example: [Download](https://petersonchris.me/downloads/ruin2D_snake.zip)
