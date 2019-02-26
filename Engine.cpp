@@ -76,6 +76,7 @@ bool Engine::init(int screenWidth, int screenHeight, const char *namePtr) {
 	sW = screenWidth;
 	sH = screenHeight;
 
+	printf("Ruin2D_Engine Version %s\n\n", getVersionNumber());
 	printf("Initializing Engine...\n");
 	bool success = true;
 
